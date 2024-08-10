@@ -1,0 +1,26 @@
+site_name: "perf: Linux profiling with performance counters"
+edit_uri: ../main/edit/main/docs
+nav:
+  - Main Page: index.md
+  - Tutorial : tutorial.md
+  - Top-Down Analysis: top-down-analysis.md
+  - Todo : todo.md
+  - HardwareReference : hardwarereference.md
+  - perf_events kernel ABI : perf_events-kernel-abi.md
+  - perf tools support for Intel® Processor Trace : perf-tools-support-for-intel-processor-trace.md
+  - Useful Links : useful-links.md
+  - Glossary : glossary.md
+  - Latest Manual Pages: latest-manual-pages.md
+  - Man pages: man-pages.md
+  - Development : development.md
+  - White Paper : white-paper.md
+
+theme: material
+markdown_extensions:
+  - admonition
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+
+copyright: Copyright &copy; 2024 Linux perf wiki Contributors
