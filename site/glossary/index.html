@@ -1,0 +1,1925 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../useful-links/">
+      
+      
+        <link rel="next" href="../latest-manual-pages/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Glossary - perf: Linux profiling with performance counters</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#glossary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="perf: Linux profiling with performance counters" class="md-header__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            perf: Linux profiling with performance counters
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Glossary
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="perf: Linux profiling with performance counters" class="md-nav__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    perf: Linux profiling with performance counters
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../top-down-analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Top-Down Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../todo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Todo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardwarereference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HardwareReference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf_events-kernel-abi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf_events kernel ABI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf-tools-support-for-intel-processor-trace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf tools support for Intel® Processor Trace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful-links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      B
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bpf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BPF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bpf-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      BPF Counter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      D
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsb" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      E
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Selector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      evlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evsel" class="md-nav__link">
+    <span class="md-ellipsis">
+      evsel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      F
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#false-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      False Sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexible-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flexible Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-running-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Free Running Counter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    <span class="md-ellipsis">
+      H
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      HITM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperthread" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperthread
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    <span class="md-ellipsis">
+      I
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idq" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDQ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    <span class="md-ellipsis">
+      J
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="J">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jeclear" class="md-nav__link">
+    <span class="md-ellipsis">
+      JEClear
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    <span class="md-ellipsis">
+      K
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      KVM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    <span class="md-ellipsis">
+      L
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lfb" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsd" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      M
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mite" class="md-nav__link">
+    <span class="md-ellipsis">
+      MITE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      MS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplexing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    <span class="md-ellipsis">
+      O
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offcore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#off-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Off-CPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      P
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="P">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf.data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf-event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf-evlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf-evlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinned-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pinned Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pmu" class="md-nav__link">
+    <span class="md-ellipsis">
+      PMU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rat" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rs" class="md-nav__link">
+    <span class="md-ellipsis">
+      RS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    <span class="md-ellipsis">
+      S
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smt" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      T
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tor" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      U
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="U">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uncore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uncore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uop" class="md-nav__link">
+    <span class="md-ellipsis">
+      UOp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../latest-manual-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latest Manual Pages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../man-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Man pages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../white-paper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    White Paper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      B
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#beat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Beat
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bpf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BPF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bpf-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      BPF Counter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c2c" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      D
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dsb" class="md-nav__link">
+    <span class="md-ellipsis">
+      DSB
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      E
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Events
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-selector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Selector
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      evlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evsel" class="md-nav__link">
+    <span class="md-ellipsis">
+      evsel
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      F
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="F">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#false-sharing" class="md-nav__link">
+    <span class="md-ellipsis">
+      False Sharing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flexible-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flexible Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#free-running-counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Free Running Counter
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h" class="md-nav__link">
+    <span class="md-ellipsis">
+      H
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hitm" class="md-nav__link">
+    <span class="md-ellipsis">
+      HITM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperthread" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperthread
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i" class="md-nav__link">
+    <span class="md-ellipsis">
+      I
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idq" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDQ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    <span class="md-ellipsis">
+      J
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="J">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jeclear" class="md-nav__link">
+    <span class="md-ellipsis">
+      JEClear
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    <span class="md-ellipsis">
+      K
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      KVM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l" class="md-nav__link">
+    <span class="md-ellipsis">
+      L
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lfb" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lsd" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSD
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#m" class="md-nav__link">
+    <span class="md-ellipsis">
+      M
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="M">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mite" class="md-nav__link">
+    <span class="md-ellipsis">
+      MITE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ms" class="md-nav__link">
+    <span class="md-ellipsis">
+      MS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiplexing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multiplexing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#o" class="md-nav__link">
+    <span class="md-ellipsis">
+      O
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="O">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#offcore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Offcore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#off-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Off-CPU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      P
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="P">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perfdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf.data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf-event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf-evlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      perf-evlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pinned-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pinned Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pmu" class="md-nav__link">
+    <span class="md-ellipsis">
+      PMU
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      R
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="R">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rat" class="md-nav__link">
+    <span class="md-ellipsis">
+      RAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rs" class="md-nav__link">
+    <span class="md-ellipsis">
+      RS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#s" class="md-nav__link">
+    <span class="md-ellipsis">
+      S
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="S">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#software-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Event
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smt" class="md-nav__link">
+    <span class="md-ellipsis">
+      SMT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      T
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="T">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tor" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u" class="md-nav__link">
+    <span class="md-ellipsis">
+      U
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="U">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uncore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uncore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uop" class="md-nav__link">
+    <span class="md-ellipsis">
+      UOp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="glossary">Glossary<a class="headerlink" href="#glossary" title="Permanent link">&para;</a></h1>
+<h2 id="b">B<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<h3 id="beat">Beat<a class="headerlink" href="#beat" title="Permanent link">&para;</a></h3>
+<p>A beat is the smallest single unit of data transfer within an AXI transaction. Its size is determined by the bus width. A Burst can be comprised of multiple beats. See the <a href="https://developer.arm.com/documentation/105565/0200/B">Arm Glossary</a></p>
+<h3 id="bpf">BPF<a class="headerlink" href="#bpf" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Berkeley_Packet_Filter">Berkeley Packet Filter</a>.</p>
+<h3 id="bpf-counter">BPF Counter<a class="headerlink" href="#bpf-counter" title="Permanent link">&para;</a></h3>
+<p>An option on <code>perf stat</code> where a BPF program reads counters to a BPF map rather than the regular <code>read</code> of a <a href="#perf-event">perf event</a> file descriptor. The BPF program<br />
+ reads the counter on context switches from an event in system wide mode. If the number of system wide per CPU events is less than the number of threads<br />
+ or cgroups, this option can reduce file descriptor overhead.</p>
+<h2 id="c">C<a class="headerlink" href="#c" title="Permanent link">&para;</a></h2>
+<h3 id="c2c">C2C<a class="headerlink" href="#c2c" title="Permanent link">&para;</a></h3>
+<p>Cache-to-cache. <code>perf c2c</code> is a builtin perf tool for analyzing shared data accesses and problems like (false sharing)[#false-sharing].</p>
+<h3 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Used to refer to events on the CPU's PMU, contrast with <a href="#uncore">Uncore</a> and <a href="#offcore">Offcore</a>.</li>
+<li>Part of the <a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/cpu/cpu-topology.txt">topology</a> containing multiple <a href="#smt">SMT</a> threads.</li>
+</ol>
+<h2 id="d">D<a class="headerlink" href="#d" title="Permanent link">&para;</a></h2>
+<h3 id="dsb">DSB<a class="headerlink" href="#dsb" title="Permanent link">&para;</a></h3>
+<p>In modern Intel CPUs, the DSB (Decoded Stream Buffer) is a uop cache storing pre-decoded instructions in the form of micro-operations (uops).  The DSB allows the CPU to bypass the  decoding stage for frequently used instructions sequences.</p>
+<h2 id="e">E<a class="headerlink" href="#e" title="Permanent link">&para;</a></h2>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
+<p>The list of measurable events is supported by the perf tool. </p>
+<h3 id="event-selector">Event Selector<a class="headerlink" href="#event-selector" title="Permanent link">&para;</a></h3>
+<p>See <a href="#evsel">evsel</a>.</p>
+<h3 id="evlist">evlist<a class="headerlink" href="#evlist" title="Permanent link">&para;</a></h3>
+<ol>
+<li>A <a href="../latest-manual-pages/">perf command</a> to list the events within a <a href="#perfdata">perf.data</a> file.</li>
+<li>A list of <a href="#evsel">event selectors</a>. The <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/include/perf/evlist.h">evlist API is part of libperf</a>.</li>
+</ol>
+<h3 id="evsel">evsel<a class="headerlink" href="#evsel" title="Permanent link">&para;</a></h3>
+<p>An event selector describes a <a href="#perf-event"><code>perf event</code></a> that will be opened on multiple CPUs or threads. The <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/include/perf/evsel.h">evsel API is part of libperf</a>.</p>
+<h2 id="f">F<a class="headerlink" href="#f" title="Permanent link">&para;</a></h2>
+<h3 id="false-sharing">False Sharing<a class="headerlink" href="#false-sharing" title="Permanent link">&para;</a></h3>
+<p>When a cache line is accidentally shared, and written-to, by two threads because of the layout of data being so that it is on the same cache line.</p>
+<h3 id="flexible-event">Flexible Event<a class="headerlink" href="#flexible-event" title="Permanent link">&para;</a></h3>
+<p>The default kind of event that can be <a href="#multiplexing">multiplexed</a>, contrast with <a href="#pinned-event">pinned event</a>.</p>
+<h3 id="free-running-counter">Free Running Counter<a class="headerlink" href="#free-running-counter" title="Permanent link">&para;</a></h3>
+<p>A counter that runs through its full range of values before repeating.</p>
+<h2 id="h">H<a class="headerlink" href="#h" title="Permanent link">&para;</a></h2>
+<h3 id="hitm">HITM<a class="headerlink" href="#hitm" title="Permanent link">&para;</a></h3>
+<p>A load that Hit a Modified cacheline.</p>
+<h3 id="hyperthread">Hyperthread<a class="headerlink" href="#hyperthread" title="Permanent link">&para;</a></h3>
+<p>Intel/x86 term for <a href="#smt">SMT</a>.</p>
+<h2 id="i">I<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
+<h3 id="idq">IDQ<a class="headerlink" href="#idq" title="Permanent link">&para;</a></h3>
+<p>The IDQ (Instruction Decode Queue) serves as a buffer between the instruction fetch/decode stages and the rest of the out-of-order execution engine in modern CPUs. It stores decoded instructions often in the form of micro-ops.</p>
+<h2 id="j">J<a class="headerlink" href="#j" title="Permanent link">&para;</a></h2>
+<h3 id="jeclear">JEClear<a class="headerlink" href="#jeclear" title="Permanent link">&para;</a></h3>
+<p>Jump Execution Clear is a kind of pipeline flush on Intel CPUs cause by branch misprediction. <a href="https://stackoverflow.com/questions/31280817/what-branch-misprediction-does-the-branch-target-buffer-detect">Article on branching in Intel CPUs</a>.</p>
+<h2 id="k">K<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
+<h3 id="kvm">KVM<a class="headerlink" href="#kvm" title="Permanent link">&para;</a></h3>
+<p>KVM stands for Kernel-based Virtual Machine, perf command with kvm helps us to trace/measure kvm guest os</p>
+<h2 id="l">L<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
+<h3 id="lfb">LFB<a class="headerlink" href="#lfb" title="Permanent link">&para;</a></h3>
+<p>The Line Fill Buffer is a small, temporary buffer that sits between different levels of a CPU's cache (e.g., between L1 and L2). Its purpose is to speed up data access when the CPU needs data not found in the fastest cache level (a cache miss). Instead of making the CPU wait for an entire cache line to transfer from slower memory, the LFB stores the first chunk of data, allowing the CPU to start working immediately.</p>
+<h3 id="lsd">LSD<a class="headerlink" href="#lsd" title="Permanent link">&para;</a></h3>
+<p>The Loop Stream Detector is a frontend component within Intel CPUs designed to boost performance for tight loops. It detects loops in code, pre-decodes their instructions, and stores these decoded micro-ops (uops) in a dedicated buffer.  By feeding these uops directly to the execution engine, the LSD bypasses the slower instruction fetch and decode stages for loops, resulting in speedups.</p>
+<h2 id="m">M<a class="headerlink" href="#m" title="Permanent link">&para;</a></h2>
+<h3 id="metric">Metric<a class="headerlink" href="#metric" title="Permanent link">&para;</a></h3>
+<p>Taking multiple performance counters, typically in <code>perf stat</code>, and then computing a human meaningful value like memory bandwidth.</p>
+<h3 id="mite">MITE<a class="headerlink" href="#mite" title="Permanent link">&para;</a></h3>
+<p>The Micro-instruction Translation Engine is a legacy component within modern CPUs that acts as a secondary, simpler instruction decoder. While the primary decoder handles most instructions efficiently, the MITE is responsible for decoding specific complex instructions or instruction sequences that aren't well-suited for the main decoder.  The MITE often works alongside the microcode sequencer to break down these complex instructions into simpler micro-operations for the CPU to execute.</p>
+<h3 id="ms">MS<a class="headerlink" href="#ms" title="Permanent link">&para;</a></h3>
+<p>The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.</p>
+<h3 id="multiplexing">Multiplexing<a class="headerlink" href="#multiplexing" title="Permanent link">&para;</a></h3>
+<p>When the number of events is greater than the hardware counters the kernel will multiplex the events. Each event is scheduled for a period of time (by default 1kHz) and then rotated.</p>
+<h2 id="o">O<a class="headerlink" href="#o" title="Permanent link">&para;</a></h2>
+<h3 id="offcore">Offcore<a class="headerlink" href="#offcore" title="Permanent link">&para;</a></h3>
+<p>Devices and buses outside of the core CPU.</p>
+<h3 id="off-cpu">Off-CPU<a class="headerlink" href="#off-cpu" title="Permanent link">&para;</a></h3>
+<p>Off-CPU is data collected when a <a href="#task">task</a> gets context switched. Brendan Gregg discusses <a href="https://www.brendangregg.com/offcpuanalysis.html">Off-CPU analysis</a>. Combining on-CPU time, measured with a performance<br />
+ counter, with off-CPU time will give wall clock time. Linux perf 5.20 adds a command line option to ''perf record'' to gather off-CPU data.</p>
+<h2 id="p">P<a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
+<h3 id="perfdata">perf.data<a class="headerlink" href="#perfdata" title="Permanent link">&para;</a></h3>
+<p>By default output from various perf commands is stored in a file named perf.data.</p>
+<h3 id="perf-event">perf-event<a class="headerlink" href="#perf-event" title="Permanent link">&para;</a></h3>
+<p>A kernel abstraction used to reference data being gathered about a particular kind of kernel event.</p>
+<h3 id="perf-evlist">perf-evlist<a class="headerlink" href="#perf-evlist" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://man7.org/linux/man-pages/man1/perf-evlist.1.html">man1/perf-evlist.1</a>.</p>
+<h3 id="pinned-event">Pinned Event<a class="headerlink" href="#pinned-event" title="Permanent link">&para;</a></h3>
+<p>Pinned events are scheduled at a higher priority to flexible events. If they can't be scheduled within the kernel they don't multiplex and enter an error state.</p>
+<h3 id="pmu">PMU<a class="headerlink" href="#pmu" title="Permanent link">&para;</a></h3>
+<p>A Performance Monitoring Unit is a device within the Linux kernel that the perf tool interacts with initially through the <a href="https://man7.org/linux/man-pages/man2/perf_event_open.2.html">perf_event_open</a> system call.</p>
+<h2 id="r">R<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
+<h3 id="rat">RAT<a class="headerlink" href="#rat" title="Permanent link">&para;</a></h3>
+<p>In modern CPUs, a Resource Allocation Table (RAT) is a structure that renames architectural registers to a larger set of physical registers during the out-of-order execution process. This renaming breaks false dependencies caused by register naming limitations, allowing instructions to execute in parallel and boosting performance. The RAT also tracks which physical registers hold the results of in-flight instructions, ensuring that data is used at the correct time.</p>
+<h3 id="rob">ROB<a class="headerlink" href="#rob" title="Permanent link">&para;</a></h3>
+<p>Reorder Buffer, tracks in-flight instructions and their results in out-of-order CPUs.</p>
+<h3 id="rs">RS<a class="headerlink" href="#rs" title="Permanent link">&para;</a></h3>
+<p>Reservation Station, buffers instructions awaiting resources (functional units, data) before execution.</p>
+<h2 id="s">S<a class="headerlink" href="#s" title="Permanent link">&para;</a></h2>
+<h3 id="software-event">Software Event<a class="headerlink" href="#software-event" title="Permanent link">&para;</a></h3>
+<p>They are kernel/os-based low-level counters. To identify the list of supported software events use the command: perf list software</p>
+<h3 id="smt">SMT<a class="headerlink" href="#smt" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">Simultaneous multithreading</a>.</p>
+<h2 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
+<h3 id="tor">TOR<a class="headerlink" href="#tor" title="Permanent link">&para;</a></h3>
+<p>The Table-of-Requests (TOR) is a data structure within Intel's Integrated Memory Controller (IMC) that stores and tracks in-flight memory requests made by CPU cores.</p>
+<h3 id="task">Task<a class="headerlink" href="#task" title="Permanent link">&para;</a></h3>
+<p>Kernel term for a process (if just 1 thread) or thread.</p>
+<h2 id="u">U<a class="headerlink" href="#u" title="Permanent link">&para;</a></h2>
+<h3 id="uncore">Uncore<a class="headerlink" href="#uncore" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Uncore">Functions of the microprocessor not in the core</a>.</p>
+<h3 id="uop">UOp<a class="headerlink" href="#uop" title="Permanent link">&para;</a></h3>
+<p>Abbreviation for micro-operation commonly used by Intel.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Linux perf wiki Contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
