@@ -837,6 +837,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example-tracing-__schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Tracing __schedule()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-how-to-create-an-application-that-can-trace-itself" class="md-nav__link">
     <span class="md-ellipsis">
       Example: How to create an application that can trace itself
@@ -937,6 +946,33 @@
   <a href="#9th-gen-core-skylake" class="md-nav__link">
     <span class="md-ellipsis">
       9th Gen Core (Skylake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-atom-apollo-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Atom (Apollo Lake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-atom-gemini-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Atom (Gemini Lake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10th-gen-core-ice-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      10th Gen Core (Ice Lake)
     </span>
   </a>
   
@@ -1627,6 +1663,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#example-tracing-__schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: Tracing __schedule()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example-how-to-create-an-application-that-can-trace-itself" class="md-nav__link">
     <span class="md-ellipsis">
       Example: How to create an application that can trace itself
@@ -1727,6 +1772,33 @@
   <a href="#9th-gen-core-skylake" class="md-nav__link">
     <span class="md-ellipsis">
       9th Gen Core (Skylake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-atom-apollo-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Atom (Apollo Lake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-atom-gemini-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel Atom (Gemini Lake)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10th-gen-core-ice-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      10th Gen Core (Ice Lake)
     </span>
   </a>
   
@@ -1866,10 +1938,12 @@ Refer [[#Intel_PT_man_page |Intel PT man page]]</p>
 <p><a href="http://github.com/intel/satt">SATT Software Analyze Trace Tool</a>
 This tool requires building and installing a custom kernel module</p>
 <h3 id="other-resources">Other resources<a class="headerlink" href="#other-resources" title="Permanent link">&para;</a></h3>
-<p><a href="http://halobates.de/blog/p/410">Cheat sheet for Intel Processor Trace with Linux perf and gdb</a></p>
-<p><a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a>, <a href="../latest-manual-pages/">perf Intel PT man page (wiki version)</a> and
-<a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt">perf Intel PT man page source</a></p>
-<p><a href="http://lwn.net/Articles/648154/">LWN article: Adding Processor Trace support to Linux</a></p>
+<ul>
+<li><a href="http://halobates.de/blog/p/410">Cheat sheet for Intel Processor Trace with Linux perf and gdb</a></li>
+<li><a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a>, <a href="../latest-manual-pages/">perf Intel PT man page (wiki version)</a> and</li>
+<li><a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt">perf Intel PT man page source</a></li>
+<li><a href="http://lwn.net/Articles/648154/">LWN article: Adding Processor Trace support to Linux</a></li>
+</ul>
 <h2 id="getting-set-up">Getting set up<a class="headerlink" href="#getting-set-up" title="Permanent link">&para;</a></h2>
 <p><code>perf</code> tools are packaged based on the kernel version, which means the version of <code>perf</code> provided by Linux distributions is always quite old, whereas updates to Intel PT support are happening all the time. That means, for the latest Intel PT features, we really need to download and build that latest <code>perf</code>.</p>
 <p>For other purposes, <code>perf</code> on modern Linux is usually fine.</p>
@@ -1963,11 +2037,13 @@ int main()
 <p>We can compile it with debugging information:</p>
 <pre><code class="language-sh">$ gcc -g -o hello hello.c
 </code></pre>
-<p>We can use <code>perf record</code> with options:
-- <code>-e</code> to select which events, i.e. the following:
-- <code>intel_pt/cyc,noretcomp/u</code> to get Intel PT with cycle-accurate mode. We can add <code>noretcomp</code> to get a timing information at RET instructions.
-- <code>--filter 'filter main @ ./hello'</code> specifies an address filter to trace only main()
-- <code>./hello</code> is the workload.</p>
+<p>We can use <code>perf record</code> with options:</p>
+<ul>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc,noretcomp/u</code> to get Intel PT with cycle-accurate mode. We can add <code>noretcomp</code> to get a timing information at RET instructions.</li>
+<li><code>--filter 'filter main @ ./hello'</code> specifies an address filter to trace only main()</li>
+<li><code>./hello</code> is the workload.</li>
+</ul>
 <pre><code class="language-sh">$ perf record -e intel_pt/cyc,noretcomp/u --filter 'filter main @ ./hello' ./hello
 Hello World!
 [ perf record: Woken up 1 times to write data ]
@@ -2021,9 +2097,9 @@ $ sudo apt-get install coreutils-dbgsym libpcre2-8-0-dbgsym libselinux1-dbgsym l
 <p>This example includes kernel tracing, which requires administrator privileges.</p>
 <p>We can use <code>perf record</code> with options:</p>
 <ul>
-<li><code>--kcore</code> to copy kernel object code from the <code>/proc/kcore image</code> (helps avoid decoding errors due to kernel self-modifying code)  </li>
-<li><code>-e</code> to select which events, i.e. the following:  </li>
-<li><code>intel_pt/cyc/</code> to get Intel PT with cycle-accurate mode  </li>
+<li><code>--kcore</code> to copy kernel object code from the <code>/proc/kcore image</code> (helps avoid decoding errors due to kernel self-modifying code)</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc/</code> to get Intel PT with cycle-accurate mode</li>
 <li><code>ls -l</code> is the workload to trace</li>
 </ul>
 <pre><code class="language-sh">$ sudo perf record --kcore -e intel_pt/cyc/ ls -l
@@ -2242,24 +2318,26 @@ drwxrwxr-x   4 user user   4096 May 23 15:47 virt
 <h2 id="example-tracing-power-events-and-cpu-frequency">Example: Tracing power events and CPU frequency<a class="headerlink" href="#example-tracing-power-events-and-cpu-frequency" title="Permanent link">&para;</a></h2>
 <p>Intel PT can record changes in CPU frequency.</p>
 <p>This example includes kernel tracing, which requires administrator privileges.</p>
-<p>To trace power events, we can use <code>perf record</code> with options:  </p>
+<p>To trace power events, we can use <code>perf record</code> with options:</p>
 <ul>
-<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs  </li>
-<li><code>-e</code> to select which events, i.e. the following 2:  </li>
-<li><code>intel_pt/branch=0/</code> to get Intel PT but without control flow (branch) information  </li>
-<li><code>power:cpu_idle</code> to get the Intel CPU Idle driver tracepoint  </li>
-<li><code>sleep 1</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 1 second.  </li>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>-e</code> to select which events, i.e. the following 2:</li>
+<li><code>intel_pt/branch=0/</code> to get Intel PT but without control flow (branch) information</li>
+<li><code>power:cpu_idle</code> to get the Intel CPU Idle driver tracepoint</li>
+<li><code>sleep 1</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 1 second.</li>
 </ul>
 <p>Note, although only 2 events have been selected, we could add anything else we are interested in.</p>
 <pre><code class="language-sh">$ sudo perf record -a -e intel_pt/branch=0/,power:cpu_idle sleep 1
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 0.894 MB perf.data ]
 </code></pre>
-<p>To list the power events, use <code>perf script</code> with options:
-- <code>--itrace=ep</code> to show errors (e) and power events (p)
-- <code>-F-ip</code> to prevent showing the address i.e. instruction pointer (ip) register
-- <code>--ns</code> to show the timestamp to nanoseconds instead of the default microseconds
-The output shows the 10-character task command string, PID, CPU, timestamp, and event:</p>
+<p>To list the power events, use <code>perf script</code> with options:</p>
+<ul>
+<li><code>--itrace=ep</code> to show errors (e) and power events (p)</li>
+<li><code>-F-ip</code> to prevent showing the address i.e. instruction pointer (ip) register</li>
+<li><code>--ns</code> to show the timestamp to nanoseconds instead of the default microseconds</li>
+</ul>
+<p>The output shows the 10-character task command string, PID, CPU, timestamp, and event:</p>
 <pre><code class="language-sh">$ perf script --itrace=ep -F-ip --ns | head 
             perf  4355 [000] 11253.350232603:                cbr:  cbr: 42 freq: 4219 MHz (156%)    
          swapper     0 [000] 11253.350253949:     power:cpu_idle: state=6 cpu_id=0
@@ -2390,20 +2468,20 @@ $ perf script --itrace=ep -F-ip --ns --show-switch-events
 <p>This example includes kernel tracing, which requires administrator privileges.</p>
 <p>We can use <code>perf record</code> with options:</p>
 <ul>
-<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs  </li>
-<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)  </li>
-<li><code>-Se</code> to make a snapshot when the workload ends  </li>
-<li><code>-e</code> to select which events, i.e. the following:  </li>
-<li><code>intel_pt/cyc/k</code> to get Intel PT with cycle-accurate mode, tracing the kernel only  </li>
-<li><code>--</code> is a separator, indicating that the rest of the options belong to the workload  </li>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)</li>
+<li><code>-Se</code> to make a snapshot when the workload ends</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc/k</code> to get Intel PT with cycle-accurate mode, tracing the kernel only</li>
+<li><code>--</code> is a separator, indicating that the rest of the options belong to the workload</li>
 </ul>
 <p>To get NMIs, the workload itself is another <code>perf record</code> with options:</p>
 <ul>
-<li><code>-o junk</code> to output to a file named 'junk', since we are not interested in it, and it needs to be different from the first <code>perf record</code>  </li>
-<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs  </li>
-<li><code>-e</code> to select which events, i.e. the following:  </li>
-<li><code>cycles</code> to sample based on the CPU cycles counter  </li>
-<li><code>--freq 100000</code> to specify the sampling frequency (100kHz) which ensures that PEBS samples will cause NMIs (to avoid "large" PEBS)  </li>
+<li><code>-o junk</code> to output to a file named 'junk', since we are not interested in it, and it needs to be different from the first <code>perf record</code></li>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>cycles</code> to sample based on the CPU cycles counter</li>
+<li><code>--freq 100000</code> to specify the sampling frequency (100kHz) which ensures that PEBS samples will cause NMIs (to avoid "large" PEBS)</li>
 <li><code>sleep 0.001</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 1 millisecond.</li>
 </ul>
 <pre><code class="language-sh">$ sudo perf record -a --kcore -Se -e intel_pt/cyc/k -- perf record -o junk -a -e cycles --freq 100000 sleep 0.001
@@ -2547,12 +2625,12 @@ $ cp ./obj/wkit/examples/obj/xed /usr/local/bin
 <p>This example includes kernel tracing, which requires administrator privileges.</p>
 <p>We can use <code>perf record</code> with options:</p>
 <ul>
-<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs  </li>
-<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)  </li>
-<li><code>-e</code> to select which events, i.e. the following:  </li>
-<li><code>intel_pt/cyc,noretcomp/k</code> to get Intel PT with cycle-accurate mode. We add <code>noretcomp</code> to get a Intel PT TIP packet from RET instructions, which has the side-effect of also getting a CYC timing packet, and consequently enables calculating IPC at that point.  </li>
-<li><code>--filter 'filter __switch_to ,filter native_load_tls'</code> specifies address filters to trace only __switch_to() and native_load_tls()  </li>
-<li><code>--</code> is a separator, indicating that the rest of the options belong to the workload  </li>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc,noretcomp/k</code> to get Intel PT with cycle-accurate mode. We add <code>noretcomp</code> to get a Intel PT TIP packet from RET instructions, which has the side-effect of also getting a CYC timing packet, and consequently enables calculating IPC at that point.</li>
+<li><code>--filter 'filter __switch_to ,filter native_load_tls'</code> specifies address filters to trace only __switch_to() and native_load_tls()</li>
+<li><code>--</code> is a separator, indicating that the rest of the options belong to the workload</li>
 <li><code>sleep 1</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 1 second.</li>
 </ul>
 <pre><code class="language-sh">$ sudo perf record -a --kcore -e intel_pt/cyc,noretcomp/k --filter 'filter __switch_to ,filter native_load_tls' -- sleep 1
@@ -2713,8 +2791,8 @@ $ perf script --itrace=e --vmlinux vmlinux-5.4.0-33-generic-plus-kcore &gt;/dev/
 </code></pre>
 <p>Note, 2 of the values above come from the readelf command below:</p>
 <ul>
-<li>skip=1 (4096-byte block) because that is the offset of the kernel code segment in perf.data/kcore_dir/kcore i.e. 0x1000 = 1 x 4096)  </li>
-<li>count=3585 (4096-byte blocks) because that is the size (Filesiz) of the kernel code segment in perf.data/kcore_dir/kcore i.e. 0xe01000 = 3585 x 4096  </li>
+<li>skip=1 (4096-byte block) because that is the offset of the kernel code segment in perf.data/kcore_dir/kcore i.e. 0x1000 = 1 x 4096)</li>
+<li>count=3585 (4096-byte blocks) because that is the size (Filesiz) of the kernel code segment in perf.data/kcore_dir/kcore i.e. 0xe01000 = 3585 x 4096</li>
 </ul>
 <pre><code class="language-sh">$ readelf -l switch-example-3/kcore_dir/kcore | grep -C2 LOAD
   Type           Offset             VirtAddr           PhysAddr
@@ -3382,7 +3460,7 @@ id          cpu         time          time_lag      symbol                sym_of
 586569      1           411040288423  555656        mwait_idle            143         irq_entries_start     16             hardware interrupt
 586657      1           411040307873  19450         __x86_indirect_thunk  0           sdhci_irq             0              unconditional jump
 </code></pre>
-<p>We can look at the 20 us between the hardware interrupt and sdhci_irq.  It shows that there are 2 other interrupt handlers being serviced that consume most of that time: idma64_irq and i801_isr</p>
+<p>We can look at the 20 us between the hardware interrupt and <code>sdhci_irq</code>.  It shows that there are 2 other interrupt handlers being serviced that consume most of that time: <code>idma64_irq</code> and <code>i801_isr</code></p>
 <pre><code class="language-sh">$ perf script -i t4 --itrace=b --time 411.034973294,411.034993801 -F-comm,-tid,-period,-cpu,-event,+flags,+callindent,+addr,-dso --ns -C 1 | \
 &gt; grep -v &quot; jcc &quot; | \
 &gt; awk -F: 'BEGIN {p=0} {ns=1000000000*$1;if (!p) p=ns;printf(&quot;%10.0f %s\n&quot;,ns-p,$0);p=ns}'
@@ -4455,7 +4533,7 @@ SMM, secure enclave or trace data loss.</p>
 <p>The rdtsc instruction has long been used to time functions.  Consider:</p>
 <ul>
 <li>
-<p>How to Benchmark Code Execution Times on Intel ®IA-32 and IA-64 Instruction Set Architectures https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf</p>
+<p>(How to Benchmark Code Execution Times on Intel ®IA-32 and IA-64 Instruction Set Architectures)(print/ia-32-ia-64-benchmark-code-execution-paper.pdf)</p>
 </li>
 <li>
 <p>RDTSC the only way to benchmark. https://medium.com/geekculture/rdtsc-the-only-way-to-benchmark-fc84562ef734</p>
@@ -4568,7 +4646,7 @@ int main(int argc, char *argv[])
 </code></pre>
 <p>There are some important points to note.</p>
 <p>First, the compiler must not inline the function f(), so <code>__attribute__((noinline))</code> is employed.</p>
-<p>Secondly, rdtsc is not a serializing instruction.  Here is what the Intel SDM (https://www.intel.com/sdm) has to say about it:</p>
+<p>Secondly, rdtsc is not a serializing instruction.  Here is what the Intel <a href="https://www.intel.com/sdm">SDM</a> has to say about it:</p>
 <pre><code>The RDTSC instruction is not a serializing instruction. It does not necessarily wait until all previous instructions
 have been executed before reading the counter. Similarly, subsequent instructions may begin execution before the
 read operation is performed. The following items may guide software seeking to order executions of RDTSC:
@@ -4580,7 +4658,7 @@ loads and stores are globally visible, it can execute the sequence MFENCE;LFENCE
 memory accesses), it can execute the sequence LFENCE immediately after RDTSC.
 </code></pre>
 <p>So to serialize rdtsc, the program defines functions rdtsc_before() and rdtsc_after().</p>
-<p>Thirdly, the newer alternative instruction rdtscp can be used.  However it is not entirely serialized either.  Here is what the Intel SDM (https://www.intel.com/sdm) has to say about it:</p>
+<p>Thirdly, the newer alternative instruction rdtscp can be used.  However it is not entirely serialized either.  Here is what the Intel <a href="https://www.intel.com/sdm">SDM</a> has to say about it:</p>
 <pre><code>The RDTSCP instruction is not a serializing instruction, but it does wait until all previous instructions have executed
 and all previous loads are globally visible.1 But it does not wait for previous stores to be globally visible, and
 subsequent instructions may begin execution before the read operation is performed. The following items may guide
@@ -4590,9 +4668,9 @@ MFENCE immediately before RDTSCP.
 * If software requires RDTSCP to be executed prior to execution of any subsequent instruction (including any
 memory accesses), it can execute LFENCE immediately after RDTSCP.
 </code></pre>
-<p>So to serialize rdtscp, the program defines function rdtscp_before().</p>
+<p>So to serialize rdtscp, the program defines function <code>rdtscp_before()</code>.</p>
 <p>Finally, the program can take an extra parameter that causes sleep for that number of seconds.  This parameters will come in useful later.</p>
-<p>Before continuing, we need to consider, if rdtsc and rdtscp need some extra serialization, what about Intel PT.  Here is what the Intel SDM (https://www.intel.com/sdm) has to say about it:</p>
+<p>Before continuing, we need to consider, if rdtsc and rdtscp need some extra serialization, what about Intel PT.  Here is what the <a href="https://www.intel.com/sdm">Intel SDM</a> has to say about it:</p>
 <pre><code>Intel PT can be run in a cycle-accurate mode which enables CYC packets (see Section 32.4.2.14) that provide low-
 level information in the processor core clock domain. This cycle counter data in CYC packets can be used to
 compute IPC (Instructions Per Cycle), or to track wall-clock time on a fine-grain level.
@@ -4630,7 +4708,7 @@ place at the same time as the CYC time.
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 0.015 MB ]
 </code></pre>
-<pre><code class="language-sh">perf script --itrace=bep --ns -F+ipc,-period,-dso,-comm,+flags,+addr,-pid,-tid
+<pre><code class="language-sh">$ perf script --itrace=bep --ns -F+ipc,-period,-dso,-comm,+flags,+addr,-pid,-tid
 [000] 12434.509024343:            psb:                          psb offs: 0                                     0                0 [unknown]
 [000] 12434.509024343:            cbr:                          cbr: 42 freq: 4219 MHz (156%)                   0                0 [unknown]
 [000] 12434.509252555:    branches:uH:   tr strt                               0 [unknown] =&gt;     7f45b77032f0 f+0x0
@@ -4777,24 +4855,28 @@ index d22ace092ca2..87b192548621 100644
              : &quot;D&quot; (st), &quot;m&quot; (*st), &quot;a&quot; (lmask), &quot;d&quot; (hmask)    \
 </code></pre>
 <p>After building and installing the new kernel, we can run a trace:</p>
-<p>We can use <code>perf record</code> with options:
-- <code>-a</code> to trace system wide i.e. all tasks, all CPUs
-- <code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)
-- <code>-e</code> to select which events, i.e. the following:
-- <code>intel_pt/cyc,ptw,fup_on_ptw/k</code> to get Intel PT with cycle-accurate mode, PTWRITE+FUP, kernel space only.
-- <code>sh -c 'for i in</code>seq 1 10<code>;do sleep 0.01;done'</code> is the workload.</p>
+<p>We can use <code>perf record</code> with options:</p>
+<ul>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc,ptw,fup_on_ptw/k</code> to get Intel PT with cycle-accurate mode, PTWRITE+FUP, kernel space only.</li>
+<li><code>sh -c 'for i in</code>seq 1 10<code>;do sleep 0.01;done'</code> is the workload.</li>
+</ul>
 <pre><code class="language-sh"># perf record -a --kcore -e intel_pt/cyc,ptw,fup_on_ptw/k -- sh -c 'for i in `seq 1 10`;do sleep 0.01;done'
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 2.599 MB perf.data ]
 </code></pre>
 <p>And see the results.</p>
 <p>Let's see xsaves on CPU 5:</p>
-<p>We can use <code>perf script</code> with options:
-- <code>--deltatime</code> to show time differences
-- <code>--insn-trace</code> to show all instructions
-- <code>--xed</code> to disassemble instructions using XED
-- <code>-C 5</code> to decode only CPU 5
-This shows times varying from 23ns to 163ns</p>
+<p>We can use <code>perf script</code> with options:</p>
+<ul>
+<li><code>--deltatime</code> to show time differences</li>
+<li><code>--insn-trace</code> to show all instructions</li>
+<li><code>--xed</code> to disassemble instructions using XED</li>
+<li><code>-C 5</code> to decode only CPU 5</li>
+</ul>
+<p>This shows times varying from 23ns to 163ns</p>
 <pre><code class="language-sh"># perf script --deltatime --insn-trace --xed -C 5 | grep -A 2 xsave
      migration/5    36 [005]     0.000000000:  ffffffffafea8f04 save_fpregs_to_fpstate+0x44 ([kernel.kallsyms])                 xsaves64 (%rdi)
      migration/5    36 [005]     0.000000000:  ffffffffafea8f08 save_fpregs_to_fpstate+0x48 ([kernel.kallsyms])                 xor %edi, %edi
@@ -4876,23 +4958,25 @@ This shows times varying from 23ns to 163ns</p>
             perf  1164 [005]     0.000000000:  ffffffffafea9072 restore_fpregs_from_fpstate+0x52 ([kernel.kallsyms])            xrstors64 (%rdi)
             perf  1164 [005]     0.000000198:  ffffffffafea9076 restore_fpregs_from_fpstate+0x56 ([kernel.kallsyms])            ptwriteq  (%rsp)
 </code></pre>
-<p>== Example: Tracing __schedule() ==</p>
+<h2 id="example-tracing-__schedule">Example: Tracing <code>__schedule()</code><a class="headerlink" href="#example-tracing-__schedule" title="Permanent link">&para;</a></h2>
 <p>We want to observe some task switches, so in this example, a kernel compile is started in the background to act as a workload:</p>
 <pre><code class="language-sh">$ cd ~/git/linux
 $ make -j9 &gt;/dev/null &amp;
 [1] 77175
 </code></pre>
 <p>This example includes kernel tracing, which requires administrator privileges.</p>
-<p>We can use <code>perf record</code> with options:
-- <code>-Se</code> snapshot mode with a snapshot at the end. This is a way to control the amount of data collected.  The root user default buffer size is 4MiB so with a single snapshot at the end, and 8 CPUs, data is limited to about 32MiB.
-- <code>-a</code> to trace system wide i.e. all tasks, all CPUs
-- <code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)
-- <code>-e</code> to select which events, i.e. the following:
-- <code>intel_pt/cyc,noretcomp,mtc_period=9/k</code> to get Intel PT with cycle-accurate mode. We add <code>noretcomp</code> to get a Intel PT TIP packet from RET instructions, which has the side-effect of also getting a CYC timing packet, and consequently enables calculating a timestamp at that point.  The <code>mtc_period</code> is set as high as possible because MTC packets are collected continuously which bloats the trace.
-- <code>--filter 'filter __schedule'</code> specifies an address filter to trace only __schedule()
-- <code>--no-switch-events</code> switch events will divide up __schedule(), so disable them
-- <code>--</code> is a separator, indicating that the rest of the options belong to the workload
-- <code>sleep 3</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 3 seconds.</p>
+<p>We can use <code>perf record</code> with options:</p>
+<ul>
+<li><code>-Se</code> snapshot mode with a snapshot at the end. This is a way to control the amount of data collected.  The root user default buffer size is 4MiB so with a single snapshot at the end, and 8 CPUs, data is limited to about 32MiB.</li>
+<li><code>-a</code> to trace system wide i.e. all tasks, all CPUs</li>
+<li><code>--kcore</code> to copy kernel object code from the /proc/kcore image (helps avoid decoding errors due to kernel self-modifying code)</li>
+<li><code>-e</code> to select which events, i.e. the following:</li>
+<li><code>intel_pt/cyc,noretcomp,mtc_period=9/k</code> to get Intel PT with cycle-accurate mode. We add <code>noretcomp</code> to get a Intel PT TIP packet from RET instructions, which has the side-effect of also getting a CYC timing packet, and consequently enables calculating a timestamp at that point.  The <code>mtc_period</code> is set as high as possible because MTC packets are collected continuously which bloats the trace.</li>
+<li><code>--filter 'filter __schedule'</code> specifies an address filter to trace only __schedule()</li>
+<li><code>--no-switch-events</code> switch events will divide up __schedule(), so disable them</li>
+<li><code>--</code> is a separator, indicating that the rest of the options belong to the workload</li>
+<li><code>sleep 3</code> is the workload.  The tracing will stop when the workload finishes, so this is simply a way of tracing for about 3 seconds.</li>
+</ul>
 <pre><code class="language-sh">$ sudo ~/bin/perf record -Se -a --kcore -e intel_pt/cyc,noretcomp,mtc_period=9/k --filter 'filter __schedule' --no-switch-events -- sleep 3
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 34.200 MB perf.data ]
@@ -6060,7 +6144,7 @@ $ perf script --itrace=be --dlfilter dlfilter-x86-disasm.so --ns -F-period,-even
 <h2 id="tracing-intel-user-interrupts-with-intel-processor-trace-intel-pt">Tracing Intel User Interrupts with Intel Processor Trace (Intel PT)<a class="headerlink" href="#tracing-intel-user-interrupts-with-intel-processor-trace-intel-pt" title="Permanent link">&para;</a></h2>
 <p>RFC patches to add Linux kernel support for Intel User Interrupts were submitted in 2021 <a href="https://lwn.net/Articles/871113/">LWN Article</a>,
 <a href="https://lore.kernel.org/linux-api/20210913200132.3396598-1-sohil.mehta@intel.com/#r">discussion</a>, but have not progressed since.</p>
-<p>So this example uses a custom kernel based on the provided <a href="https://github.com/intel/uintr-linux-kernel">uintr-linux-kernel git repository</a> branch uintr-next commit 9bbbb4b7fb89fbc3bde8aaed57a0eabc43a2dc64.</p>
+<p>So this example uses a custom kernel based on the provided <a href="https://github.com/intel/uintr-linux-kernel">uintr-linux-kernel git repository</a> branch uintr-next commit <a href="https://github.com/intel/uintr-linux-kernel/commit/9bbbb4b7fb89fbc3bde8aaed57a0eabc43a2dc64">9bbbb4b7fb89</a>.</p>
 <p>Importantly, User Interrupt support must be enabled in kernel config i.e. CONFIG_X86_USER_INTERRUPTS=y</p>
 <p>Once installed, check the kernel version is what is expected e.g.</p>
 <pre><code class="language-sh">$ uname -a
@@ -6070,7 +6154,7 @@ Linux spr2 6.0.0-00019-g9bbbb4b7fb89 #2 SMP PREEMPT_DYNAMIC Tue Jan 16 18:38:27 
 <pre><code class="language-sh">$ cat /proc/cpuinfo | head -30 | grep -c uintr
 1
 </code></pre>
-<p>The developer provided benchmark programs <a href="https://github.com/intel/uintr-ipc-bench">uintr-ipc-bench</a>.  In this example, branch master commit 6696170577b964a16e770e2bca2c03ce898d4608.
+<p>The developer provided benchmark programs <a href="https://github.com/intel/uintr-ipc-bench">uintr-ipc-bench</a>.  In this example, branch master commit <a href="https://github.com/intel/uintr-ipc-bench/commit/6696170577b964a16e770e2bca2c03ce898d4608">6696170577b9</a>.
 Build and run instructions in README.md</p>
 <p>Benchamark program build/source/uintrfd/uintrfd-uni will be used.  It repeatedly sends a user interrupt (senduipi) to another thread which will invoke a registered handler function ui_handler().  The time taken from sending to receiving is measured:</p>
 <pre><code class="language-sh">$ cat source/uintrfd/uintrfd-uni.c
@@ -6198,10 +6282,12 @@ int main(int argc, char* argv[]) {
     return EXIT_SUCCESS;
 }
 </code></pre>
-<p>The benchmark is using timespec_get() which is not ideal for comparing time measurements because it uses CLOCK_REALTIME which is not monotonic.
-For comparing times on different machines, CLOCK_MONOTONIC can be used.
-For comparing times on the same machine, CLOCK_MONTONIC or CLOCK_MONTONIC_RAW can be used.
-For comparing with Intel PT, CLOCK_MONTONIC_RAW will be a close match to perf time, so that is used here.</p>
+<p>The benchmark is using timespec_get() which is not ideal for comparing time measurements because it uses CLOCK_REALTIME which is not monotonic.</p>
+<ul>
+<li>For comparing times on different machines, CLOCK_MONOTONIC can be used.</li>
+<li>For comparing times on the same machine, CLOCK_MONTONIC or CLOCK_MONTONIC_RAW can be used.</li>
+<li>For comparing with Intel PT, CLOCK_MONTONIC_RAW will be a close match to perf time, so that is used here.</li>
+</ul>
 <p>Also to get precise timing, Intel PT address filtering can be used, but in that case senduipi needs to be a separate, non-inline function.</p>
 <p>Here are the changes:</p>
 <pre><code class="language-sh">$ git diff
@@ -6244,7 +6330,7 @@ index cb62dbb..c26f9d2 100644
         while (!uintr_received){
             // Keep spinning until this user interrupt is received.
 </code></pre>
-<p>Run the benchmark program, tracing with Intel PT and cycle-accurate mode, using address filters for the sending function senduipi() and receiving function ui_handler():</p>
+<p>Run the benchmark program, tracing with Intel PT and cycle-accurate mode, using address filters for the sending function <code>senduipi()</code> and receiving <code>function ui_handler()</code>:</p>
 <pre><code class="language-sh">$ perf record -e intel_pt/cyc/u --filter 'filter senduipi #1 @ build/source/uintrfd/uintrfd-uni , filter ui_handler #1 @ build/source/uintrfd/uintrfd-uni' -- build/source/uintrfd/uintrfd-uni
 [ perf record: Woken up 1 times to write data ]
 [ perf record: Captured and wrote 0.131 MB uintr-tfr2/perf.data ]
@@ -6369,7 +6455,7 @@ Histogram:
 /sys/bus/event_source/devices/intel_pt/caps/topa_multiple_entries:1
 /sys/bus/event_source/devices/intel_pt/caps/topa_output:1
 </code></pre>
-<p>=== Intel Atom (Apollo Lake) ===</p>
+<h3 id="intel-atom-apollo-lake">Intel Atom (Apollo Lake)<a class="headerlink" href="#intel-atom-apollo-lake" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh"># grep -H . /sys/bus/event_source/devices/intel_pt/caps/*
 /sys/bus/event_source/devices/intel_pt/caps/cr3_filtering:1
 /sys/bus/event_source/devices/intel_pt/caps/cycle_thresholds:ffff
@@ -6390,7 +6476,7 @@ Histogram:
 /sys/bus/event_source/devices/intel_pt/caps/topa_multiple_entries:1
 /sys/bus/event_source/devices/intel_pt/caps/topa_output:1
 </code></pre>
-<p>=== Intel Atom (Gemini Lake) ===</p>
+<h3 id="intel-atom-gemini-lake">Intel Atom (Gemini Lake)<a class="headerlink" href="#intel-atom-gemini-lake" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh"># grep -H . /sys/bus/event_source/devices/intel_pt/caps/*
 /sys/bus/event_source/devices/intel_pt/caps/cr3_filtering:1
 /sys/bus/event_source/devices/intel_pt/caps/cycle_thresholds:ffff
@@ -6411,7 +6497,7 @@ Histogram:
 /sys/bus/event_source/devices/intel_pt/caps/topa_multiple_entries:1
 /sys/bus/event_source/devices/intel_pt/caps/topa_output:1
 </code></pre>
-<p>=== 10th Gen Core (Ice Lake) ===</p>
+<h3 id="10th-gen-core-ice-lake">10th Gen Core (Ice Lake)<a class="headerlink" href="#10th-gen-core-ice-lake" title="Permanent link">&para;</a></h3>
 <pre><code class="language-sh"># grep -H . /sys/bus/event_source/devices/intel_pt/caps/*
 /sys/bus/event_source/devices/intel_pt/caps/cr3_filtering:1
 /sys/bus/event_source/devices/intel_pt/caps/cycle_thresholds:1fff

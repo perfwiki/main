@@ -606,9 +606,11 @@ specified via group_fd.</p>
 <p>Obviously this way it's not possible for toggle event to
 be part of group other than group leader. This is where
 you need to use <strong>PERF_EVENT_IOC_SET_TOGGLE ioctl</strong>.</p>
-<p>This ioctl has 2 goals:
-- allowing the toggle event being part of the group
-- allowing to define toggle setting after event is created</p>
+<p>This ioctl has 2 goals:</p>
+<ul>
+<li>allowing the toggle event being part of the group</li>
+<li>allowing to define toggle setting after event is created</li>
+</ul>
 <pre><code class="language-sh">u64 args[2] = { toggled_fd, flag };
 err = ioctl(fd, PERF_EVENT_IOC_SET_TOGGLE, args);
 </code></pre>
@@ -628,9 +630,11 @@ of the event they should toggle.</p>
 <p>Toggling events are define within -e option using on/off terms, like</p>
 <pre><code class="language-sh">-e 'cycles,irq_entry/on=cycles/,irq_exit/off=cycles/'
 </code></pre>
-<p>Meaning:
-- irq_entry <strong>toggles on</strong> (starts) cycles, and irq_exit <strong>toggled off</strong> (stops) cycles.
-- cycles is started as <strong>paused</strong></p>
+<p>Meaning:</p>
+<ul>
+<li>irq_entry <strong>toggles on</strong> (starts) cycles, and irq_exit <strong>toggled off</strong> (stops) cycles.</li>
+<li>cycles is started as <strong>paused</strong></li>
+</ul>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h4 id="example-using-kretprobes">Example - using k(ret)probes<a class="headerlink" href="#example-using-kretprobes" title="Permanent link">&para;</a></h4>
 <ul>

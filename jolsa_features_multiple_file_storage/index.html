@@ -531,13 +531,9 @@
 into multiple files.</p>
 <ul>
 <li>new version of perf.data file was added (v3)</li>
-<li>
-<p><code>-M/--multi</code> option was added into perf record</p>
-</li>
-<li>
-<p>example:</p>
-</li>
+<li><code>-M/--multi</code> option was added into perf record</li>
 </ul>
+<p>example:</p>
 <pre><code class="language-sh">  $ perf record -M 5M yes &gt; /dev/null
   ^C[ perf record: Woken up 228 times to write data ]
   [ perf record: Captured and wrote 20.246 MB perf.data-[0-4](~884542 samples) ]
@@ -573,13 +569,15 @@ into multiple files.</p>
 
 </code></pre>
 <ul>
-<li><code>-M/--multi</code> option accepts size and time parameters, distinguished by following terminal character:
-  <strong>s</strong> - seconds   (-M 10s)
-  <strong>m</strong> - minutes   (-M 10m)
-  <strong>h</strong> - hours     (-M 10h)
-  <strong>B</strong> - bytes     (-M 10B)
-  <strong>K</strong> - kilobytes (-M 10K)
-  <strong>M</strong> - megabytes (-M 10M)</li>
+<li><code>-M/--multi</code> option accepts size and time parameters, distinguished by following terminal character:<ul>
+<li><strong>s</strong> - seconds   (-M 10s)</li>
+<li><strong>m</strong> - minutes   (-M 10m)</li>
+<li><strong>h</strong> - hours     (-M 10h)</li>
+<li><strong>B</strong> - bytes     (-M 10B)</li>
+<li><strong>K</strong> - kilobytes (-M 10K)</li>
+<li><strong>M</strong> - megabytes (-M 10M)</li>
+</ul>
+</li>
 </ul>
 <h3 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
 <ul>

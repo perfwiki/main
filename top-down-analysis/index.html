@@ -774,8 +774,12 @@
          2,268,815      RESOURCE_STALLS.SCOREBOARD       #     19.8 %  tma_ports_utilized_0
 </code></pre>
 <p>Finally we see tma_ports_utilized_3m as the largest metric. Looking at <code>perf list</code>, (sometimes <code>perf list -v</code>) we can see the metrics meaning:</p>
-<p>tma_ports_utilized_3m
-    This metric represents fraction of cycles CPU executed total of 3 or more uops per cycle on all execution ports (Logical Processor cycles since ICL, Physical Core cycles otherwise). Sample with: UOPS_EXECUTED.CYCLES_GE_3</p>
+<ul>
+<li>
+<p>tma_ports_utilized_3m</p>
+<p>This metric represents fraction of cycles CPU executed total of 3 or more uops per cycle on all execution ports (Logical Processor cycles since ICL, Physical Core cycles otherwise). Sample with: UOPS_EXECUTED.CYCLES_GE_3</p>
+</li>
+</ul>
 <p>The 'Sample with' event can be used with <code>perf record</code> to identify where in the benchmark the performance bottleneck is:</p>
 <pre><code class="language-sh">  $ perf record -e UOPS_EXECUTED.CYCLES_GE_3 perf bench mem memcpy; perf report
 

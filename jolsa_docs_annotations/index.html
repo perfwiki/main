@@ -529,8 +529,10 @@ see annotations in <strong>perf</strong>.</p>
 <h3 id="workaround">WORKAROUND<a class="headerlink" href="#workaround" title="Permanent link">&para;</a></h3>
 <p>There's a following workaround, that merges debuginfo back to the
 binary. Such binary will display proper annotations in perf.</p>
-<p>The binary we want to annotate properly is <strong>ls</strong>.
-- find out the debuginfo holder:</p>
+<p>The binary we want to annotate properly is <strong>ls</strong>.</p>
+<ul>
+<li>find out the debuginfo holder:</li>
+</ul>
 <pre><code class="language-sh">$ rpm -ql coreutils-debuginfo | grep ls.debug
 /usr/lib/debug/usr/bin/ls.debug
 </code></pre>
