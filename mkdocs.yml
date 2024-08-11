@@ -1,4 +1,5 @@
 site_name: "perf: Linux profiling with performance counters"
+repo_url: https://github.com/perfwiki/main
 edit_uri: ../main/edit/main/docs
 nav:
   - Main Page: index.md
