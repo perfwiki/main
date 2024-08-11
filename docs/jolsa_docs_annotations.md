@@ -19,6 +19,7 @@ There's a following workaround, that merges debuginfo back to the
 binary. Such binary will display proper annotations in perf.
 
 The binary we want to annotate properly is **ls**.
+
 - find out the debuginfo holder:
 ```sh
 $ rpm -ql coreutils-debuginfo | grep ls.debug

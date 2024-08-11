@@ -50,11 +50,13 @@ perf/core branch
 ## Features
 
 ### Merged
+
 - [post DWARF unwind](./jolsa_features_post_dwarf_unwind.md) - callchains DWARF unwind
 - [group sampling](jolsa_features_groupsampling.md) - group leader sampling
 - [multi diff](./jolsa_features_multidiff.md) - diff multiple files
 
 ### To be done
+
 - [multiple file storage](./jolsa_features_multiple_file_storage.md) - allow to store record data into multiple files
 - [cpu hotplug](./jolsa_features_cpu_hotplug.md) - follow cpu hotplug in perf record
 - [stat formulas](./jolsa_features_stat_formulas.md) - formulas support over perf stat

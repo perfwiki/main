@@ -13,25 +13,26 @@ $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
 ## Dependencies
 
 Packages you need to compile perf with all features (Fedora based):
-- gcc
-- glibc-devel
-- glibc-headers
-- binutils-devel
-- elfutils-libelf-devel
-- elfutils-devel
-- libunwind-devel
-- audit-libs-devel
-- slang-devel
-- gtk2-devel
-- numa-libs-devel
-- python-devel
-- perl-devel
-- perl-ExtUtils-Embed
-- numactl-devel
-- asciidoc
-- xmlto
-- flex
-- bison
+
+- `gcc`
+- `glibc-devel`
+- `glibc-headers`
+- `binutils-devel`
+- `elfutils-libelf-devel`
+- `elfutils-devel`
+- `libunwind-devel`
+- `audit-libs-devel`
+- `slang-devel`
+- `gtk2-devel`
+- `numa-libs-devel`
+- `python-devel`
+- `perl-devel`
+- `perl-ExtUtils-Embed`
+- `numactl-devel`
+- `asciidoc`
+- `xmlto`
+- `flex`
+- `bison`
 
 ```sh
 $ sudo yum install gcc binutils-devel elfutils-libelf-devel \

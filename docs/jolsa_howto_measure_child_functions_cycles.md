@@ -1,4 +1,5 @@
 ## Example program
+
 - ex.c
 ```sh
 #define FOO(__f)        \
@@ -31,13 +32,16 @@ int main(int argc, char **argv)
         }
 }
 ```
+
 - Makefile
 ```sh
 ex: ex.o
 ```
 
 ## Measurements
-* **krava_[abcd]** functions are taking 25% of the load
+
+- **krava_[abcd]** functions are taking 25% of the load
+
 ```sh
 $ perf record  ./ex
 ^C[ perf record: Woken up 5 times to write data ]
@@ -55,14 +59,17 @@ $ perf report --stdio
      0.18%       ex  ex                 [.] krava_g                         
 
 ```
+
 - but how much **krava_g** function takes?
 - we need parent info - **callchains**, so let's record them with **-g**
+
 ```sh
 $ perf record -g -- ./ex
 ^C[ perf record: Woken up 7 times to write data ]
 [ perf record: Captured and wrote 1.554 MB perf.data (~67889 samples) ]
 ./ex: Interrupt
 ```
+
 - and say we want to report parent symbol with **-p krava_g**
 ```sh
 $ perf report -p krava_g
@@ -78,13 +85,18 @@ Samples: 19K of event 'cycles', Event count (approx.): 17010569690
 +   0.14%  ex  ex                 [.] krava_g                              krava_g
 +   0.08%  ex  ex                 [.] main                                 [other]
 ```
+
 Previous:
+
 - parent symbol is displayed in the last column in above listing
 - you can see load gets separated by parent **krava_g** and the rest **[other]**
 - main based **krava_[abcd]** functions now eat only 20% now
 - krava_g based **krava_[abcd]** functions eat ~20% as well (+- other trash)
+
 Next:
+
 - we can make the numbers more obvious and sort it by parent with **-s parent**
+
 ```sh
 $ perf report -p krava_g -s parent --stdio
 # Overhead  Parent symbol

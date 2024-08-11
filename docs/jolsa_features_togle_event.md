@@ -1,7 +1,9 @@
 ## Branch
+
 - perf/core_toggle
 
 ## Description
+
 Adding perf interface that allows to create **toggle** events,
 which can enable or disable another event. Whenever the toggle
 event is triggered (has overflow), it toggles another event
@@ -16,6 +18,7 @@ enough to be used for any kind of event.
 There are changes for both kernel and perf tool part.
 
 ### Kernel
+
 The interface to create a toggle event is similar as the one
 for defining event group. Use perf syscall with:
 
@@ -36,6 +39,7 @@ be part of group other than group leader. This is where
 you need to use **PERF_EVENT_IOC_SET_TOGGLE ioctl**.
 
 This ioctl has 2 goals:
+
 - allowing the toggle event being part of the group
 - allowing to define toggle setting after event is created
 
@@ -56,8 +60,9 @@ err        -  0 when successful
 ```
 
 ### Perf Tool
+
 The support for toggling events is added into record and stat commands.
-    
+
 The toggling events are defined via **on/off terms**, assigned with the name
 of the event they should toggle.
 
@@ -67,6 +72,7 @@ Toggling events are define within -e option using on/off terms, like
 ```
 
 Meaning:
+
 - irq_entry **toggles on** (starts) cycles, and irq_exit **toggled off** (stops) cycles.
 - cycles is started as **paused**
 

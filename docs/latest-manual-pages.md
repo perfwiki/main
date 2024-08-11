@@ -1,5 +1,7 @@
 # Latest Manual Pages
 
+This is the link to the documents from the `linux-next` tree under `tools/perf/Documents`.
+
 - [perf](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/perf.txt)
 - [perf annotate](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/perf-annotate.txt)
 - [perf archive](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/perf-archive.txt)
@@ -67,4 +69,4 @@ Others:
 
 # Kernel Version
 
-This page is auto-generated. The kernel version on (linux-next)[(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git]
+This page links the each document to the `linux-next` kernel version.[(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git]

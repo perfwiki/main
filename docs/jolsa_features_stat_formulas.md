@@ -3,6 +3,7 @@ This feature adds the possibility to define specific counters
 by using arithmetic formulas and use them via **stat** command.
 
 - Formula config file looks like:
+
 ```sh
 set {
      events {
@@ -20,6 +21,7 @@ set {
 
 The **set** defines set of counter that share same events.
 Each **set** defines:
+
 - events   - event string that would go into stat -e option
 - counters - any number of counters based on above events
 
@@ -100,6 +102,7 @@ $ perf stat -e formula-cpi ls
 ```
 
 ## Example
+
 - krava.conf
 ```sh
 cpi {

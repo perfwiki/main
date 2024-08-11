@@ -22,13 +22,14 @@ The PMU can filter events through multiple mechanisms to focus on specific areas
 
 The PMU also has an '''EAR''', event address registers which are special PMCs & PMDs to collect address traces and memory latencies; and the ETB, the event trace buffer, to collect branch history.
 
-![Montecito_pmu_list](./Montecito_pmu_list.png)
+![Montecito_pmu_list](img/montecito/Montecito_pmu_list.png)
 
 Montecito control registers go beyond controlling event counters. The following picture shows the bit field configuration for the control registers.
 
-![Montecito_pmc](./Montecito_pmc.jpg)
+![Montecito_pmc](img/montecito/Montecito_pmc.jpg)
 
 Brief description:
+
 - CNT: regular performance counters configuration
 - OVF: overflow bitmask. A bit set to 1 indicates the associated event counter overflowed. PMC0.fr indicates that the whole PMU was frozen by an overflowing counter.
 - IARC: filter event collection to a range of instruction addresses. Events happening while instructions are outside that range will be ignored.
@@ -39,11 +40,12 @@ Brief description:
 - BTB: collect a trace stack of branches into the ETB buffer.
 
 ## External links
-- Wikipedia (Intel Itanium)[http://en.wikipedia.org/wiki/Itanium]
+
+- Wikipedia [Intel Itanium](http://en.wikipedia.org/wiki/Itanium)
 - Wikipedia [Montecito processor](http://en.wikipedia.org/wiki/Montecito_(processor))
-- Intel (Intel® Itanium® Architecture)[http://www.intel.com/design/itanium/manuals/iiasdmanual.htm]
-- Intel (Introduction to Microarchitectural Optimization for Itanium2 Processors)[http://cache-www.intel.com/cd/00/00/21/93/219348_software_optimization.pdf]
-- Intel (Dual-Core Update to the Intel® Itanium® 2 Processor Reference Manual)[http://download.intel.com/design/Itanium2/manuals/30806501.pdf] (PDF 2.29MB)
+- [Intel (Intel® Itanium® Architecture)](itanium-manuals-iiasdmanual.md)
+- [Intel (Introduction to Microarchitectural Optimization for Itanium2 Processors)](print/219348_software_optimization.pdf)
+- [Intel (Dual-Core Update to the Intel® Itanium® 2 Processor Reference Manual)](print/30806501.pdf) (PDF 2.29MB)
 
 ----
 Last edit by: --Dantruong 01:48, 28 August 2009 (UTC)

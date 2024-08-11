@@ -1,3 +1,5 @@
+# Todo
+
 - Enable callchains for guests (used by perf kvm). At least doing this for the guest kernel should be very possible.
 
 - The feature tests should be performed only when a file that needs those tests, or at least only when some .c or .h file will be rebuilt
@@ -79,6 +81,7 @@
 - Use perf probe -x ~/bin/perf -F trace__* to get the possible functions for the tab completion (acme)
 
 ### Old entries
+
 - Make the instruction augmentation in the annotate browser platform specific.
     - Right now they are x86 specific but are in the common code. [DONE](https://git.kernel.org/cgit/linux/kernel/git/tip/tip.git/commit/?id=786c1b51844d858041166057c0c79e93c2015013)
 - Factorize the multidimensional sorting between perf report and annotate (will be used by perf trace)

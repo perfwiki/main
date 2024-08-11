@@ -52,6 +52,7 @@ The output will be like:
          0.004290000 seconds user
          0.008581000 seconds sys
 ```
+
 The TopdownL1 metrics may be computed by default if no metric is provided:
 ```sh
   $ perf stat perf bench mem memcpy
@@ -89,6 +90,7 @@ The TopdownL1 metrics may be computed by default if no metric is provided:
          0.000000000 seconds user
          0.023455000 seconds sys
 ```
+
 On the right of the counter values are the metrics. For TopdownL1 there are the metrics tma_retiring, tma_backend_bound, tma_frontend_bound and tma_bad_speculation. For the benchmark tma_backend_bound is the largest. We can drill down into this metric by adding the suffix **_group** to the metric name:
 ```sh
   $ perf stat -M tma_backend_bound_group perf bench mem memcpy
@@ -131,6 +133,7 @@ On the right of the counter values are the metrics. For TopdownL1 there are the 
          0.008451000 seconds user
          0.004225000 seconds sys
 ```
+
 This time tma_core_bound is the largest TMA metric and so we drill down in to it:
 ```sh
   $ perf stat -M tma_core_bound_group perf bench mem memcpy
@@ -172,6 +175,7 @@ This time tma_core_bound is the largest TMA metric and so we drill down in to it
        0.000000000 seconds user
        0.011349000 seconds sys
 ```
+
 And then tma_ports_utilization:
 ```sh
   $ perf stat -M tma_ports_utilization_group perf bench mem memcpy
@@ -213,15 +217,18 @@ And then tma_ports_utilization:
        0.008647000 seconds user
        0.004323000 seconds sys
 ```
+
 For tma_ports_utilization_group we can see numbers like **(34.73%)** that indicate there were insufficient performance counters to gather the metric and the performance counters had to be multiplexed during the benchmark run. Multiplexing lowers accuracy and can be worked around by just measuring the metric on its own:
 ```sh
   $ perf stat -M tma_ports_utilized_0 perf bench mem memcpy
   ...
          2,268,815      RESOURCE_STALLS.SCOREBOARD       #     19.8 %  tma_ports_utilized_0
 ```
+
 Finally we see tma_ports_utilized_3m as the largest metric. Looking at `perf list`, (sometimes `perf list -v`) we can see the metrics meaning:
 
-  tma_ports_utilized_3m
+ - tma_ports_utilized_3m
+
     This metric represents fraction of cycles CPU executed total of 3 or more uops per cycle on all execution ports (Logical Processor cycles since ICL, Physical Core cycles otherwise). Sample with: UOPS_EXECUTED.CYCLES_GE_3
 
 The 'Sample with' event can be used with `perf record` to identify where in the benchmark the performance bottleneck is:

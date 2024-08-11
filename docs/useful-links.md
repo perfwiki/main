@@ -12,20 +12,20 @@
 - [Viacheslav Biriukov mentions using perf to get more info about page cache activity in the "Advanced tools" section in his "SRE deep dive into Linux Page Cache" series of articles](https://biriukov.dev/docs/page-cache/0-linux-page-cache-for-sre/)
 - [Filip Busic uses perf and other BPF tools in "Examining Problematic Memory in C/C++ Applications with BPF, perf, and Memcheck"](https://doordash.engineering/2021/04/01/examining-problematic-memory-with-bpf-perf-and-memcheck/)
 - (French) [Hadrien Grasland's perf tutorial (designed to be run on a specific system, but could be adapted to self-study without too much effort)](https://grasland.pages.in2p3.fr/tp-perf/html/)
-- [Leo Yan, Diving into Linux Perf Ring Buffer](https://people.linaro.org/~leo.yan/debug/perf/Diving_into_Linux_Perf_Ring_Buffer.pdf)
-- [Leo Yan Debugging perf with perf](https://github.com/Leo-Yan/write_plan/blob/master/how_to_use_perf_to_debug_perf/how_to_use_perf_to_debug_perf.pdf)
+- [Leo Yan, Diving into Linux Perf Ring Buffer](print/Diving_into_Linux_Perf_Ring_Buffer.pdf)
+- [Leo Yan Debugging perf with perf](print/how_to_use_perf_to_debug_perf/how_to_use_perf_to_debug_perf.pdf)
 - [Paul Clarke helps transitioning from OProfile to perf](https://developer.ibm.com/tutorials/migrate-from-oprofile-to-perf/)
 
 # Useful web sites about profilers
 
 - [ProfilerPedia A map of the Software Profiling Ecosystem](https://profilerpedia.markhansen.co.nz/)
-- [ OProfile](https://oprofile.sourceforge.io/news/)
+- [OProfile](https://oprofile.sourceforge.io/news/)
 
 # Presentations
 
 - [Easyperf Twitter Spaces with Arnaldo Carvalho de Melo and Denis Bakhvalov](https://youtu.be/aUDtN0qjxD0) October 2021
-- [Integration Arm SPE in Perf for Memory Profiling](https://static.linaro.org/connect/lvc21/presentations/lvc21-302.pdf) Spring 2021
-- [Stephane Eranian's keynote at SuperComputing ProTools 2019: Hardware Performance Monitoring Landscape](https://protools19.github.io/slides/Eranian_KeynoteSC19.pdf)
+- [Integration Arm SPE in Perf for Memory Profiling](print/lvc21-302.pdf) Spring 2021
+- [Stephane Eranian's keynote at SuperComputing ProTools 2019: Hardware Performance Monitoring Landscape](print/Eranian_KeynoteSC19.pdf)
 - [Chandler Carruth "Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"](https://youtu.be/nXaxk27zwlk CppCon 2015)
 - [Roberto Vitillo's presentation on Perf events](http://indico.cern.ch/materialDisplay.py?contribId=20&sessionId=4&materialId=slides&confId=141309) June 2011
 

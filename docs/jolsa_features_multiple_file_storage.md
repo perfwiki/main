@@ -5,7 +5,7 @@ into multiple files.
 - new version of perf.data file was added (v3)
 - `-M/--multi` option was added into perf record
 
-- example:
+example:
 ```sh
   $ perf record -M 5M yes > /dev/null
   ^C[ perf record: Woken up 228 times to write data ]
@@ -43,12 +43,12 @@ into multiple files.
 ```
 
 - `-M/--multi` option accepts size and time parameters, distinguished by following terminal character:
-  **s** - seconds   (-M 10s)
-  **m** - minutes   (-M 10m)
-  **h** - hours     (-M 10h)
-  **B** - bytes     (-M 10B)
-  **K** - kilobytes (-M 10K)
-  **M** - megabytes (-M 10M)
+    - **s** - seconds   (-M 10s)
+    - **m** - minutes   (-M 10m)
+    - **h** - hours     (-M 10h)
+    - **B** - bytes     (-M 10B)
+    - **K** - kilobytes (-M 10K)
+    - **M** - megabytes (-M 10M)
 
 ### Limitations
 

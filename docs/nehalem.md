@@ -10,8 +10,8 @@ The recent PMUs seem to be somewhat structured similarly across Core and Atom CP
 
 The diagram of PMU registers shows the registers available depending on which processor family you are using. You are offered at least 4 counters.
 
-![X86-64_pmu](./X86-64_pmu.png)
+![X86-64_pmu](img/nehalem/X86-64_pmu.png)
 
 The Nehalem PMU supports a hardware bufering scheme to collect multiple samples from the PMU. When a counter overflows, the CPU interrupts into firmware, which in turn copies the counters into a PEBS buffer record. The following graph shows the indirection levels and the content of each record.
 
-![X86-64_pebs](./X86-64_pmu.png)
+![X86-64_pebs](img/nehalem/X86-64_pmu.png)
