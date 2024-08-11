@@ -1765,8 +1765,8 @@ counted.</p>
 the library provides some short description of the events. For a listing of PMU hardware events for Intel and AMD
 processors, see</p>
 <ul>
-<li>Intel PMU event tables: Appendix A of manual [http://www.intel.com/Assets/PDF/manual/253669.pdf here]</li>
-<li>AMD PMU event table: section 3.14 of manual [https://www.amd.com/system/files/TechDocs/31116.pdf here]</li>
+<li><a href="../print/253669.pdf">Intel PMU event tables: Appendix A of manual</a></li>
+<li><a href="../print/31116.pdf">AMD PMU event table: section 3.14 of manual</a></li>
 </ul>
 <h2 id="counting-with-perf-stat">Counting with <code>perf stat</code><a class="headerlink" href="#counting-with-perf-stat" title="Permanent link">&para;</a></h2>
 <p>For any of the supported events, perf can keep a running count during process execution.
@@ -1976,15 +1976,15 @@ with ratio of std-dev/mean is printed.</p>
 <h3 id="options-controlling-environment-selection">Options controlling environment selection<a class="headerlink" href="#options-controlling-environment-selection" title="Permanent link">&para;</a></h3>
 <p>The <code>perf</code> tool can be used to count events on a per-thread, per-process, per-cpu
 or system-wide basis.
-In ''per-thread'' mode, the counter only monitors the execution of a designated thread.
+In <strong>per-thread</strong> mode, the counter only monitors the execution of a designated thread.
 When the thread is scheduled out, monitoring stops. When a thread migrated from one
 processor to another, counters are saved on the current processor and are restored
 on the new one.</p>
-<p>The ''per-process'' mode is a variant of per-thread where <strong>all</strong> threads of the process
+<p>The <strong>per-process</strong> mode is a variant of per-thread where <strong>all</strong> threads of the process
 are monitored. Counts and samples are aggregated at the process level.
 The perf_events interface allows for automatic inheritance on <code>fork()</code> and <code>pthread_create()</code>.
 By default, the perf tool <strong>activates</strong> inheritance.</p>
-<p>In ''per-cpu'' mode, all threads running on the designated processors are monitored. Counts and
+<p>In <strong>per-cpu</strong> mode, all threads running on the designated processors are monitored. Counts and
 samples are thus aggregated per CPU. An event is only monitoring one CPU at a time. To monitor
 across multiple processors, it is necessary to create multiple events.  The perf tool can aggregate
 counts and samples across multiple processors. It can also monitor only a subset of the processors.</p>
@@ -2153,8 +2153,8 @@ stored in each sample designates the place where the program was
 interrupted to process the PMU interrupt, not the place where the counter actually overflows, i.e.,
 where it was at the end of the sampling period. In some case, the distance between those two points
 may be several dozen instructions or more if there were taken branches. When the program cannot
-make forward progress, those two locations are indeed identical. ''For this reason, care must be taken
-when interpreting profiles''.</p>
+make forward progress, those two locations are indeed identical. <strong>For this reason, care must be taken
+when interpreting profiles</strong>.</p>
 <h4 id="default-event-cycle-counting">Default event: cycle counting<a class="headerlink" href="#default-event-cycle-counting" title="Permanent link">&para;</a></h4>
 <p>By default, <code>perf record</code> uses the <code>cycles</code> event as the sampling event.
 This is a generic hardware event that is mapped to a hardware-specific
@@ -2236,7 +2236,7 @@ target rate of 1000 samples/sec:</p>
 [ perf record: Captured and wrote 0.523 MB perf.data (~22870 samples) ]
 </code></pre>
 <h3 id="flame-graph">Flame Graph<a class="headerlink" href="#flame-graph" title="Permanent link">&para;</a></h3>
-<p>[https://www.brendangregg.com/flamegraphs.html FlameGraphs] are a popular way to visualize stack traces and break down execution time. The perf tool supports natively generating flame graphs using the <code>perf script report flamegraph</code> command.</p>
+<p><a href="https://www.brendangregg.com/flamegraphs.html">FlameGraphs</a> are a popular way to visualize stack traces and break down execution time. The perf tool supports natively generating flame graphs using the <code>perf script report flamegraph</code> command.</p>
 <pre><code class="language-sh">perf record -a -g -F 99 sleep 60
 perf script report flamegraph
 google-chrome flamegraph.html
@@ -2244,7 +2244,7 @@ google-chrome flamegraph.html
 <p>By default this creates a <code>flamegraph.html</code> file and the <code>google-chrome</code> command will load the file into your web browser. The visualization uses <a href="https://d3js.org/">d3</a> and the relevant d3 files may need to be installed or downloaded on demand. If downloading is necessary then a prompt will appear to ensure perf doesn't create unprompted network traffic. The prompt can be disabled with the <code>--allow-download</code> option.</p>
 <h3 id="firefox-profiler">Firefox Profiler<a class="headerlink" href="#firefox-profiler" title="Permanent link">&para;</a></h3>
 <p><a href="https://profiler.firefox.com/">Firefox profiler</a> is a powerful tool developed by Mozilla to analyze and optimize the performance of web applications and websites. It allows developers to gain deep insights into the behaviour of their code and identify performance bottlenecks, making it an invaluable asset for web development and debugging. Here is the <a href="https://chat.mozilla.org/#/room/#profiler:mozilla.org">matrix channel</a> for Firefox profiler discussion, you can reach out in case any doubt or issue arise. 
-One of the key components of the Firefox Profiler is the <a href="https://github.com/firefox-devtools/profiler/blob/main/docs-developer/gecko-profile-format.md/">Gecko format</a>. It is a specialized data format used to store performance data collected during the profiling process. The Gecko format is particularly beneficial because it offers a comprehensive and structured representation of performance data, enabling developers to visualize and interpret complex metrics in a more manageable way. Here is the <a href="https://github.com/TwilightTechie/Linux-Perf-Tool-Gecko/blob/master/gecko_profile.json">sample_gecko_output</a> generated by the gecko script.  The gecko script is available under scripts/python directory:</p>
+One of the key components of the Firefox Profiler is the <a href="https://github.com/firefox-devtools/profiler/blob/main/docs-developer/gecko-profile-format.md/">Gecko format</a>. It is a specialized data format used to store performance data collected during the profiling process. The Gecko format is particularly beneficial because it offers a comprehensive and structured representation of performance data, enabling developers to visualize and interpret complex metrics in a more manageable way. Here is the <a href="https://github.com/TwilightTechie/Linux-Perf-Tool-Gecko/blob/master/gecko_profile.json">sample_gecko_output</a> generated by the gecko script. The gecko script is available under scripts/python directory:</p>
 <pre><code class="language-sh">perf script report gecko -h
 usage: perf script gecko [&lt;options&gt;] [&lt;command&gt;]
 [--user-colour]         Color for user category

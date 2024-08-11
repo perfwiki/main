@@ -586,13 +586,17 @@ Samples: 19K of event 'cycles', Event count (approx.): 17010569690
 +   0.14%  ex  ex                 [.] krava_g                              krava_g
 +   0.08%  ex  ex                 [.] main                                 [other]
 </code></pre>
-<p>Previous:
-- parent symbol is displayed in the last column in above listing
-- you can see load gets separated by parent <strong>krava_g</strong> and the rest <strong>[other]</strong>
-- main based <strong>krava_[abcd]</strong> functions now eat only 20% now
-- krava_g based <strong>krava_[abcd]</strong> functions eat ~20% as well (+- other trash)
-Next:
-- we can make the numbers more obvious and sort it by parent with <strong>-s parent</strong></p>
+<p>Previous:</p>
+<ul>
+<li>parent symbol is displayed in the last column in above listing</li>
+<li>you can see load gets separated by parent <strong>krava_g</strong> and the rest <strong>[other]</strong></li>
+<li>main based <strong>krava_[abcd]</strong> functions now eat only 20% now</li>
+<li>krava_g based <strong>krava_[abcd]</strong> functions eat ~20% as well (+- other trash)</li>
+</ul>
+<p>Next:</p>
+<ul>
+<li>we can make the numbers more obvious and sort it by parent with <strong>-s parent</strong></li>
+</ul>
 <pre><code class="language-sh">$ perf report -p krava_g -s parent --stdio
 # Overhead  Parent symbol
 # ........  .............
