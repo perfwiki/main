@@ -43,7 +43,8 @@ This is the link to the documents from the `linux-next` tree under `tools/perf/D
 - [perf version](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/perf-version.txt)
 - [perf amd-ibs](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/perf-amd-ibs.txt)
 
-Others:
+# Others:
+
 - [arm-coresight.txt](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/arm-coresight.txt)
 - [android.txt](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/android.txt)
 - [build-xed.txt](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/build-xed.txt)
@@ -67,6 +68,6 @@ Others:
 - [guestmount.txt](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/guestmount.txt)
 - [db-export.txt](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/tools/perf/Documentation/db-export.txt)
 
-# Kernel Version
+## Kernel Version
 
-This page links the each document to the `linux-next` kernel version.[(https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git]
+This page links the each document to the [`linux-next` kernel branch](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git).
