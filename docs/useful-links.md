@@ -1,4 +1,4 @@
-# Useful web sites about the Linux perf tools=
+# Useful web sites about the Linux perf tools
 
 - [Julia Evans' Profiling & tracing with perf zine](https://wizardzines.com/zines/perf/)
 - [Brendan Gregg's perf examples](http://www.brendangregg.com/perf.html)
