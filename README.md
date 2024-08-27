@@ -1,8 +1,8 @@
-# perfwiki.github.io
+# [perfwiki.github.io](https://perfwiki.github.io/)
 
 This repository contains the markdown migration of the perf.wiki.kernel.org pages.
 
-# Check the perfwiki.github.io in the localhost
+# Check the [perfwiki.github.io](https://perfwiki.github.io/) in the localhost
 
 If you want to check the MkDocs UI as a webpage in this workspace,
 You only need to do it once at the beginning: `pip install mkdocs-material`.
