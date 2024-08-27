@@ -2,6 +2,10 @@
 
 This repository contains the markdown migration of the perf.wiki.kernel.org pages.
 
+We can browse perf wiki on terminal environment with [glow](https://github.com/charmbracelet/glow?tab=readme-ov-file#installation).
+
+![glow-with-perfwiki](docs/img/readme/glow-with-perfwiki.gif)
+
 # Check the [perfwiki.github.io](https://perfwiki.github.io/) in the localhost
 
 If you want to check the MkDocs UI as a webpage in this workspace,
