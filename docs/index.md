@@ -17,8 +17,8 @@ The userspace `perf` command present a simple to use interface with commands lik
 
 - [`perf stat`](tutorial/#counting-with-perf-stat): obtain event counts
 - [`perf record`](tutorial/#sampling-with-perf-record): record events for later reporting
-- [`perf report`](tutorial/#sampling-with-perf-record): break down events by process, function, etc.
-- [`perf annotate`](tutorial/#sample-analysis-with-perf-report): annotate assembly or source code with event counts
+- [`perf report`](tutorial/#sample-analysis-with-perf-report): break down events by process, function, etc.
+- [`perf annotate`](tutorial/#source-level-analysis-with-perf-annotate): annotate assembly or source code with event counts
 - [`perf top`](tutorial/#live-analysis-with-perf-top): see live event count 
 - [`perf bench`](tutorial/#benchmarking-with-perf-bench): run different kernel microbenchmarks
 
