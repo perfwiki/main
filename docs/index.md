@@ -15,12 +15,12 @@ Tracepoints are instrumentation points placed at logical locations in code, such
 
 The userspace `perf` command present a simple to use interface with commands like:
 
-- `perf stat`: obtain event counts
-- `perf record`: record events for later reporting
-- `perf report`: break down events by process, function, etc.
-- `perf annotate`: annotate assembly or source code with event counts
-- `perf top`: see live event count 
-- `perf bench`: run different kernel microbenchmarks
+- [`perf stat`](/tutorial/#counting-with-perf-stat): obtain event counts
+- [`perf record`](/tutorial/#sampling-with-perf-record): record events for later reporting
+- [`perf report`](/tutorial/#sampling-with-perf-record): break down events by process, function, etc.
+- [`perf annotate`](/tutorial/#sample-analysis-with-perf-report): annotate assembly or source code with event counts
+- [`perf top`](/tutorial/#live-analysis-with-perf-top): see live event count 
+- [`perf bench`](/tutorial/#benchmarking-with-perf-bench): run different kernel microbenchmarks
 
 To learn more, see the examples in the [Tutorial](./tutorial.md) or how to do a [Top-Down Analysis](./top-down-analysis.md).
 
