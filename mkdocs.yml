@@ -5,6 +5,7 @@ nav:
   - Main Page: index.md
   - Tutorial : tutorial.md
   - Top-Down Analysis: top-down-analysis.md
+  - Kernel lock contention : lock-contention.md
   - Todo : todo.md
   - HardwareReference : hardwarereference.md
   - perf_events kernel ABI : perf_events-kernel-abi.md
