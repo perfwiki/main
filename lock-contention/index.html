@@ -734,32 +734,38 @@ addresses (in some cases).</p>
 task or the lock.  Newer versions of the tool will likely have more
 features.  This document will use BPF and tool version 6.2.</p>
 <h3 id="common-options">Common options<a class="headerlink" href="#common-options" title="Permanent link">&para;</a></h3>
-<p>These options are to control the collection target.
-* <code>-a</code> (<code>--all-cpus</code>) : enable system-wide collection from all-CPUs.
-* <code>-C</code> (<code>--cpu</code>) NUM : collect lock contention from the given CPUs only.
-* <code>-p</code> (<code>--pid</code>) NUM : collect lock contention from the given process only.
-* <code>--tid</code> NUM : collect lock contention from the given thread only.
-    Unfortunately the <code>-t</code> option was already taken.
-* <code>-G</code> (<code>--cgroup-filter</code>) NAME : collect lock contention from the given cgroup only. (from v6.7)</p>
-<p>These options are used for all aggregation modes.
-* <code>-b</code> (<code>--use-bpf</code>) : use BPF programs to collect lock contention stats.
-* <code>-E</code> (<code>--entries</code>) NUM : limit the output by this many entries
-* <code>-F</code> (<code>--field</code>) NAMES : select the output columns (comma-separate values).
+<p>These options are to control the collection target.</p>
+<ul>
+<li><code>-a</code> (<code>--all-cpus</code>) : enable system-wide collection from all-CPUs.</li>
+<li><code>-C</code> (<code>--cpu</code>) NUM : collect lock contention from the given CPUs only.</li>
+<li><code>-p</code> (<code>--pid</code>) NUM : collect lock contention from the given process only.</li>
+<li><code>--tid</code> NUM : collect lock contention from the given thread only.
+    Unfortunately the <code>-t</code> option was already taken.</li>
+<li><code>-G</code> (<code>--cgroup-filter</code>) NAME : collect lock contention from the given cgroup only. (from v6.7)</li>
+</ul>
+<p>These options are used for all aggregation modes.</p>
+<ul>
+<li><code>-b</code> (<code>--use-bpf</code>) : use BPF programs to collect lock contention stats.</li>
+<li><code>-E</code> (<code>--entries</code>) NUM : limit the output by this many entries</li>
+<li><code>-F</code> (<code>--field</code>) NAMES : select the output columns (comma-separate values).
     Users can customize the output.  Available values are <code>contended</code>, <code>wait_total</code>,
     <code>wait_max</code>, <code>wait_min</code>, <code>avg_wait</code>.  The default values are
-    “contended,wait_total,wait_max,avg_wait”.
-* <code>-k</code> (<code>--key</code>) NAME<code>: select the key to sort the entries.  Available values
-    are the same with the</code>-F<code>option.  The default value is “wait_total”.
-*</code>-v<code>(</code>--verbose`) : show verbose output including debug stats.</p>
-<p>There are filter options when you have information on target locks (usually from the previous runs).
-* <code>-L</code> (<code>--lock-filter</code>) ADDR : limit collection for the given lock only.
+    “contended,wait_total,wait_max,avg_wait”.</li>
+<li><code>-k</code> (<code>--key</code>) NAME<code>: select the key to sort the entries.  Available values
+    are the same with the</code>-F` option.  The default value is “wait_total”.</li>
+<li><code>-v</code> (<code>--verbose</code>) : show verbose output including debug stats.</li>
+</ul>
+<p>There are filter options when you have information on target locks (usually from the previous runs).</p>
+<ul>
+<li><code>-L</code> (<code>--lock-filter</code>) ADDR : limit collection for the given lock only.
     It also accepts a symbolic name if the lock has a symbol (for global locks).
     Note that ‘mmap_lock’, ‘rq_lock’ and ‘siglock’ are not global locks (they got
-    the symbol by post-processing) so they cannot be used for the filter option.
-* <code>-Y</code> (<code>--type-filter</code>) FLAGS : collect contention stats for the given lock
+    the symbol by post-processing) so they cannot be used for the filter option.</li>
+<li><code>-Y</code> (<code>--type-filter</code>) FLAGS : collect contention stats for the given lock
     (access) types.  Available values are <code>spinlock</code>, <code>rwlock</code>, <code>rwlock:R</code>,
     <code>rwlock:W</code>, <code>mutex</code>, <code>rwsem</code>, <code>rwsem:R</code>, <code>rwsem:W</code>, <code>semaphore</code>, …
-    (anything that appears in the type column).</p>
+    (anything that appears in the type column).</li>
+</ul>
 <h3 id="by-stack-trace">By stack trace<a class="headerlink" href="#by-stack-trace" title="Permanent link">&para;</a></h3>
 <p>The default behavior of the tool collects the contention stat by stack
 trace (in kernel only) and shows the key function for each entry.</p>
@@ -829,9 +835,11 @@ histogram of failure reasons
        data: 0
 </code></pre>
 <p>The debug output at the end might look different as it’s changed recently.</p>
-<p>Here is the list of relevant options:
-* <code>--max-stack</code> NUM : maximum depth of stack trace to collect.  The default value is 8.
-* <code>--stack-skip</code> NUM : how many entries to skip before collecting the stack trace.  The default value is 4.</p>
+<p>Here is the list of relevant options:</p>
+<ul>
+<li><code>--max-stack</code> NUM : maximum depth of stack trace to collect.  The default value is 8.</li>
+<li><code>--stack-skip</code> NUM : how many entries to skip before collecting the stack trace.  The default value is 4.</li>
+</ul>
 <p>If you know a specific lock is very contended, you can use the lock
 filter (<code>-L ffff9f88c0248000</code>) to see the contention for the lock only.
 To get the address or symbol name (if available), run the tool with <code>-l</code>
@@ -930,11 +938,13 @@ the lock because it can access kernel internals.  But the BPF programs
 should be written with care to handle multiple kernel versions
 properly since some kernel data structure it accesses (like owner)
 changed over time.</p>
-<p>These options work only when BPF is used:
-* <code>--map-nr-entries</code> NUM : max number of BPF map entries.
+<p>These options work only when BPF is used:</p>
+<ul>
+<li><code>--map-nr-entries</code> NUM : max number of BPF map entries.
     This controls memory usage of BPF maps.  The default is 16384
     (which means around 2~3MB of memory is used by the BPF maps with
-    the default options).</p>
+    the default options).</li>
+</ul>
 <p>To use this tool without BPF, you need to run perf lock record command
 first.  But it’d cause some disk IO unless it’s directed to a pipe.
 Also saving the trace data in a ring buffer and then to a file can
