@@ -30,6 +30,7 @@ features.  This document will use BPF and tool version 6.2.
 ### Common options
 
 These options are to control the collection target.
+
 * `-a` (`--all-cpus`) : enable system-wide collection from all-CPUs.
 * `-C` (`--cpu`) NUM : collect lock contention from the given CPUs only.
 * `-p` (`--pid`) NUM : collect lock contention from the given process only.
@@ -38,6 +39,7 @@ These options are to control the collection target.
 * `-G` (`--cgroup-filter`) NAME : collect lock contention from the given cgroup only. (from v6.7)
 
 These options are used for all aggregation modes.
+
 * `-b` (`--use-bpf`) : use BPF programs to collect lock contention stats.
 * `-E` (`--entries`) NUM : limit the output by this many entries
 * `-F` (`--field`) NAMES : select the output columns (comma-separate values).
@@ -49,6 +51,7 @@ These options are used for all aggregation modes.
 * `-v` (`--verbose`) : show verbose output including debug stats.
 
 There are filter options when you have information on target locks (usually from the previous runs).
+
 * `-L` (`--lock-filter`) ADDR : limit collection for the given lock only.
     It also accepts a symbolic name if the lock has a symbol (for global locks).
 	Note that ‘mmap_lock’, ‘rq_lock’ and ‘siglock’ are not global locks (they got
@@ -138,6 +141,7 @@ histogram of failure reasons
 The debug output at the end might look different as it’s changed recently.
 
 Here is the list of relevant options:
+
 * `--max-stack` NUM : maximum depth of stack trace to collect.  The default value is 8.
 * `--stack-skip` NUM : how many entries to skip before collecting the stack trace.  The default value is 4.
 
@@ -274,6 +278,7 @@ properly since some kernel data structure it accesses (like owner)
 changed over time.
 
 These options work only when BPF is used:
+
 * `--map-nr-entries` NUM : max number of BPF map entries.
     This controls memory usage of BPF maps.  The default is 16384
 	(which means around 2~3MB of memory is used by the BPF maps with
