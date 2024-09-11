@@ -1,0 +1,1007 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../top-down-analysis/">
+      
+      
+        <link rel="next" href="../todo/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Kernel lock contention - perf: Linux profiling with performance counters</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#perf-lock-contention" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="perf: Linux profiling with performance counters" class="md-header__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            perf: Linux profiling with performance counters
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kernel lock contention
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/perfwiki/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="perf: Linux profiling with performance counters" class="md-nav__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    perf: Linux profiling with performance counters
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/perfwiki/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Main Page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../top-down-analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Top-Down Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Kernel lock contention
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Kernel lock contention
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analyzing-kernel-lock-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyzing kernel lock contention
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyzing kernel lock contention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-stack-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      By stack trace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      By task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      By lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-cgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      By cgroup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-vs-without-bpf" class="md-nav__link">
+    <span class="md-ellipsis">
+      With vs. without BPF
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../todo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Todo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hardwarereference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HardwareReference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf_events-kernel-abi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf_events kernel ABI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perf-tools-support-for-intel-processor-trace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    perf tools support for Intel® Processor Trace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../useful-links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../latest-manual-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latest Manual Pages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../man-pages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Man pages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../white-paper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    White Paper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analyzing-kernel-lock-contention" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analyzing kernel lock contention
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyzing kernel lock contention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common options
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-stack-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      By stack trace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      By task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      By lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#by-cgroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      By cgroup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#with-vs-without-bpf" class="md-nav__link">
+    <span class="md-ellipsis">
+      With vs. without BPF
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="perf-lock-contention">perf lock contention<a class="headerlink" href="#perf-lock-contention" title="Permanent link">&para;</a></h1>
+<p>The <code>perf lock</code> command is to trace kernel lock tracepoints.
+<code>CONFIG_LOCKDEP</code> enables a couple of lock tracepoints but it's for
+debugging and adds a lot of overheads.  So  most distros don't ship
+the kernel with the config.  Another set of tracepoints are focusing
+on the contended locks and it's always available and has lower overhead.
+The <code>perf lock contention</code> command is to deal with the contention
+tracepoints only.</p>
+<h2 id="analyzing-kernel-lock-contention">Analyzing kernel lock contention<a class="headerlink" href="#analyzing-kernel-lock-contention" title="Permanent link">&para;</a></h2>
+<p>The <code>perf lock contention</code> (shortly <code>perf lock con</code>) can run with or
+without BPF.  Without BPF it requires two steps to record the data and
+to analyze the data.  That is, you must save all tracepoints data to a
+file first using <code>perf lock record</code> command.  This might be good when
+users want to analyze the data multiple times probably in different
+ways.</p>
+<p>Running it with BPF (<code>-b</code> option) enables you to do live analysis
+without the data copying.  The BPF aggregates the data in the kernel
+and the tool just displays the result.  Also BPF can do more things
+like accessing the owner info (if available) and symbolizing lock
+addresses (in some cases).</p>
+<p>There are 3 modes in the tool to aggregate the result by stack trace,
+task or the lock.  Newer versions of the tool will likely have more
+features.  This document will use BPF and tool version 6.2.</p>
+<h3 id="common-options">Common options<a class="headerlink" href="#common-options" title="Permanent link">&para;</a></h3>
+<p>These options are to control the collection target.
+* <code>-a</code> (<code>--all-cpus</code>) : enable system-wide collection from all-CPUs.
+* <code>-C</code> (<code>--cpu</code>) NUM : collect lock contention from the given CPUs only.
+* <code>-p</code> (<code>--pid</code>) NUM : collect lock contention from the given process only.
+* <code>--tid</code> NUM : collect lock contention from the given thread only.
+    Unfortunately the <code>-t</code> option was already taken.
+* <code>-G</code> (<code>--cgroup-filter</code>) NAME : collect lock contention from the given cgroup only. (from v6.7)</p>
+<p>These options are used for all aggregation modes.
+* <code>-b</code> (<code>--use-bpf</code>) : use BPF programs to collect lock contention stats.
+* <code>-E</code> (<code>--entries</code>) NUM : limit the output by this many entries
+* <code>-F</code> (<code>--field</code>) NAMES : select the output columns (comma-separate values).
+    Users can customize the output.  Available values are <code>contended</code>, <code>wait_total</code>,
+    <code>wait_max</code>, <code>wait_min</code>, <code>avg_wait</code>.  The default values are
+    “contended,wait_total,wait_max,avg_wait”.
+* <code>-k</code> (<code>--key</code>) NAME<code>: select the key to sort the entries.  Available values
+    are the same with the</code>-F<code>option.  The default value is “wait_total”.
+*</code>-v<code>(</code>--verbose`) : show verbose output including debug stats.</p>
+<p>There are filter options when you have information on target locks (usually from the previous runs).
+* <code>-L</code> (<code>--lock-filter</code>) ADDR : limit collection for the given lock only.
+    It also accepts a symbolic name if the lock has a symbol (for global locks).
+    Note that ‘mmap_lock’, ‘rq_lock’ and ‘siglock’ are not global locks (they got
+    the symbol by post-processing) so they cannot be used for the filter option.
+* <code>-Y</code> (<code>--type-filter</code>) FLAGS : collect contention stats for the given lock
+    (access) types.  Available values are <code>spinlock</code>, <code>rwlock</code>, <code>rwlock:R</code>,
+    <code>rwlock:W</code>, <code>mutex</code>, <code>rwsem</code>, <code>rwsem:R</code>, <code>rwsem:W</code>, <code>semaphore</code>, …
+    (anything that appears in the type column).</p>
+<h3 id="by-stack-trace">By stack trace<a class="headerlink" href="#by-stack-trace" title="Permanent link">&para;</a></h3>
+<p>The default behavior of the tool collects the contention stat by stack
+trace (in kernel only) and shows the key function for each entry.</p>
+<pre><code># perf lock con -ab sleep 1
+ contended   total wait     max wait     avg wait         type   caller
+
+         2     27.49 us     15.86 us     13.74 us     spinlock   raw_spin_rq_lock_nested+0x1b
+         2     24.58 us     14.10 us     12.29 us     rwlock:W   ep_done_scan+0x2d
+         1     19.18 us     19.18 us     19.18 us     rwlock:W   do_epoll_wait+0x47b
+         1     16.65 us     16.65 us     16.65 us     spinlock   tick_do_update_jiffies64+0x25
+         1     13.82 us     13.82 us     13.82 us     spinlock   __queue_work+0x174
+         2     12.80 us      9.55 us      6.40 us     spinlock   process_one_work+0x1f0
+         1     10.31 us     10.31 us     10.31 us     rwlock:R   ep_poll_callback+0x2d
+</code></pre>
+<p>It uses system wide mode (<code>-a</code>) with BPF (<code>-b</code>).  I think these are
+options you want to use mostly.  The ‘sleep 1’ part is just to run
+the tool for 1 second.  It’s a common pattern for the perf tools.</p>
+<p>The first entry is a spinlock from <code>raw_spin_rq_lock_nested()</code> kernel
+function and it’s contended twice.  The caller was chosen after
+collecting the stack trace.  It skips internal lock functions and
+picks whatever follows them immediately.</p>
+<p>The following command shows the whole stack traces (<code>-v</code>) for top 3
+lock contentions (<code>-E 3</code>).</p>
+<pre><code># perf lock con -abv -E3 sleep 1
+Looking at the vmlinux_path (8 entries long)
+symsrc__init: cannot get elf header.
+Using /proc/kcore for kernel data
+Using /proc/kallsyms for symbols
+ contended   total wait     max wait     avg wait         type   caller
+
+         1     26.10 us     26.10 us     26.10 us     spinlock   raw_spin_rq_lock_nested+0x1b
+                        0xffffffff9d0407c0  _raw_spin_lock+0x30
+                        0xffffffff9c6d9cfb  raw_spin_rq_lock_nested+0x1b
+                        0xffffffff9c6e3437  _raw_spin_rq_lock_irqsave+0x17
+                        0xffffffff9c6f1de2  _nohz_idle_balance.isra.0+0x1a2
+                        0xffffffff9c6f7c48  do_idle+0x38
+                        0xffffffff9c6f8099  cpu_startup_entry+0x19
+                        0xffffffff9d02eaeb  rest_init+0xcb
+                        0xffffffff9e673da2  arch_call_rest_init+0xa
+         1     22.52 us     22.52 us     22.52 us     spinlock   tick_do_update_jiffies64+0x25
+                        0xffffffff9d0407c0  _raw_spin_lock+0x30
+                        0xffffffff9c7657c5  tick_do_update_jiffies64+0x25
+                        0xffffffff9c765903  tick_sched_do_timer+0x93
+                        0xffffffff9c765943  tick_sched_timer+0x33
+                        0xffffffff9c75237f  __hrtimer_run_queues+0x10f
+                        0xffffffff9c75333e  hrtimer_interrupt+0xfe
+                        0xffffffff9c6693fc  __sysvec_apic_timer_interrupt+0x7c
+                        0xffffffff9d02d0d9  sysvec_apic_timer_interrupt+0x99
+         1     22.37 us     22.37 us     22.37 us     rwlock:R   ep_poll_callback+0x2d
+                        0xffffffff9d040555  _raw_read_lock_irqsave+0x45
+                        0xffffffff9c9bc81d  ep_poll_callback+0x2d
+                        0xffffffff9c702813  __wake_up_common+0x73
+                        0xffffffff9c7029a2  __wake_up_common_lock+0x82
+                        0xffffffff9cf10f25  unix_write_space+0x55
+                        0xffffffff9cda6343  sock_wfree+0x93
+                        0xffffffff9cf17af4  unix_destruct_scm+0x84
+                        0xffffffff9cdaecc0  skb_release_head_state+0x20
+
+=== output for debug ===
+
+bad: 0, total: 14
+bad rate: 0.00 %
+histogram of failure reasons
+       task: 0
+      stack: 0
+       time: 0
+       data: 0
+</code></pre>
+<p>The debug output at the end might look different as it’s changed recently.</p>
+<p>Here is the list of relevant options:
+* <code>--max-stack</code> NUM : maximum depth of stack trace to collect.  The default value is 8.
+* <code>--stack-skip</code> NUM : how many entries to skip before collecting the stack trace.  The default value is 4.</p>
+<p>If you know a specific lock is very contended, you can use the lock
+filter (<code>-L ffff9f88c0248000</code>) to see the contention for the lock only.
+To get the address or symbol name (if available), run the tool with <code>-l</code>
+option to output them first.  See below (“By lock” section).</p>
+<pre><code># perf lock con -ab -L ffff9f88c0248000 sleep 1
+ contended   total wait     max wait     avg wait         type   caller
+
+     39412      1.58 s     123.50 us     40.15 us     spinlock   __cache_free_alien+0x6c
+</code></pre>
+<p>In this example, all the contention came from the same stack trace and
+that’s why it showed a single entry.  But it could have multiple
+entries if the contention has diverse paths.</p>
+<p>Or you can pass a lock name (<code>-L jiffies_lock</code>).</p>
+<pre><code># perf lock con -ab -L jiffies_lock sleep 1
+ contended   total wait     max wait     avg wait         type   caller
+
+         3     24.47 us     12.09 us      8.16 us     spinlock   tick_irq_enter+0xf0
+</code></pre>
+<h3 id="by-task">By task<a class="headerlink" href="#by-task" title="Permanent link">&para;</a></h3>
+<p>It’s possible to collect lock stats by task using the <code>-t</code> (<code>--threads</code>) option.</p>
+<pre><code># perf lock con -abt sleep 1
+ contended   total wait     max wait     avg wait          pid   comm
+
+         6    173.91 us    114.87 us     28.99 us         7738   chrome
+         1    124.70 us    124.70 us    124.70 us        54858   kworker/4:0
+         1     41.45 us     41.45 us     41.45 us         7740   ThreadPoolForeg
+         1     19.41 us     19.41 us     19.41 us         7742   ThreadPoolForeg
+         1      4.25 us      4.25 us      4.25 us            0   swapper
+         1      2.25 us      2.25 us      2.25 us         7733   Chrome_ChildIOT
+         1      2.24 us      2.24 us      2.24 us         5516   pipewire-pulse
+         1       900 ns       900 ns       900 ns        56628   kworker/4:1
+</code></pre>
+<p>You can only see contentions for mutex using the <code>-Y mutex</code> option.</p>
+<pre><code># perf lock con -abt -Y mutex sleep 1
+ contended   total wait     max wait     avg wait          pid   comm
+
+         2    346.15 us    203.47 us    173.08 us        60409   kworker/7:0
+         2    294.77 us    164.66 us    147.38 us        55417   kworker/7:2
+</code></pre>
+<p>The perf tool v6.3 added the <code>-o</code> option to track lock owners instead
+of waiters.  This is only available with BPF.</p>
+<pre><code># perf lock con -abto -Y mutex sleep 1
+ contended   total wait     max wait     avg wait          pid   comm
+
+         1    199.45 us    199.45 us    199.45 us      1091507   kworker/2:0
+         1    149.16 us    149.16 us    149.16 us         3583   NetworkManager
+       146     63.42 us     12.50 us       434 ns           -1   Unknown
+</code></pre>
+<p>You can get the stack trace of the owner using PID like with this script.</p>
+<pre><code># perf lock con -abtoq -Y mutex -x, sleep 1 2&gt;&amp;1 | cut -d, -f5 | tr -d ' ' | \
+  awk '{ system(“cat /proc/$$1/stack”); }'
+</code></pre>
+<h3 id="by-lock">By lock<a class="headerlink" href="#by-lock" title="Permanent link">&para;</a></h3>
+<p>Also you can get per-lock contention stats using the <code>-l</code> (lower L, also
+with <code>--lock-addr</code>) option.</p>
+<pre><code># perf lock con -abl sleep 1
+ contended   total wait     max wait     avg wait            address   symbol
+
+        15      2.57 ms    187.89 us    171.09 us   ffffa64fdb3f11b8    (mutex)
+         9     66.01 us     10.37 us      7.33 us   ffffa105becb45c0   mmap_lock (rwsem)
+         7     43.95 us      9.12 us      6.28 us   ffffa105bf7f45c0   mmap_lock (rwsem)
+        12      3.28 us       740 ns       273 ns   ffff9f88cf26a660   mmap_lock (rwsem)
+         1      2.27 us      2.27 us      2.27 us   ffffa105bda345c0    (rwlock)
+         2      2.03 us      1.46 us      1.01 us   ffff9f88cf26a160    (mutex)
+         1      1.91 us      1.91 us      1.91 us   ffffffff92a06e00   jiffies_lock (spinlock)
+         1      1.78 us      1.78 us      1.78 us   ffffa0060d8745c0    (mutex)
+         1      1.50 us      1.50 us      1.50 us   ffffffff92ecdad0   input_pool (spinlock)
+         1      1.16 us      1.16 us      1.16 us   ffffa0060e7345c0    (spinlock)
+         1       240 ns       240 ns       240 ns   ffffffff92e99800   kernfs_open_file_mutex (mutex)
+         1       220 ns       220 ns       220 ns   ffff9f88cf9c53e0    (spinlock)
+</code></pre>
+<p>The symbols are displayed when found in the kallsysms and followed by
+lock type name.  This output can be useful to apply filters for other
+modes.</p>
+<p>The perf tool v6.3 added more symbols for dynamic locks like "mmap_lock"
+and "siglock" as well as some global locks which lack symbols like
+"rq_lock".  This is done by BPF so you need the <code>-b</code> option.</p>
+<h3 id="by-cgroup">By cgroup<a class="headerlink" href="#by-cgroup" title="Permanent link">&para;</a></h3>
+<p>You can also get per-cgroup lock contention stats using <code>--lock-cgroup</code> option.</p>
+<pre><code># perf lock con -ab --lock-cgroup -E 2 sleep 3
+   contended   total wait     max wait     avg wait   cgroup
+
+         214      9.24 ms    338.39 us     43.18 us   /
+         782      1.56 ms     23.21 us      2.00 us   /sys
+</code></pre>
+<p>You can also use other filter options (like <code>-L</code> or <code>-Y</code>) together to
+limit the target lock if needed.</p>
+<p>The perf tool v6.7 added this option.  Please check if you are using
+the recent version.</p>
+<h2 id="with-vs-without-bpf">With vs. without BPF<a class="headerlink" href="#with-vs-without-bpf" title="Permanent link">&para;</a></h2>
+<p>Using BPF for lock contention analysis is good for quick live
+debugging since it’d be more efficient.  But as it doesn’t save the
+result, each run might report different data depending on the system
+characteristics.  And the BPF can give more detailed information about
+the lock because it can access kernel internals.  But the BPF programs
+should be written with care to handle multiple kernel versions
+properly since some kernel data structure it accesses (like owner)
+changed over time.</p>
+<p>These options work only when BPF is used:
+* <code>--map-nr-entries</code> NUM : max number of BPF map entries.
+    This controls memory usage of BPF maps.  The default is 16384
+    (which means around 2~3MB of memory is used by the BPF maps with
+    the default options).</p>
+<p>To use this tool without BPF, you need to run perf lock record command
+first.  But it’d cause some disk IO unless it’s directed to a pipe.
+Also saving the trace data in a ring buffer and then to a file can
+cause data loss.  Running perf lock contention command on the save
+data would give a consistent result but it has a limited functionality
+than the BPF.</p>
+<p>Note that perf lock record and perf lock report used to work with
+lockdep - kernel lock dependency checker - which uses a different set
+of tracepoints.  It’d not be recommended to run this command when the
+kernel enabled the lockdep because it can confuse the tool.</p>
+<p>The collection target options like <code>-a</code>, <code>-C</code>, <code>-p</code> and <code>--tid</code> should be
+used during the record.  Then the rest will work just like the BPF case.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Linux perf wiki Contributors
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+    
+  </body>
+</html>
