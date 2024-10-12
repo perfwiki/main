@@ -5,15 +5,15 @@
 - [Franck Pachot's not so basic perf top tutorial "Linux perf-top basics: understand the %"](https://www.dbi-services.com/blog/linux-perf-top-basics-understand-the/)
 - [Frank Pachot help going from 'time' to 'perf stat' while analysing database performance on "Should CPU-intensive logic be done in the DB or in application server?"](https://www.dbi-services.com/blog/should-cpu-intensive-logic-be-done-in-the-db-or-in-application-server/)
 - [Ankur Arora uses perf and pahole to investigate "Syscall latency... and some uses of speculative execution"](https://blogs.oracle.com/linux/post/syscall-latency)
-- [Leo Yan on supporting 'perf c2c' on Armv8.2 "Using the Arm Statistical Profiling Extension to detect false cache-line sharing"](https://www.linaro.org/blog/using-the-arm-statistical-profiling-extension-to-detect-false-cache-line-sharing/)
+- [Leo Yan on supporting 'perf c2c' on Armv8.2 "Using the Arm Statistical Profiling Extension to detect false cache-line sharing"](https://old.linaro.org/blog/using-the-arm-statistical-profiling-extension-to-detect-false-cache-line-sharing/)
 - [Mark Dawson, Jr. uses 'perf diff' on "5-level vs 4-level Page Tables: Does It Matter?"](https://www.jabperf.com/5-level-vs-4-level-page-tables-does-it-matter/)
 - [Joe Mario's original 2016 article about 'perf c2c' "C2C - False Sharing Detection in Linux Perf"](https://joemario.github.io/blog/2016/09/01/c2c-blog/)
 - [Paul Clarke reimplements AIX's 'curt' command using perf python scripting support, detailing the whole process on "How to analyze your system with perf and Python"](https://opensource.com/article/18/7/fun-perf-and-python)
 - [Viacheslav Biriukov mentions using perf to get more info about page cache activity in the "Advanced tools" section in his "SRE deep dive into Linux Page Cache" series of articles](https://biriukov.dev/docs/page-cache/0-linux-page-cache-for-sre/)
 - [Filip Busic uses perf and other BPF tools in "Examining Problematic Memory in C/C++ Applications with BPF, perf, and Memcheck"](https://doordash.engineering/2021/04/01/examining-problematic-memory-with-bpf-perf-and-memcheck/)
 - (French) [Hadrien Grasland's perf tutorial (designed to be run on a specific system, but could be adapted to self-study without too much effort)](https://grasland.pages.in2p3.fr/tp-perf/html/)
-- [Leo Yan, Diving into Linux Perf Ring Buffer](print/Diving_into_Linux_Perf_Ring_Buffer.pdf)
-- [Leo Yan Debugging perf with perf](print/how_to_use_perf_to_debug_perf/how_to_use_perf_to_debug_perf.pdf)
+- [Leo Yan, Perf Ring Buffer](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/userspace-api/perf_ring_buffer.rst)
+- [Leo Yan Debugging perf with perf](print/how_to_use_perf_to_debug_perf.pdf)
 - [Paul Clarke helps transitioning from OProfile to perf](https://developer.ibm.com/tutorials/migrate-from-oprofile-to-perf/)
 
 # Useful web sites about profilers
