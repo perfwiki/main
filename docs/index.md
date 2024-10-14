@@ -30,11 +30,11 @@ In order to subscribe to receive perf mailing lists messages via email you will 
 
 * to receive **an individual copy of every message** sent to the list, send an email to:
 
-    `linux-perf-users+subscribe@vger.kernel.org`
+    * **[linux-perf-users+subscribe@vger.kernel.org](mailto:linux-perf-users+subscribe@vger.kernel.org)**
 
 * to receive **a daily digest of all messages** sent to the list, send an email to:
 
-    `linux-perf-users+subscribe-digest@vger.kernel.org`
+    * **[linux-perf-users+subscribe-digest@vger.kernel.org](mailto:linux-perf-users+subscribe-digest@vger.kernel.org)**
 
 ### Wiki Contents
 
