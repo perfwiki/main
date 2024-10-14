@@ -1316,7 +1316,7 @@ The second step is merging sched_start and sched_switch events. It can be done w
 ## Other Resources
 
 ### Linux sourcecode
-The perf tools sourcecode lives in the Linux kernel tree under [`/tools/perf`](https://git.kernel.org/pub/scm/linux/kernel/git/acme/linux.git/). You will find much more documentation in [`/tools/perf/Documentation`](https://elixir.bootlin.com/linux/latest/source/tools/perf/Documentation). To build manpages, info pages and more, install these tools:
+The perf tools sourcecode lives in the Linux kernel tree under [`/tools/perf`](https://elixir.bootlin.com/linux/latest/source/tools/perf/). You will find much more documentation in [`/tools/perf/Documentation`](https://elixir.bootlin.com/linux/latest/source/tools/perf/Documentation). To build manpages, info pages and more, install these tools:
 
 - asciidoc
 - tetex-fonts
