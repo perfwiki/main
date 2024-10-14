@@ -315,11 +315,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardwarereference/" class="md-nav__link">
+      <a href="../hardware-reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    HardwareReference
+    Hardware Reference
   </span>
   
 
@@ -541,15 +541,15 @@
 <li><a href="https://www.dbi-services.com/blog/linux-perf-top-basics-understand-the/">Franck Pachot's not so basic perf top tutorial "Linux perf-top basics: understand the %"</a></li>
 <li><a href="https://www.dbi-services.com/blog/should-cpu-intensive-logic-be-done-in-the-db-or-in-application-server/">Frank Pachot help going from 'time' to 'perf stat' while analysing database performance on "Should CPU-intensive logic be done in the DB or in application server?"</a></li>
 <li><a href="https://blogs.oracle.com/linux/post/syscall-latency">Ankur Arora uses perf and pahole to investigate "Syscall latency... and some uses of speculative execution"</a></li>
-<li><a href="https://www.linaro.org/blog/using-the-arm-statistical-profiling-extension-to-detect-false-cache-line-sharing/">Leo Yan on supporting 'perf c2c' on Armv8.2 "Using the Arm Statistical Profiling Extension to detect false cache-line sharing"</a></li>
+<li><a href="https://old.linaro.org/blog/using-the-arm-statistical-profiling-extension-to-detect-false-cache-line-sharing/">Leo Yan on supporting 'perf c2c' on Armv8.2 "Using the Arm Statistical Profiling Extension to detect false cache-line sharing"</a></li>
 <li><a href="https://www.jabperf.com/5-level-vs-4-level-page-tables-does-it-matter/">Mark Dawson, Jr. uses 'perf diff' on "5-level vs 4-level Page Tables: Does It Matter?"</a></li>
 <li><a href="https://joemario.github.io/blog/2016/09/01/c2c-blog/">Joe Mario's original 2016 article about 'perf c2c' "C2C - False Sharing Detection in Linux Perf"</a></li>
 <li><a href="https://opensource.com/article/18/7/fun-perf-and-python">Paul Clarke reimplements AIX's 'curt' command using perf python scripting support, detailing the whole process on "How to analyze your system with perf and Python"</a></li>
 <li><a href="https://biriukov.dev/docs/page-cache/0-linux-page-cache-for-sre/">Viacheslav Biriukov mentions using perf to get more info about page cache activity in the "Advanced tools" section in his "SRE deep dive into Linux Page Cache" series of articles</a></li>
 <li><a href="https://doordash.engineering/2021/04/01/examining-problematic-memory-with-bpf-perf-and-memcheck/">Filip Busic uses perf and other BPF tools in "Examining Problematic Memory in C/C++ Applications with BPF, perf, and Memcheck"</a></li>
-<li>(French) <a href="https://grasland.pages.in2p3.fr/tp-perf/html/">Hadrien Grasland's perf tutorial (designed to be run on a specific system, but could be adapted to self-study without too much effort)</a></li>
-<li><a href="../print/Diving_into_Linux_Perf_Ring_Buffer.pdf">Leo Yan, Diving into Linux Perf Ring Buffer</a></li>
-<li><a href="print/how_to_use_perf_to_debug_perf/how_to_use_perf_to_debug_perf.pdf">Leo Yan Debugging perf with perf</a></li>
+<li>(French) <a href="https://grasland.pages.in2p3.fr/tp-perf">Hadrien Grasland's perf tutorial (designed to be run on a specific system, but could be adapted to self-study without too much effort)</a></li>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/userspace-api/perf_ring_buffer.rst">Leo Yan, Perf Ring Buffer</a></li>
+<li><a href="../print/how_to_use_perf_to_debug_perf.pdf">Leo Yan Debugging perf with perf</a></li>
 <li><a href="https://developer.ibm.com/tutorials/migrate-from-oprofile-to-perf/">Paul Clarke helps transitioning from OProfile to perf</a></li>
 </ul>
 <h1 id="useful-web-sites-about-profilers">Useful web sites about profilers<a class="headerlink" href="#useful-web-sites-about-profilers" title="Permanent link">&para;</a></h1>
@@ -563,14 +563,14 @@
 <li><a href="../print/lvc21-302.pdf">Integration Arm SPE in Perf for Memory Profiling</a> Spring 2021</li>
 <li><a href="../print/Eranian_KeynoteSC19.pdf">Stephane Eranian's keynote at SuperComputing ProTools 2019: Hardware Performance Monitoring Landscape</a></li>
 <li><a href="https://youtu.be/nXaxk27zwlk CppCon 2015">Chandler Carruth "Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"</a></li>
-<li><a href="http://indico.cern.ch/materialDisplay.py?contribId=20&amp;sessionId=4&amp;materialId=slides&amp;confId=141309">Roberto Vitillo's presentation on Perf events</a> June 2011</li>
+<li><a href="../print/RobertoVitillo_FutureTech_EDI.pdf">Roberto Vitillo's presentation on Perf events</a> June 2011</li>
 </ul>
 <h1 id="manuals">Manuals<a class="headerlink" href="#manuals" title="Permanent link">&para;</a></h1>
 <ul>
 <li><a href="https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-optimization-reference-manual.html">Intel PMU event tables</a>, in particular Appendix B of the Intel® 64 and IA-32 Architectures Optimization Reference Manual</li>
 <li><a href="https://developer.amd.com/resources/developer-guides-manuals/">AMD PMU event table</a>, the Processor Programming Reference Manual for AMD 17h family see Section 2.1.15 Performance Monitor Counters.</li>
 <li><a href="https://developer.arm.com/architectures/cpu-architecture/a-profile/docs">ARM PMU event tables</a>, see Chapter D7. The Performance Monitors Extension, of the Arm Architecture Reference Manual Armv8, for Armv8-A architecture profile.</li>
-<li><a href="https://documentation-service.arm.com/static/62cfe21e31ea212bb6627393?token=">ARM Neovese N2 PMU guide</a>.</li>
+<li><a href="../print/arm_neoverse_n2_pmu_guide_109710_0003_03_en.pdf">ARM Neovese N2 PMU guide</a>.</li>
 </ul>
 <h1 id="in-the-press">In the press<a class="headerlink" href="#in-the-press" title="Permanent link">&para;</a></h1>
 <ul>
