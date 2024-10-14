@@ -38,7 +38,7 @@ See [evsel](#evsel).
 
 ### evlist
 
- 1. A [perf command](./latest-manual-pages.md) to list the events within a [perf.data](#perfdata) file.
+ 1. A [perf command](latest-manual-pages.md) to list the events within a [perf.data](#perfdata) file.
  2. A list of [event selectors](#evsel). The [evlist API is part of libperf](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/include/perf/evlist.h).
 
 ### evsel

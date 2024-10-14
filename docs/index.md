@@ -22,22 +22,23 @@ The userspace `perf` command present a simple to use interface with commands lik
 - [`perf top`](tutorial/#live-analysis-with-perf-top): see live event count 
 - [`perf bench`](tutorial/#benchmarking-with-perf-bench): run different kernel microbenchmarks
 
-To learn more, see the examples in the [Tutorial](./tutorial.md) or how to do a [Top-Down Analysis](./top-down-analysis.md).
+To learn more, see the examples in the [Tutorial](tutorial) or how to do a [Top-Down Analysis](top-down-analysis).
 
 To ask questions, report bugs/issues mail the [mailing list📨](https://lore.kernel.org/linux-perf-users/) or use [bugzilla🐞](https://bugzilla.kernel.org/buglist.cgi?bug_status=__open__&order=changeddate%20DESC%2Cpriority%2Cbug_severity&product=Tracing%2FProfiling&query_format=advanced).
 
 ### Wiki Contents
 
-- [Tutorial](./tutorial.md)
-- [Top-Down Analysis](./top-down-analysis.md)
-- [Todo](./todo.md)
-- [HardwareReference](./hardwarereference.md)
-- [perf_events kernel ABI](./perf_events-kernel-abi.md)
-- [perf tools support for Intel® Processor Trace](./perf-tools-support-for-intel-processor-trace.md)
-- [Useful Links](./useful-links.md): How perf tools work, examples of usage to solve real problems, observability articles, hardware manuals
-- [Glossary](./glossary.md)
-- [Latest Manual Pages](./latest-manual-pages.md)
-- [Development](./development.md)
+- [Tutorial](tutorial)
+- [Top-Down Analysis](top-down-analysis)
+- [Kernel lock contention](lock-contention)
+- [Todo](todo)
+- [Hardware Reference](hardware-reference)
+- [perf_events kernel ABI](perf_events-kernel-abi)
+- [perf tools support for Intel® Processor Trace](perf-tools-support-for-intel-processor-trace)
+- [Useful Links](useful-links): How perf tools work, examples of usage to solve real problems, observability articles, hardware manuals
+- [Glossary](glossary)
+- [Latest Manual Pages](latest-manual-pages)
+- [Development](development)
 
 ### Google Summer of Code
 

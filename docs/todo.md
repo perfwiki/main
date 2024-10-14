@@ -8,7 +8,8 @@
 - Packages needed for the build should be checked before we start building object files, such as bison (bpetkov)
 
 - Forward port the page fault tracepoints and use it in 'trace':
-    - [32ba4abf60ae](http://git.kernel.org/?p=linux/kernel/git/acme/linux.git;a=commitdiff;h=d53b11976093b6d8afeb8181db53aaffc754920d;hp=32ba4abf60ae1b710d22a75725491815de649bc5)
+    - This link need to be fixed! [32ba4abf60ae](http://git.kernel.org/?p=linux/kernel/git/acme/linux.git;a=commitdiff;h=d53b11976093b6d8afeb8181db53aaffc754920d;hp=32ba4abf60ae1b710d22a75725491815de649bc5)
+
 
 - Use Kconfig to allow selecting features and build minimal version of perf, e.g. one with just 'record' for use in embedded platforms.
     - David Ahern prototyped this, dig those patches and update them.
@@ -21,8 +22,7 @@
 
 - Limit the size of the build id cache (~/.debug), in a way similar to how ccache manages its cache.
 
-- Adopt Vince Weaver's suite of tests in 'perf test'.
-    - http://www.eece.maine.edu/~vweaver/projects/perf_events/validation/
+- [Adopt Vince Weaver's suite of tests in 'perf test'](http://www.eece.maine.edu/~vweaver/projects/perf_events/validation/)
 
 - Add reference counters to the dso and thread structs, so that in tools like 'top' we can remove unused threads from the dead_threads list and also unload symbol tables not referenced by any maps.
 
@@ -30,8 +30,7 @@
 
 - [`Add --sort addr`](https://bugzilla.kernel.org/show_bug.cgi?id=55561)
 
-- Systemtap SDT suppport in 'perf probe'
-    - http://sourceware.org/systemtap/wiki/UserSpaceProbeImplementation
+- [Systemtap SDT suppport in 'perf probe'](http://sourceware.org/systemtap/wiki/UserSpaceProbeImplementation)
 
 - Move build-id trimming from perf-record to perf-archive:
     - Just write the build-id for all DSOs, without trying to process all samples at perf-record time to find out which DSOs had samples and thus should be included in the perf.data build-id header

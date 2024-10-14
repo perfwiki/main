@@ -46,7 +46,7 @@ The following paragraphs provide some context for Intel PT:
 
 ##### Intel PT vs Performance Counters
 
-Normal performance analysis is done using performance counters and performance monitoring events.  Counters can be used to provide overall statistics, which is what the [`perf stat`](./Tutorial.md#counting-with-perf-stat) tool does, or to provide statistical sampling which is what [`perf record`](./Tutorial.md#sampling-with-perf-record) / [`perf report`](./Tutorial.md#sample-analysis-with-perf-report) do.
+Normal performance analysis is done using performance counters and performance monitoring events.  Counters can be used to provide overall statistics, which is what the [`perf stat`](tutorial.md#counting-with-perf-stat) tool does, or to provide statistical sampling which is what [`perf record`](tutorial.md#sampling-with-perf-record) / [`perf report`](tutorial.md#sample-analysis-with-perf-report) do.
 
 There are lots and lots of different performance events, not to mention software events, probes and tracepoints.
 
@@ -97,7 +97,7 @@ Because Intel PT is a hardware feature, you need hardware that supports it, and 
 
 ### Intel PT man page
 
-The online [perf Intel PT man page](http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html ) is not necessarily the latest version, however the wiki has a copy which may be more uptodate: [perf Intel PT man page](./latest-manual-pages.md).  Also the man page source in the Linux repository is quite readable: [perf Intel PT man page source](http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt)
+The online [perf Intel PT man page](http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html ) is not necessarily the latest version, however the wiki has a copy which may be more uptodate: [perf Intel PT man page](latest-manual-pages.md).  Also the man page source in the Linux repository is quite readable: [perf Intel PT man page source](http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt)
 
 ### Other tools
 
@@ -129,7 +129,7 @@ This tool requires building and installing a custom kernel module
 ### Other resources
 
 - [Cheat sheet for Intel Processor Trace with Linux perf and gdb](http://halobates.de/blog/p/410)
-- [perf Intel PT man page](http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html), [perf Intel PT man page (wiki version)](./latest-manual-pages.md) and
+- [perf Intel PT man page](http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html), [perf Intel PT man page (wiki version)](latest-manual-pages.md) and
 - [perf Intel PT man page source](http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt)
 - [LWN article: Adding Processor Trace support to Linux](http://lwn.net/Articles/648154/)
 
@@ -4549,7 +4549,7 @@ $ perf script --itrace=e -i java.perf.data.jitted | head
 ## Using perf dlfilter interface to disassemble executed instructions
 
 perf provides an API to link a user-provided library for filtering or processing of data.  Such a library is refered to as a dlfilter.
-Refer to the [perf dlfilter](./latest-manual-pages.md) man page for details.
+Refer to the [perf dlfilter](latest-manual-pages.md) man page for details.
 The advantage of using a dlfilter is that it can be much faster than processing with the perf Python API.
 
 Below is a perf dlfilter program to disassemble Intel PT traces.  It could be modified to filter based on particular kinds of instructions,

@@ -1,3 +1,3 @@
 # Jolsa
 
-- [perf doc](./white-paper.md)
+- [perf doc](white-paper.md)

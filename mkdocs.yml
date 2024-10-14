@@ -7,7 +7,7 @@ nav:
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
   - Todo : todo.md
-  - HardwareReference : hardwarereference.md
+  - Hardware Reference : hardware-reference.md
   - perf_events kernel ABI : perf_events-kernel-abi.md
   - perf tools support for Intel® Processor Trace : perf-tools-support-for-intel-processor-trace.md
   - Useful Links : useful-links.md

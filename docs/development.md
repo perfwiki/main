@@ -67,4 +67,4 @@ passing, skipping, or failing.
 
 ### Cross Compilation
 
-[Arm64 cross-compilation Dockerfile|Arm64 cross-compilation Dockerfile](./arm64-cross-compilation-dockerfile.md) for an example of how to cross-compile for Arm on x86
+[Arm64 cross-compilation Dockerfile|Arm64 cross-compilation Dockerfile](arm64-cross-compilation-dockerfile.md) for an example of how to cross-compile for Arm on x86
