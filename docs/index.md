@@ -26,6 +26,16 @@ To learn more, see the examples in the [Tutorial](tutorial) or how to do a [Top-
 
 To ask questions, report bugs/issues mail the [mailing list📨](https://lore.kernel.org/linux-perf-users/) or use [bugzilla🐞](https://bugzilla.kernel.org/buglist.cgi?bug_status=__open__&order=changeddate%20DESC%2Cpriority%2Cbug_severity&product=Tracing%2FProfiling&query_format=advanced).
 
+In order to subscribe to receive perf mailing lists messages via email you will need to send a message to a special subscription address of the list.
+
+* to receive **an individual copy of every message** sent to the list, send an email to:
+
+    `linux-perf-users+subscribe@vger.kernel.org`
+
+* to receive **a daily digest of all messages** sent to the list, send an email to:
+
+    `linux-perf-users+subscribe-digest@vger.kernel.org`
+
 ### Wiki Contents
 
 - [Tutorial](tutorial)
