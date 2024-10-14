@@ -22,7 +22,8 @@
 
 - Limit the size of the build id cache (~/.debug), in a way similar to how ccache manages its cache.
 
-- [Adopt Vince Weaver's suite of tests in 'perf test'](http://www.eece.maine.edu/~vweaver/projects/perf_events/validation/)
+- [Adopt Vince Weaver's suite of tests in 'perf test'](https://web.eece.maine.edu/~vweaver/projects/perf_events/validation/)
+    - [Latest perf_event_tests suites on Github](https://github.com/deater/perf_event_tests)
 
 - Add reference counters to the dso and thread structs, so that in tools like 'top' we can remove unused threads from the dead_threads list and also unload symbol tables not referenced by any maps.
 
@@ -86,7 +87,7 @@
 - Factorize the multidimensional sorting between perf report and annotate (will be used by perf trace)
 - Implement a perf cmp (profile comparison between two perf.data) (DONE, its called 'perf diff')
 - Implement a perf view (GUI) (Partially done, see 'perf report --gtk')
-- Make pressing 'V' multiple times to go on cycling thru various verbosity levels in 'perf top', so that info that is present in 'perf top -v' can be obtained without having to restart the tool (acme). ([DONE](https://git.kernel.org/cgit/linux/kernel/git/acme/linux.git/commit/?id=fbf626346cc21065ec22dcd64ff34513506f271a))
+- Make pressing 'V' multiple times to go on cycling thru various verbosity levels in 'perf top', so that info that is present in 'perf top -v' can be obtained without having to restart the tool (acme). (This link need to be fixed! [DONE](https://git.kernel.org/cgit/linux/kernel/git/acme/linux.git/commit/?id=fbf626346cc21065ec22dcd64ff34513506f271a))
 - Use the highest precision level available by default, e.g.: cycles:pp ([DONE](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=7f8d1ade1b19f684ed3a7c4fb1dc5d347127b438))
 - Enhance perf trace:
     - Handle the cpu field
