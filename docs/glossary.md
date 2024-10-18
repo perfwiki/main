@@ -1,9 +1,26 @@
 # Glossary
 
+## A
+
+### AMBA
+
+ Principally an ARM term, [Advanced Microcontroller Bus Architecture
+ (AMBA)](https://developer.arm.com/Architectures/AMBA) for the connection and
+ management of functional blocks in a System-on-Chip (SoC).
+
+### AXI
+
+ Principally an ARM term, [Advanced eXtensible
+ Interface](https://developer.arm.com/documentation/102202/0300/AXI-protocol-overview).
+ There is also the AXI Coherency Extensions (ACE)
+
 ## B
 
 ### Beat
- A beat is the smallest single unit of data transfer within an AXI transaction. Its size is determined by the bus width. A Burst can be comprised of multiple beats. See the [Arm Glossary](https://developer.arm.com/documentation/105565/0200/B)
+ A beat is the smallest single unit of data transfer within an [AXI](#AXI)
+ transaction. Its size is determined by the bus width. A Burst can be comprised
+ of multiple beats. See the [Arm
+ Glossary](https://developer.arm.com/documentation/105565/0200/B)
 
 ### BPF
  [Berkeley Packet Filter](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter).
@@ -17,6 +34,16 @@
 
 ### C2C
  Cache-to-cache. `perf c2c` is a builtin perf tool for analyzing shared data accesses and problems like (false sharing)[#false-sharing].
+
+### CHA
+
+ Principally an Intel term for [Caching and Home Agent
+ (CHA)](https://www.intel.com/content/www/us/en/developer/articles/technical/xeon-processor-scalable-family-technical-overview.html).
+
+### CHI
+
+ Principally an ARM term for the [AMBA](#AMBA) bus [Coherent Hub
+ Interface](https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface)
 
 ### Core
  1. Used to refer to events on the CPU's PMU, contrast with [Uncore](#uncore) and [Offcore](#offcore).
@@ -60,6 +87,11 @@ See [evsel](#evsel).
 
 ### HITM
  A load that Hit a Modified cacheline.
+
+### Hwmon
+
+ [The Linux Hardware Monitoring kernel
+ API](https://docs.kernel.org/hwmon/hwmon-kernel-api.html).
 
 ### Hyperthread
  Intel/x86 term for [SMT](#smt).
