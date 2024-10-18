@@ -15,6 +15,7 @@
 - [Leo Yan, Perf Ring Buffer](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/userspace-api/perf_ring_buffer.rst)
 - [Leo Yan Debugging perf with perf](print/how_to_use_perf_to_debug_perf.pdf)
 - [Paul Clarke helps transitioning from OProfile to perf](https://developer.ibm.com/tutorials/migrate-from-oprofile-to-perf/)
+- [Timed Process Event Based Sampling](https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html)
 
 # Useful web sites about profilers
 
@@ -23,6 +24,10 @@
 
 # Presentations
 
+- [Improving the Perf event subsystem after 15 years](https://lpc.events/event/18/contributions/1836/) Ian Rogers, LPC September 2024
+- [Utilizing type info in the perf tools](https://lpc.events/event/18/contributions/1833/) Namhyung Kim, LPC September 2024
+- [Linux perf tool metrics](https://lpc.events/event/17/contributions/1514/) Ian Rogers, Weilin Wang, LPC November 2023
+- [Towards data type profiling](https://lpc.events/event/17/contributions/1616/) Namhyung Kim, LPC November 2023
 - [Easyperf Twitter Spaces with Arnaldo Carvalho de Melo and Denis Bakhvalov](https://youtu.be/aUDtN0qjxD0) October 2021
 - [Integration Arm SPE in Perf for Memory Profiling](print/lvc21-302.pdf) Spring 2021
 - [Stephane Eranian's keynote at SuperComputing ProTools 2019: Hardware Performance Monitoring Landscape](print/Eranian_KeynoteSC19.pdf)
