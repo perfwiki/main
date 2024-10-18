@@ -29,13 +29,6 @@
 - [Chandler Carruth "Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!"](https://youtu.be/nXaxk27zwlk CppCon 2015)
 - [Roberto Vitillo's presentation on Perf events](print/RobertoVitillo_FutureTech_EDI.pdf) June 2011
 
-# Manuals
-
-- [Intel PMU event tables](https://software.intel.com/content/www/us/en/develop/download/intel-64-and-ia-32-architectures-optimization-reference-manual.html), in particular Appendix B of the Intel® 64 and IA-32 Architectures Optimization Reference Manual
-- [AMD PMU event table](https://developer.amd.com/resources/developer-guides-manuals/), the Processor Programming Reference Manual for AMD 17h family see Section 2.1.15 Performance Monitor Counters.
-- [ARM PMU event tables](https://developer.arm.com/architectures/cpu-architecture/a-profile/docs), see Chapter D7. The Performance Monitors Extension, of the Arm Architecture Reference Manual Armv8, for Armv8-A architecture profile.
-- [ARM Neovese N2 PMU guide](print/arm_neoverse_n2_pmu_guide_109710_0003_03_en.pdf).
-
 # In the press
 
 - Discovery/analysis of `libxz` backdoor with `perf record -e intel_pt//ub` [by the discoverer Andres Freund](https://www.openwall.com/lists/oss-security/2024/03/29/4).
