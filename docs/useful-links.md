@@ -2,6 +2,7 @@
 
 - [Julia Evans' Profiling & tracing with perf zine](https://wizardzines.com/zines/perf/)
 - [Brendan Gregg's perf examples](http://www.brendangregg.com/perf.html)
+- [Wikipedia](https://en.wikipedia.org/wiki/Perf_(Linux))
 - [Franck Pachot's not so basic perf top tutorial "Linux perf-top basics: understand the %"](https://www.dbi-services.com/blog/linux-perf-top-basics-understand-the/)
 - [Frank Pachot help going from 'time' to 'perf stat' while analysing database performance on "Should CPU-intensive logic be done in the DB or in application server?"](https://www.dbi-services.com/blog/should-cpu-intensive-logic-be-done-in-the-db-or-in-application-server/)
 - [Ankur Arora uses perf and pahole to investigate "Syscall latency... and some uses of speculative execution"](https://blogs.oracle.com/linux/post/syscall-latency)
