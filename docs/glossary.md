@@ -71,6 +71,12 @@
  1. Used to refer to events on the CPU's PMU, contrast with [Uncore](#uncore) and [Offcore](#offcore).
  2. Part of the [topology](https://www.kernel.org/doc/Documentation/devicetree/bindings/cpu/cpu-topology.txt) containing multiple [SMT](#smt) threads.
 
+### CPUID
+
+ On Intel an instruction that identifies the type and properties of the
+ CPU. ARM64 CPUs are generally identified from
+ `/sys/devices/system/cpu/cpu0/regs/identification/midr_el1`.
+
 ## D
 
 ### DSB
@@ -145,12 +151,26 @@ See [evsel](#evsel).
 ### JEClear
  Jump Execution Clear is a kind of pipeline flush on Intel CPUs cause by branch misprediction. [Article on branching in Intel CPUs](https://stackoverflow.com/questions/31280817/what-branch-misprediction-does-the-branch-target-buffer-detect).
 
+### JSON
+
+ [JavaScript Object Notation](https://en.wikipedia.org/wiki/JSON).
+
 ## K
 
 ### KVM
  KVM stands for Kernel-based Virtual Machine, perf command with kvm helps us to trace/measure kvm guest os
 
 ## L
+
+### Legacy Events
+
+ Perf events are identified by a type and a config value. The type identifies
+ the [PMU](#PMU). To determine the config value, data is read from
+ [sysfs](#sysfs) or embedded in the perf tool via json files - the appropriate
+ [json](#JSON) file data is identified via a [cpuid](#CPUID). Initially all
+ hardware events had a single type and the mapping of the event to the config
+ value was hard coded. This fails in heterogeneous systems as typically a
+ different [PMU](#PMU) is needed for each type of event.
 
 ### LFB
  The Line Fill Buffer is a small, temporary buffer that sits between different levels of a CPU's cache (e.g., between L1 and L2). Its purpose is to speed up data access when the CPU needs data not found in the fastest cache level (a cache miss). Instead of making the CPU wait for an entire cache line to transfer from slower memory, the LFB stores the first chunk of data, allowing the CPU to start working immediately.
@@ -279,6 +299,11 @@ See [evsel](#evsel).
  https://developer.arm.com/documentation/ka005362/1-0) is an optional ARM v8
  feature that provides precise sampling. Currently the feature is common on
  server ARM CPUs.
+
+### sysfs
+
+ [A filesystem for exporting kernel
+ objects](https://man7.org/linux/man-pages/man5/sysfs.5.html).
 
 ## T
 
