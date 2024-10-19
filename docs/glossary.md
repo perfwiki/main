@@ -62,6 +62,11 @@
  Principally an ARM term for the [AMBA](#AMBA) bus [Coherent Hub
  Interface](https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface)
 
+### CMN
+
+ Principally an ARM term for [Coherenet Mesh
+ Network](https://docs.kernel.org/admin-guide/perf/arm-cmn.html).
+
 ### Core
  1. Used to refer to events on the CPU's PMU, contrast with [Uncore](#uncore) and [Offcore](#offcore).
  2. Part of the [topology](https://www.kernel.org/doc/Documentation/devicetree/bindings/cpu/cpu-topology.txt) containing multiple [SMT](#smt) threads.
@@ -171,6 +176,11 @@ See [evsel](#evsel).
 ### MITE
  The Micro-instruction Translation Engine is a legacy component within modern CPUs that acts as a secondary, simpler instruction decoder. While the primary decoder handles most instructions efficiently, the MITE is responsible for decoding specific complex instructions or instruction sequences that aren't well-suited for the main decoder.  The MITE often works alongside the microcode sequencer to break down these complex instructions into simpler micro-operations for the CPU to execute.
 
+### MPAM
+
+ Principally an ARM term for [Memory System Resource Partitioning and
+ Monitoring](https://developer.arm.com/documentation/107768/0100/Overview).
+
 ### MS
  The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.
 
@@ -239,8 +249,10 @@ See [evsel](#evsel).
  [Scalable Data
  Fabric](https://en.wikichip.org/wiki/amd/infinity_fabric#Scalable_Data_Fabric_.28SDF.29).
 
-### Software Event
- They are kernel/os-based low-level counters. To identify the list of supported software events use the command: perf list software
+### SLC
+
+ System Level Cache generally used interchangeably with [Last Level Cache](#LLC)
+ but may incorporate caches outside of the processor.
 
 ### SMI
 
@@ -255,6 +267,11 @@ See [evsel](#evsel).
 
 ### SMT
  [Simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading).
+
+### Software Event
+
+ They are kernel/os-based low-level counters. To identify the list of supported
+ software events use the command: perf list software
 
 ### SPE
 
