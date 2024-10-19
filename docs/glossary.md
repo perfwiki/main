@@ -22,6 +22,10 @@
  of multiple beats. See the [Arm
  Glossary](https://developer.arm.com/documentation/105565/0200/B)
 
+### BIOS
+
+ [Basic Input/Output System](https://en.wikipedia.org/wiki/BIOS).
+
 ### BPF
  [Berkeley Packet Filter](https://en.wikipedia.org/wiki/Berkeley_Packet_Filter).
 
@@ -34,6 +38,19 @@
 
 ### C2C
  Cache-to-cache. `perf c2c` is a builtin perf tool for analyzing shared data accesses and problems like (false sharing)[#false-sharing].
+
+### CAKE
+
+ [Coherent AMD socKet Extender](https://en.wikichip.org/wiki/amd/infinity_fabric#CAKE)
+
+### CCD
+
+ Principally an AMD term, Core Complex Dies are usually part of a [CCX](#CCX).
+
+## CCX
+
+ Prinicpally an AMD term, [Core CompleX](https://en.wikichip.org/wiki/amd/ccx)
+ where dies are connected and share the L3 cache.
 
 ### CHA
 
@@ -83,6 +100,12 @@ See [evsel](#evsel).
 ### Free Running Counter
  A counter that runs through its full range of values before repeating.
 
+## G
+
+### GMI
+
+ AMD [Global Memory Interconnect](https://en.wikichip.org/wiki/amd/microarchitectures/zen).
+
 ## H
 
 ### HITM
@@ -118,6 +141,11 @@ See [evsel](#evsel).
 
 ### LSD
  The Loop Stream Detector is a frontend component within Intel CPUs designed to boost performance for tight loops. It detects loops in code, pre-decodes their instructions, and stores these decoded micro-ops (uops) in a dedicated buffer.  By feeding these uops directly to the execution engine, the LSD bypasses the slower instruction fetch and decode stages for loops, resulting in speedups.
+
+### LLC
+
+ The Last Level Cache (LLC) before accessing memory, generally level 3. Will
+ generally have its own [PMU](#PMU)
 
 ## M
 
@@ -159,6 +187,10 @@ See [evsel](#evsel).
 ### PMU
  A Performance Monitoring Unit is a device within the Linux kernel that the perf tool interacts with initially through the [perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html) system call.
 
+### QPI
+
+ Intel [Quick Path Interconnect](https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect).
+
 ## R
 
 ### RAT
@@ -172,19 +204,44 @@ See [evsel](#evsel).
 
 ## S
 
+### SDF
+
+ [Scalable Data
+ Fabric](https://en.wikichip.org/wiki/amd/infinity_fabric#Scalable_Data_Fabric_.28SDF.29).
+
 ### Software Event
  They are kernel/os-based low-level counters. To identify the list of supported software events use the command: perf list software
+
+### SMI
+
+  System Management Interrupts trasition the CPU into [System Management
+  Mode](#SMM) to hanle high privilege events.
+
+### SMM
+
+ On x86 generally [System Management
+ Mode](https://en.wikipedia.org/wiki/System_Management_Mode), on ARM Secure
+ Monitor Mode, is a highly privileged firmware/[BIOS](#BIOS) code.
 
 ### SMT
  [Simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading).
 
 ## T
 
+### TAD
+
+ [Last-Level cache](#LLC) Tag-and-data Units on Marvell CN10K family silicon.
+
 ### TOR
  The Table-of-Requests (TOR) is a data structure within Intel's Integrated Memory Controller (IMC) that stores and tracks in-flight memory requests made by CPU cores.
 
 ### Task
  Kernel term for a process (if just 1 thread) or thread.
+
+### TSX
+
+ Principally an Intel term, [Transactional Synchronization
+ Extensions](https://en.wikipedia.org/wiki/Transactional_Synchronization_Extensions)
 
 ## U
 
@@ -193,3 +250,15 @@ See [evsel](#evsel).
 
 ### UOp
  Abbreviation for micro-operation commonly used by Intel.
+
+### UPI
+
+ Intel [Ultra Path
+ Interconnect](https://en.wikipedia.org/wiki/Intel_Ultra_Path_Interconnect).
+
+## X
+
+### xGMI
+
+ eXternal [GMI](#GMI) link is a socket-to-socket interconnect that is part of AMD's
+ Infinity Fabric.
