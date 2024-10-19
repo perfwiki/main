@@ -1,10 +1,26 @@
 # Top-down analysis with the perf tool
 
-Note, the description here is for Linux 6.1. Earlier versions of the perf tool supported top-down analysis but due to naming inconsistencies in old versions, Linux 6.1 is focused upon on this page.
+Note, the description here is for Linux 6.1. Earlier versions of the perf tool
+supported top-down analysis but due to naming inconsistencies in old versions,
+Linux 6.1 is focused upon on this page.
 
 ## What is top-down analysis?
 
-Top-down analysis is an approach for identifying software performance bottlenecks. It is described in [A Top-Down method for performance analysis and counters architecture](https://doi.org/10.1109/ISPASS.2014.6844459) but is often come across in Appendix B of [Intel's Optimization Reference Manual in their software development manuals](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). The approach gathers a group of metrics and from these a problematic metric is identified. A group of metrics associated with the problematic metric are then measured drilling down to the metric/issue that identifies the performance problem.
+Top-down analysis is an approach for identifying software performance
+bottlenecks. It is described in [A Top-Down method for performance analysis and
+counters architecture](https://doi.org/10.1109/ISPASS.2014.6844459) but is often
+come across in Appendix B of [Intel's Optimization Reference Manual in their
+software development
+manuals](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html).
+The approach gathers a group of metrics and from these a problematic metric is
+identified. A group of metrics associated with the problematic metric are then
+measured drilling down to the metric/issue that identifies the performance
+problem.
+
+More recent Intel processors feature improvements for top-down analysis, the
+most recent being Timed Process Event Based Sampling (TPEBS). A description for
+using perf from Intel is given
+[here](https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html).
 
 ## Starting at the top
 
