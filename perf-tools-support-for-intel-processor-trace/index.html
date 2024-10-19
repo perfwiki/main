@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../perf_events-kernel-abi/">
+        <link rel="prev" href="../lock-contention/">
       
       
-        <link rel="next" href="../useful-links/">
+        <link rel="next" href="../glossary/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -255,6 +255,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../useful-links/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Useful Links
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../top-down-analysis/" class="md-nav__link">
         
   
@@ -280,66 +300,6 @@
   
   <span class="md-ellipsis">
     Kernel lock contention
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../todo/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Todo
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../hardware-reference/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Hardware Reference
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../perf_events-kernel-abi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    perf_events kernel ABI
   </span>
   
 
@@ -1087,26 +1047,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../useful-links/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Useful Links
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../glossary/" class="md-nav__link">
         
   
@@ -1127,71 +1067,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../latest-manual-pages/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Latest Manual Pages
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../man-pages/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Man pages
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../development/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Development
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../white-paper/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    White Paper
   </span>
   
 
@@ -1966,7 +1846,7 @@ Refer [[#Intel_PT_man_page |Intel PT man page]]</p>
 <h3 id="can-i-use-intel-pt">Can I use Intel PT<a class="headerlink" href="#can-i-use-intel-pt" title="Permanent link">&para;</a></h3>
 <p>Because Intel PT is a hardware feature, you need hardware that supports it, and also a Linux kernel that has support. Support was added to Linux in version 4.2 and nowadays, most Linux distributions have a kernel more recent than that, so the simple way to tell whether you can use Intel PT is to check whether the directory /sys/devices/intel_pt exists.</p>
 <h3 id="intel-pt-man-page">Intel PT man page<a class="headerlink" href="#intel-pt-man-page" title="Permanent link">&para;</a></h3>
-<p>The online <a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a> is not necessarily the latest version, however the wiki has a copy which may be more uptodate: <a href="../latest-manual-pages/">perf Intel PT man page</a>.  Also the man page source in the Linux repository is quite readable: <a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt">perf Intel PT man page source</a></p>
+<p>The online <a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a> is not necessarily the latest version, however the wiki has a copy which may be more uptodate: <a href="latest-manual-pages.md">perf Intel PT man page</a>.  Also the man page source in the Linux repository is quite readable: <a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt">perf Intel PT man page source</a></p>
 <h3 id="other-tools">Other tools<a class="headerlink" href="#other-tools" title="Permanent link">&para;</a></h3>
 <p>It is not necessary to use <code>perf</code> to use Intel PT. Here are some other tools.</p>
 <h4 id="gdb">GDB<a class="headerlink" href="#gdb" title="Permanent link">&para;</a></h4>
@@ -1984,7 +1864,7 @@ This tool requires building and installing a custom kernel module</p>
 <h3 id="other-resources">Other resources<a class="headerlink" href="#other-resources" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="http://halobates.de/blog/p/410">Cheat sheet for Intel Processor Trace with Linux perf and gdb</a></li>
-<li><a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a>, <a href="../latest-manual-pages/">perf Intel PT man page (wiki version)</a> and</li>
+<li><a href="http://www.man7.org/linux/man-pages/man1/perf-intel-pt.1.html">perf Intel PT man page</a>, <a href="latest-manual-pages.md">perf Intel PT man page (wiki version)</a> and</li>
 <li><a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation/perf-intel-pt.txt">perf Intel PT man page source</a></li>
 <li><a href="http://lwn.net/Articles/648154/">LWN article: Adding Processor Trace support to Linux</a></li>
 </ul>
@@ -5993,7 +5873,7 @@ $
 </code></pre>
 <h2 id="using-perf-dlfilter-interface-to-disassemble-executed-instructions">Using perf dlfilter interface to disassemble executed instructions<a class="headerlink" href="#using-perf-dlfilter-interface-to-disassemble-executed-instructions" title="Permanent link">&para;</a></h2>
 <p>perf provides an API to link a user-provided library for filtering or processing of data.  Such a library is refered to as a dlfilter.
-Refer to the <a href="../latest-manual-pages/">perf dlfilter</a> man page for details.
+Refer to the <a href="latest-manual-pages.md">perf dlfilter</a> man page for details.
 The advantage of using a dlfilter is that it can be much faster than processing with the perf Python API.</p>
 <p>Below is a perf dlfilter program to disassemble Intel PT traces.  It could be modified to filter based on particular kinds of instructions,
 but at the moment just prints a disassembly.  The <a href="http://intelxed.github.io/">Intel X86 Encoder Decoder (XED)</a> is used.  Refer to <a href="#example-tracing-your-own-code-hello-world">Example: Tracing your own code : Hello World</a>
