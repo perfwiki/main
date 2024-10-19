@@ -71,6 +71,11 @@
 ### DSB
  In modern Intel CPUs, the DSB (Decoded Stream Buffer) is a uop cache storing pre-decoded instructions in the form of micro-operations (uops).  The DSB allows the CPU to bypass the  decoding stage for frequently used instructions sequences.
 
+### DTG
+
+ Termed used with Marvell CN10K chips, Lookaside Translation Group used for
+ regular virtual to physical memory management.
+
 ## E
 
 ### Events
@@ -121,6 +126,12 @@ See [evsel](#evsel).
 
 ## I
 
+### IBS
+
+ AMD Instruction-Based Sampling (IBS) allows precise a hardware performance
+ monitoring similar to Intel [PEBS](#PEBS). Unlike Intel PEBS, IBS provides
+ separate [PMUs](#PMU) to gather relevant data.
+
 ### IDQ
  The IDQ (Instruction Decode Queue) serves as a buffer between the instruction fetch/decode stages and the rest of the out-of-order execution engine in modern CPUs. It stores decoded instructions often in the form of micro-ops.
 
@@ -147,6 +158,11 @@ See [evsel](#evsel).
  The Last Level Cache (LLC) before accessing memory, generally level 3. Will
  generally have its own [PMU](#PMU)
 
+### LTG
+
+ Termed used with Marvell CN10K chips, Lookaside Translation Group used for
+ special virtual to physical memory management.
+
 ## M
 
 ### Metric
@@ -171,6 +187,20 @@ See [evsel](#evsel).
  counter, with off-CPU time will give wall clock time. Linux perf 5.20 adds a command line option to ''perf record'' to gather off-CPU data.
 
 ## P
+
+### PEBS
+
+ Intel Processor Event-Based Sampling (PEBS) is a hardware mechanism that
+ enables precise performance profiling by capturing specific processor events
+ and their associated instruction pointers. Unlike traditional sampling methods
+ that rely on periodic interrupts, PEBS allows developers to collect performance
+ data with minimal overhead and pinpoint performance bottlenecks with high
+ accuracy. When a predefined event occurs, such as a cache miss or branch
+ misprediction, PEBS records the instruction pointer and other relevant
+ information in a dedicated buffer. This data can then be analyzed to identify
+ performance hotspots and optimize code for improved efficiency. PEBS is a
+ powerful tool for software developers and performance analysts seeking to
+ understand and optimize application performance on Intel processors.
 
 ### perf.data
  By default output from various perf commands is stored in a file named perf.data.
@@ -226,11 +256,27 @@ See [evsel](#evsel).
 ### SMT
  [Simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading).
 
+### SPE
+
+ ARM's [Statistical Profiling Extension](
+ https://developer.arm.com/documentation/ka005362/1-0) is an optional ARM v8
+ feature that provides precise sampling. Currently the feature is common on
+ server ARM CPUs.
+
 ## T
 
 ### TAD
 
  [Last-Level cache](#LLC) Tag-and-data Units on Marvell CN10K family silicon.
+
+### TPEBS
+
+ Timed Process Event Based Sampling on newer Intel processors adds retirement
+ latency information to samples. The retirement latency is the number of cycles
+ between the sampled and the previous instructions retiring. One use is to avoid
+ having hard coded constants in [top-down analysis metrics](
+ https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html),
+ so that overheads are more reflective of the actual workload.
 
 ### TOR
  The Table-of-Requests (TOR) is a data structure within Intel's Integrated Memory Controller (IMC) that stores and tracks in-flight memory requests made by CPU cores.
