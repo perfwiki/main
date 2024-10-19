@@ -169,8 +169,11 @@ See [evsel](#evsel).
  [sysfs](#sysfs) or embedded in the perf tool via json files - the appropriate
  [json](#JSON) file data is identified via a [cpuid](#CPUID). Initially all
  hardware events had a single type and the mapping of the event to the config
- value was hard coded. This fails in heterogeneous systems as typically a
- different [PMU](#PMU) is needed for each type of event.
+ value was hard coded. To allow extension, sysfs and json encodings were
+ added. Legacy events fail in heterogeneous systems as typically a different
+ core/CPU [PMU](#PMU) is needed for each type of event. As users expect event
+ event names/encodings to behave in certain ways, the removal of legacy events
+ has proven contentious.
 
 ### LFB
  The Line Fill Buffer is a small, temporary buffer that sits between different levels of a CPU's cache (e.g., between L1 and L2). Its purpose is to speed up data access when the CPU needs data not found in the fastest cache level (a cache miss). Instead of making the CPU wait for an entire cache line to transfer from slower memory, the LFB stores the first chunk of data, allowing the CPU to start working immediately.
@@ -247,6 +250,22 @@ See [evsel](#evsel).
 ### PMU
  A Performance Monitoring Unit is a device within the Linux kernel that the perf tool interacts with initially through the [perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html) system call.
 
+### Precise Event
+
+ When sampling an interrupt is triggered and the sample gathered in the
+ kernel. There is typically a delay between the interrupt and the sample,
+ leading the accuracy of the sample to be limited and [skid](#Skid). CPU
+ extensions like [PEBS](#PEBS), [IBS](#IBS) and [SPE](#SPE) can be used to
+ reduce this. Placing the modifier 'p' after an event modifies its
+ precision/[skid](#Skid):
+
+ 0. SAMPLE_IP can have arbitrary [skid](#Skid)
+ 1. 'p' -SAMPLE_IP must have constant [skid](#Skid)
+ 2. 'pp' - SAMPLE_IP requested to have 0 [skid](#Skid)
+ 3. 'ppp' -SAMPLE_IP must have 0 [skid](#Skid), or uses randomization to avoid sample shadowing effects.
+
+## Q
+
 ### QPI
 
  Intel [Quick Path Interconnect](https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect).
@@ -268,6 +287,11 @@ See [evsel](#evsel).
 
  [Scalable Data
  Fabric](https://en.wikichip.org/wiki/amd/infinity_fabric#Scalable_Data_Fabric_.28SDF.29).
+
+### Skid
+
+The distance between where a sample is, an instruction, and where the sampling
+event was actually triggered. Ideally there would be no skid on samples.
 
 ### SLC
 
