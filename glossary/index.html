@@ -595,6 +595,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cmn" class="md-nav__link">
+    <span class="md-ellipsis">
+      CMN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#core" class="md-nav__link">
     <span class="md-ellipsis">
       Core
@@ -961,6 +970,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mpam" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ms" class="md-nav__link">
     <span class="md-ellipsis">
       MS
@@ -1156,9 +1174,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-event" class="md-nav__link">
+  <a href="#slc" class="md-nav__link">
     <span class="md-ellipsis">
-      Software Event
+      SLC
     </span>
   </a>
   
@@ -1186,6 +1204,15 @@
   <a href="#smt" class="md-nav__link">
     <span class="md-ellipsis">
       SMT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Event
     </span>
   </a>
   
@@ -1600,6 +1627,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#cmn" class="md-nav__link">
+    <span class="md-ellipsis">
+      CMN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#core" class="md-nav__link">
     <span class="md-ellipsis">
       Core
@@ -1966,6 +2002,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#mpam" class="md-nav__link">
+    <span class="md-ellipsis">
+      MPAM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ms" class="md-nav__link">
     <span class="md-ellipsis">
       MS
@@ -2161,9 +2206,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#software-event" class="md-nav__link">
+  <a href="#slc" class="md-nav__link">
     <span class="md-ellipsis">
-      Software Event
+      SLC
     </span>
   </a>
   
@@ -2191,6 +2236,15 @@
   <a href="#smt" class="md-nav__link">
     <span class="md-ellipsis">
       SMT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#software-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software Event
     </span>
   </a>
   
@@ -2394,6 +2448,9 @@
 <h3 id="chi">CHI<a class="headerlink" href="#chi" title="Permanent link">&para;</a></h3>
 <p>Principally an ARM term for the <a href="#AMBA">AMBA</a> bus <a href="https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface">Coherent Hub
  Interface</a></p>
+<h3 id="cmn">CMN<a class="headerlink" href="#cmn" title="Permanent link">&para;</a></h3>
+<p>Principally an ARM term for <a href="https://docs.kernel.org/admin-guide/perf/arm-cmn.html">Coherenet Mesh
+ Network</a>.</p>
 <h3 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Used to refer to events on the CPU's PMU, contrast with <a href="#uncore">Uncore</a> and <a href="#offcore">Offcore</a>.</li>
@@ -2464,6 +2521,9 @@
 <p>Taking multiple performance counters, typically in <code>perf stat</code>, and then computing a human meaningful value like memory bandwidth.</p>
 <h3 id="mite">MITE<a class="headerlink" href="#mite" title="Permanent link">&para;</a></h3>
 <p>The Micro-instruction Translation Engine is a legacy component within modern CPUs that acts as a secondary, simpler instruction decoder. While the primary decoder handles most instructions efficiently, the MITE is responsible for decoding specific complex instructions or instruction sequences that aren't well-suited for the main decoder.  The MITE often works alongside the microcode sequencer to break down these complex instructions into simpler micro-operations for the CPU to execute.</p>
+<h3 id="mpam">MPAM<a class="headerlink" href="#mpam" title="Permanent link">&para;</a></h3>
+<p>Principally an ARM term for <a href="https://developer.arm.com/documentation/107768/0100/Overview">Memory System Resource Partitioning and
+ Monitoring</a>.</p>
 <h3 id="ms">MS<a class="headerlink" href="#ms" title="Permanent link">&para;</a></h3>
 <p>The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.</p>
 <h3 id="multiplexing">Multiplexing<a class="headerlink" href="#multiplexing" title="Permanent link">&para;</a></h3>
@@ -2510,8 +2570,9 @@
 <h3 id="sdf">SDF<a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikichip.org/wiki/amd/infinity_fabric#Scalable_Data_Fabric_.28SDF.29">Scalable Data
  Fabric</a>.</p>
-<h3 id="software-event">Software Event<a class="headerlink" href="#software-event" title="Permanent link">&para;</a></h3>
-<p>They are kernel/os-based low-level counters. To identify the list of supported software events use the command: perf list software</p>
+<h3 id="slc">SLC<a class="headerlink" href="#slc" title="Permanent link">&para;</a></h3>
+<p>System Level Cache generally used interchangeably with <a href="#LLC">Last Level Cache</a>
+ but may incorporate caches outside of the processor.</p>
 <h3 id="smi">SMI<a class="headerlink" href="#smi" title="Permanent link">&para;</a></h3>
 <p>System Management Interrupts trasition the CPU into <a href="#SMM">System Management
   Mode</a> to hanle high privilege events.</p>
@@ -2521,6 +2582,9 @@
  Monitor Mode, is a highly privileged firmware/<a href="#BIOS">BIOS</a> code.</p>
 <h3 id="smt">SMT<a class="headerlink" href="#smt" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">Simultaneous multithreading</a>.</p>
+<h3 id="software-event">Software Event<a class="headerlink" href="#software-event" title="Permanent link">&para;</a></h3>
+<p>They are kernel/os-based low-level counters. To identify the list of supported
+ software events use the command: perf list software</p>
 <h3 id="spe">SPE<a class="headerlink" href="#spe" title="Permanent link">&para;</a></h3>
 <p>ARM's <a href="https://developer.arm.com/documentation/ka005362/1-0">Statistical Profiling Extension</a> is an optional ARM v8
  feature that provides precise sampling. Currently the feature is common on
