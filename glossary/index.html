@@ -612,6 +612,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cpuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPUID
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -861,6 +870,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -899,6 +917,15 @@
   
     <nav class="md-nav" aria-label="L">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Events
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#lfb" class="md-nav__link">
@@ -1222,6 +1249,15 @@
   <a href="#spe" class="md-nav__link">
     <span class="md-ellipsis">
       SPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sysfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      sysfs
     </span>
   </a>
   
@@ -1644,6 +1680,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cpuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      CPUID
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1893,6 +1938,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1931,6 +1985,15 @@
   
     <nav class="md-nav" aria-label="L">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legacy-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Events
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#lfb" class="md-nav__link">
@@ -2259,6 +2322,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sysfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      sysfs
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2456,6 +2528,10 @@
 <li>Used to refer to events on the CPU's PMU, contrast with <a href="#uncore">Uncore</a> and <a href="#offcore">Offcore</a>.</li>
 <li>Part of the <a href="https://www.kernel.org/doc/Documentation/devicetree/bindings/cpu/cpu-topology.txt">topology</a> containing multiple <a href="#smt">SMT</a> threads.</li>
 </ol>
+<h3 id="cpuid">CPUID<a class="headerlink" href="#cpuid" title="Permanent link">&para;</a></h3>
+<p>On Intel an instruction that identifies the type and properties of the
+ CPU. ARM64 CPUs are generally identified from
+ <code>/sys/devices/system/cpu/cpu0/regs/identification/midr_el1</code>.</p>
 <h2 id="d">D<a class="headerlink" href="#d" title="Permanent link">&para;</a></h2>
 <h3 id="dsb">DSB<a class="headerlink" href="#dsb" title="Permanent link">&para;</a></h3>
 <p>In modern Intel CPUs, the DSB (Decoded Stream Buffer) is a uop cache storing pre-decoded instructions in the form of micro-operations (uops).  The DSB allows the CPU to bypass the  decoding stage for frequently used instructions sequences.</p>
@@ -2502,10 +2578,20 @@
 <h2 id="j">J<a class="headerlink" href="#j" title="Permanent link">&para;</a></h2>
 <h3 id="jeclear">JEClear<a class="headerlink" href="#jeclear" title="Permanent link">&para;</a></h3>
 <p>Jump Execution Clear is a kind of pipeline flush on Intel CPUs cause by branch misprediction. <a href="https://stackoverflow.com/questions/31280817/what-branch-misprediction-does-the-branch-target-buffer-detect">Article on branching in Intel CPUs</a>.</p>
+<h3 id="json">JSON<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/JSON">JavaScript Object Notation</a>.</p>
 <h2 id="k">K<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
 <h3 id="kvm">KVM<a class="headerlink" href="#kvm" title="Permanent link">&para;</a></h3>
 <p>KVM stands for Kernel-based Virtual Machine, perf command with kvm helps us to trace/measure kvm guest os</p>
 <h2 id="l">L<a class="headerlink" href="#l" title="Permanent link">&para;</a></h2>
+<h3 id="legacy-events">Legacy Events<a class="headerlink" href="#legacy-events" title="Permanent link">&para;</a></h3>
+<p>Perf events are identified by a type and a config value. The type identifies
+ the <a href="#PMU">PMU</a>. To determine the config value, data is read from
+ <a href="#sysfs">sysfs</a> or embedded in the perf tool via json files - the appropriate
+ <a href="#JSON">json</a> file data is identified via a <a href="#CPUID">cpuid</a>. Initially all
+ hardware events had a single type and the mapping of the event to the config
+ value was hard coded. This fails in heterogeneous systems as typically a
+ different <a href="#PMU">PMU</a> is needed for each type of event.</p>
 <h3 id="lfb">LFB<a class="headerlink" href="#lfb" title="Permanent link">&para;</a></h3>
 <p>The Line Fill Buffer is a small, temporary buffer that sits between different levels of a CPU's cache (e.g., between L1 and L2). Its purpose is to speed up data access when the CPU needs data not found in the fastest cache level (a cache miss). Instead of making the CPU wait for an entire cache line to transfer from slower memory, the LFB stores the first chunk of data, allowing the CPU to start working immediately.</p>
 <h3 id="lsd">LSD<a class="headerlink" href="#lsd" title="Permanent link">&para;</a></h3>
@@ -2589,6 +2675,9 @@
 <p>ARM's <a href="https://developer.arm.com/documentation/ka005362/1-0">Statistical Profiling Extension</a> is an optional ARM v8
  feature that provides precise sampling. Currently the feature is common on
  server ARM CPUs.</p>
+<h3 id="sysfs">sysfs<a class="headerlink" href="#sysfs" title="Permanent link">&para;</a></h3>
+<p><a href="https://man7.org/linux/man-pages/man5/sysfs.5.html">A filesystem for exporting kernel
+ objects</a>.</p>
 <h2 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
 <h3 id="tad">TAD<a class="headerlink" href="#tad" title="Permanent link">&para;</a></h3>
 <p><a href="#LLC">Last-Level cache</a> Tag-and-data Units on Marvell CN10K family silicon.</p>
