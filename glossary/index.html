@@ -1126,6 +1126,30 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#precise-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precise Event
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#qpi" class="md-nav__link">
     <span class="md-ellipsis">
       QPI
@@ -1195,6 +1219,15 @@
   <a href="#sdf" class="md-nav__link">
     <span class="md-ellipsis">
       SDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skid
     </span>
   </a>
   
@@ -2194,6 +2227,30 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#precise-event" class="md-nav__link">
+    <span class="md-ellipsis">
+      Precise Event
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q" class="md-nav__link">
+    <span class="md-ellipsis">
+      Q
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Q">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#qpi" class="md-nav__link">
     <span class="md-ellipsis">
       QPI
@@ -2263,6 +2320,15 @@
   <a href="#sdf" class="md-nav__link">
     <span class="md-ellipsis">
       SDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skid
     </span>
   </a>
   
@@ -2590,8 +2656,11 @@
  <a href="#sysfs">sysfs</a> or embedded in the perf tool via json files - the appropriate
  <a href="#JSON">json</a> file data is identified via a <a href="#CPUID">cpuid</a>. Initially all
  hardware events had a single type and the mapping of the event to the config
- value was hard coded. This fails in heterogeneous systems as typically a
- different <a href="#PMU">PMU</a> is needed for each type of event.</p>
+ value was hard coded. To allow extension, sysfs and json encodings were
+ added. Legacy events fail in heterogeneous systems as typically a different
+ core/CPU <a href="#PMU">PMU</a> is needed for each type of event. As users expect event
+ event names/encodings to behave in certain ways, the removal of legacy events
+ has proven contentious.</p>
 <h3 id="lfb">LFB<a class="headerlink" href="#lfb" title="Permanent link">&para;</a></h3>
 <p>The Line Fill Buffer is a small, temporary buffer that sits between different levels of a CPU's cache (e.g., between L1 and L2). Its purpose is to speed up data access when the CPU needs data not found in the fastest cache level (a cache miss). Instead of making the CPU wait for an entire cache line to transfer from slower memory, the LFB stores the first chunk of data, allowing the CPU to start working immediately.</p>
 <h3 id="lsd">LSD<a class="headerlink" href="#lsd" title="Permanent link">&para;</a></h3>
@@ -2643,6 +2712,20 @@
 <p>Pinned events are scheduled at a higher priority to flexible events. If they can't be scheduled within the kernel they don't multiplex and enter an error state.</p>
 <h3 id="pmu">PMU<a class="headerlink" href="#pmu" title="Permanent link">&para;</a></h3>
 <p>A Performance Monitoring Unit is a device within the Linux kernel that the perf tool interacts with initially through the <a href="https://man7.org/linux/man-pages/man2/perf_event_open.2.html">perf_event_open</a> system call.</p>
+<h3 id="precise-event">Precise Event<a class="headerlink" href="#precise-event" title="Permanent link">&para;</a></h3>
+<p>When sampling an interrupt is triggered and the sample gathered in the
+ kernel. There is typically a delay between the interrupt and the sample,
+ leading the accuracy of the sample to be limited and <a href="#Skid">skid</a>. CPU
+ extensions like <a href="#PEBS">PEBS</a>, <a href="#IBS">IBS</a> and <a href="#SPE">SPE</a> can be used to
+ reduce this. Placing the modifier 'p' after an event modifies its
+ precision/<a href="#Skid">skid</a>:</p>
+<ol>
+<li>SAMPLE_IP can have arbitrary <a href="#Skid">skid</a></li>
+<li>'p' -SAMPLE_IP must have constant <a href="#Skid">skid</a></li>
+<li>'pp' - SAMPLE_IP requested to have 0 <a href="#Skid">skid</a></li>
+<li>'ppp' -SAMPLE_IP must have 0 <a href="#Skid">skid</a>, or uses randomization to avoid sample shadowing effects.</li>
+</ol>
+<h2 id="q">Q<a class="headerlink" href="#q" title="Permanent link">&para;</a></h2>
 <h3 id="qpi">QPI<a class="headerlink" href="#qpi" title="Permanent link">&para;</a></h3>
 <p>Intel <a href="https://en.wikipedia.org/wiki/Intel_QuickPath_Interconnect">Quick Path Interconnect</a>.</p>
 <h2 id="r">R<a class="headerlink" href="#r" title="Permanent link">&para;</a></h2>
@@ -2656,6 +2739,9 @@
 <h3 id="sdf">SDF<a class="headerlink" href="#sdf" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikichip.org/wiki/amd/infinity_fabric#Scalable_Data_Fabric_.28SDF.29">Scalable Data
  Fabric</a>.</p>
+<h3 id="skid">Skid<a class="headerlink" href="#skid" title="Permanent link">&para;</a></h3>
+<p>The distance between where a sample is, an instruction, and where the sampling
+event was actually triggered. Ideally there would be no skid on samples.</p>
 <h3 id="slc">SLC<a class="headerlink" href="#slc" title="Permanent link">&para;</a></h3>
 <p>System Level Cache generally used interchangeably with <a href="#LLC">Last Level Cache</a>
  but may incorporate caches outside of the processor.</p>
