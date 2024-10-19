@@ -1,6 +1,9 @@
 # Man Pages
 
-This is the link to the `man-pages` related to `perf`.
+The kernel API is documented in the manual page for
+[perf_event_open](https://man7.org/linux/man-pages/man2/perf_event_open.2.html).
+
+These are the links to the `man-pages` for the `perf` tool:
 
 - [perf](https://man7.org/linux/man-pages/man1/perf.1.html)
 - [perf annotate](https://man7.org/linux/man-pages/man1/perf-annotate.1.html)
