@@ -31,6 +31,12 @@ theme:
     - search.suggest
     - toc.follow
 
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_datetime
+
 markdown_extensions:
   - admonition
   - footnotes

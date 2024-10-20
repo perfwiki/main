@@ -9,13 +9,14 @@ We can browse perf wiki on terminal environment with [glow](https://github.com/c
 # Check the [perfwiki.github.io](https://perfwiki.github.io/) in the localhost
 
 If you want to check the MkDocs UI as a webpage in this workspace,
-You only need to do it once at the beginning: `pip install mkdocs-material`.
+You only need to do it once at the beginning: `pip install mkdocs-material mkdocs-git-revision-date-localized-plugin`.
 
 Do `mkdocs serve`, Then go to http://127.0.0.1:8000/
 ```sh
 $ virtualenv .venv
 $ source .venv/bin/activate
-# You only need to do it once at the beginning: `pip install mkdocs-material`
+# You only need to do it once at the beginning:
+#   pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
 $ mkdocs serve
 ...
  Watching paths for changes: 'docs', 'mkdocs.yml'
