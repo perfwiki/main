@@ -11,7 +11,26 @@ nav:
   - Glossary : glossary.md
   - Man pages: man-pages.md
 
-theme: material
+theme: 
+  name: material
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.footnote.tooltips
+    - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    - navigation.expand
+    - navigation.sections
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
 markdown_extensions:
   - admonition
   - footnotes
