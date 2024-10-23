@@ -16,6 +16,8 @@ Do `mkdocs serve`, Then go to http://127.0.0.1:8000/
 $ virtualenv .venv
 $ source .venv/bin/activate
 # You only need to do it once at the beginning:
+#   Debian: sudo apt-get install -y python3-virtualenv
+#   Redhat: sudo dnf install -y python3-virtualenv
 #   pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
 $ mkdocs serve
 ...
