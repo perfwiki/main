@@ -22,9 +22,9 @@ most recent being Timed Process Event Based Sampling (TPEBS). A description for
 using perf from Intel is given
 [here](https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html).
 
-## Starting at the top
+# Starting at the top
 
-In this tutorial **perf bench mem memcpy** will be used for the **<benchmark>**. First of all gather the level 1 metrics:
+In this tutorial **perf bench mem memcpy** will be used for the `<benchmark>`. First of all gather the level 1 metrics:
 ```sh
   $ perf stat -M TopdownL1 <benchmark>
 ```
