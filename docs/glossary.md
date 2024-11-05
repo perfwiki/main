@@ -162,6 +162,10 @@ See [evsel](#evsel).
 
 ## L
 
+### L\[12\]\[DI\]
+
+ Level 1 or 2, data or instruction cache.
+
 ### Legacy Events
 
  Perf events are identified by a type and a config value. The type identifies
@@ -203,6 +207,10 @@ See [evsel](#evsel).
 
  Principally an ARM term for [Memory System Resource Partitioning and
  Monitoring](https://developer.arm.com/documentation/107768/0100/Overview).
+
+### MPKI
+
+ Cache, [TLB](#TLB) or branch Misses Per Kilo (1,000) Instructions.
 
 ### MS
  The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.
@@ -335,6 +343,12 @@ event was actually triggered. Ideally there would be no skid on samples.
 
  [Last-Level cache](#LLC) Tag-and-data Units on Marvell CN10K family silicon.
 
+### TLB
+
+ TLB stands for Translation Lookaside Buffer. It is a specialized cache that
+ stores the recent translations, via the page table, of virtual memory addresses
+ to physical memory addresses.
+
 ### TPEBS
 
  Timed Process Event Based Sampling on newer Intel processors adds retirement
@@ -367,6 +381,12 @@ event was actually triggered. Ideally there would be no skid on samples.
 
  Intel [Ultra Path
  Interconnect](https://en.wikipedia.org/wiki/Intel_Ultra_Path_Interconnect).
+
+## V
+
+### VMA
+
+ Virtual Memory Area used by the kernel to manage process memory.
 
 ## X
 
