@@ -675,16 +675,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#downloading-and-building-the-latest-perf-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Downloading and building the latest perf tools
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Downloading and building the latest perf tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#permissions-and-limits" class="md-nav__link">
     <span class="md-ellipsis">
       Permissions and limits
@@ -699,11 +689,6 @@
       Adding capabilities to perf
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1421,16 +1406,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#downloading-and-building-the-latest-perf-tools" class="md-nav__link">
-    <span class="md-ellipsis">
-      Downloading and building the latest perf tools
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Downloading and building the latest perf tools">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#permissions-and-limits" class="md-nav__link">
     <span class="md-ellipsis">
       Permissions and limits
@@ -1445,11 +1420,6 @@
       Adding capabilities to perf
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1889,39 +1859,12 @@ This tool requires building and installing a custom kernel module</p>
 <li><a href="http://lwn.net/Articles/648154/">LWN article: Adding Processor Trace support to Linux</a></li>
 </ul>
 <h2 id="getting-set-up">Getting set up<a class="headerlink" href="#getting-set-up" title="Permanent link">&para;</a></h2>
-<p><code>perf</code> tools are packaged based on the kernel version, which means the version of <code>perf</code> provided by Linux distributions is always quite old, whereas updates to Intel PT support are happening all the time. That means, for the latest Intel PT features, we really need to download and build that latest <code>perf</code>.</p>
+<p><code>perf</code> tools are packaged based on the kernel version, which means the version
+of <code>perf</code> provided by Linux distributions is always quite old, whereas updates
+to Intel PT support are happening all the time. That means, for the latest Intel
+PT features, we really need to <a href="../download-and-build/">download and build</a> that
+latest <code>perf</code>.</p>
 <p>For other purposes, <code>perf</code> on modern Linux is usually fine.</p>
-<h3 id="downloading-and-building-the-latest-perf-tools">Downloading and building the latest perf tools<a class="headerlink" href="#downloading-and-building-the-latest-perf-tools" title="Permanent link">&para;</a></h3>
-<p>The example below is for a Debian-based system, specifically Ubuntu 20.04 in this case, although there is a package list also for Fedora.  We will need 4G of disk space.</p>
-<p><code>git</code> is needed:</p>
-<pre><code class="language-sh">$ sudo apt-get install git
-</code></pre>
-<p><code>perf</code> is in the Linux source tree so get that:</p>
-<pre><code class="language-sh">$ cd
-$ mkdir git
-$ cd git
-$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-</code></pre>
-<p>Get the minimum tools to build it:</p>
-<pre><code class="language-sh">$ sudo apt-get install build-essential flex bison
-</code></pre>
-<p>It should be possible to build <code>perf</code> at this stage but it will be missing essential features.  Add some more development libraries:</p>
-<pre><code class="language-sh">$ sudo apt-get install libelf-dev libnewt-dev libdw-dev libaudit-dev libiberty-dev libunwind-dev libcap-dev libzstd-dev libnuma-dev libssl-dev python3-dev python3-setuptools binutils-dev gcc-multilib liblzma-dev
-</code></pre>
-<p>Note, with v5.19 and earlier, python3-distutils was used instead of python3-setuptools, but that was changed in <a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ee87a0841aa538ab7ad49cf5679ac5ea2682c909">this commit</a>.</p>
-<p>Aside: example packages for Fedora instead of Ubuntu:</p>
-<pre><code class="language-sh">sudo yum install flex bison gcc make elfutils-libelf-devel elfutils-devel libunwind-devel python-devel libcap-devel slang-devel binutils-devel numactl-devel openssl-devel
-</code></pre>
-<p>To build <code>perf</code> (with script bindings for python3 instead of python2) and put it in <code>~/bin/perf</code> :</p>
-<pre><code class="language-sh">$ cd ~/git/linux
-$ PYTHON=python3 make -C tools/perf install
-</code></pre>
-<p>To use <code>~/bin/perf</code>, ~/bin must be in $PATH.  In Ubuntu, that is added automatically when a user logs in if the ~/bin directory exists (refer ~/.bashrc). If it is not in $PATH, log out and in again.  We can echo $PATH to check:</p>
-<pre><code class="language-sh">$ echo $PATH
-/home/user/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-$ which perf
-/home/user/bin/perf
-</code></pre>
 <h4 id="permissions-and-limits">Permissions and limits<a class="headerlink" href="#permissions-and-limits" title="Permanent link">&para;</a></h4>
 <p>Typically regular userids do not have permission to trace the kernel or other processes.  It is '''essential''' to understand <a href="http://www.kernel.org/doc/html/latest/admin-guide/perf-security.html"><code>Perf Events and tool security</code></a>.</p>
 <p>Intel PT benefits from large buffers which is controlled by the RLIMIT_MEMLOCK limit or the perf_event_mlock_kb setting or the CAP_IPC_LOCK capability.  For kernel tracing with Intel PT, <code>perf</code> benefits from access to /proc/kcore.</p>
