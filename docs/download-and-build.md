@@ -16,6 +16,8 @@ $ mkdir git
 $ cd git
 $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 ```
+Alternatively the source code of just the perf tool, and not the whole kernel
+tree, is [archived here](https://www.kernel.org/pub/linux/kernel/tools/perf/).
 
 Get the minimum tools to build it:
 ```sh
