@@ -17,7 +17,7 @@
         <link rel="next" href="../man-pages/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../img/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
     
     
@@ -82,8 +82,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="perf: Linux profiling with performance counters" class="md-header__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -196,8 +195,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="perf: Linux profiling with performance counters" class="md-nav__button md-logo" aria-label="perf: Linux profiling with performance counters" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../img/favicon.png" alt="logo">
 
     </a>
     perf: Linux profiling with performance counters
@@ -2562,7 +2560,7 @@
  There is also the AXI Coherency Extensions (ACE)</p>
 <h2 id="b">B<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
 <h3 id="beat">Beat<a class="headerlink" href="#beat" title="Permanent link">&para;</a></h3>
-<p>A beat is the smallest single unit of data transfer within an <a href="#AXI">AXI</a>
+<p>A beat is the smallest single unit of data transfer within an <a href="#axi">AXI</a>
  transaction. Its size is determined by the bus width. A Burst can be comprised
  of multiple beats. See the <a href="https://developer.arm.com/documentation/105565/0200/B">Arm
  Glossary</a></p>
@@ -2580,7 +2578,7 @@
 <h3 id="cake">CAKE<a class="headerlink" href="#cake" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikichip.org/wiki/amd/infinity_fabric#CAKE">Coherent AMD socKet Extender</a></p>
 <h3 id="ccd">CCD<a class="headerlink" href="#ccd" title="Permanent link">&para;</a></h3>
-<p>Principally an AMD term, Core Complex Dies are usually part of a <a href="#CCX">CCX</a>.</p>
+<p>Principally an AMD term, Core Complex Dies are usually part of a <a href="#ccx">CCX</a>.</p>
 <h2 id="ccx">CCX<a class="headerlink" href="#ccx" title="Permanent link">&para;</a></h2>
 <p>Prinicpally an AMD term, <a href="https://en.wikichip.org/wiki/amd/ccx">Core CompleX</a>
  where dies are connected and share the L3 cache.</p>
@@ -2588,7 +2586,7 @@
 <p>Principally an Intel term for <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/xeon-processor-scalable-family-technical-overview.html">Caching and Home Agent
  (CHA)</a>.</p>
 <h3 id="chi">CHI<a class="headerlink" href="#chi" title="Permanent link">&para;</a></h3>
-<p>Principally an ARM term for the <a href="#AMBA">AMBA</a> bus <a href="https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface">Coherent Hub
+<p>Principally an ARM term for the <a href="#amba">AMBA</a> bus <a href="https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface">Coherent Hub
  Interface</a></p>
 <h3 id="cmn">CMN<a class="headerlink" href="#cmn" title="Permanent link">&para;</a></h3>
 <p>Principally an ARM term for <a href="https://docs.kernel.org/admin-guide/perf/arm-cmn.html">Coherenet Mesh
@@ -2615,7 +2613,7 @@
 <p>See <a href="#evsel">evsel</a>.</p>
 <h3 id="evlist">evlist<a class="headerlink" href="#evlist" title="Permanent link">&para;</a></h3>
 <ol>
-<li>A <a href="latest-manual-pages.md">perf command</a> to list the events within a <a href="#perfdata">perf.data</a> file.</li>
+<li>A <a href="../man-pages/#latest-man-pages">perf command</a> to list the events within a <a href="#perfdata">perf.data</a> file.</li>
 <li>A list of <a href="#evsel">event selectors</a>. The <a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/include/perf/evlist.h">evlist API is part of libperf</a>.</li>
 </ol>
 <h3 id="evsel">evsel<a class="headerlink" href="#evsel" title="Permanent link">&para;</a></h3>
@@ -2641,8 +2639,8 @@
 <h2 id="i">I<a class="headerlink" href="#i" title="Permanent link">&para;</a></h2>
 <h3 id="ibs">IBS<a class="headerlink" href="#ibs" title="Permanent link">&para;</a></h3>
 <p>AMD Instruction-Based Sampling (IBS) allows precise a hardware performance
- monitoring similar to Intel <a href="#PEBS">PEBS</a>. Unlike Intel PEBS, IBS provides
- separate <a href="#PMU">PMUs</a> to gather relevant data.</p>
+ monitoring similar to Intel <a href="#pebs">PEBS</a>. Unlike Intel PEBS, IBS provides
+ separate <a href="#pmu">PMUs</a> to gather relevant data.</p>
 <h3 id="idq">IDQ<a class="headerlink" href="#idq" title="Permanent link">&para;</a></h3>
 <p>The IDQ (Instruction Decode Queue) serves as a buffer between the instruction fetch/decode stages and the rest of the out-of-order execution engine in modern CPUs. It stores decoded instructions often in the form of micro-ops.</p>
 <h2 id="j">J<a class="headerlink" href="#j" title="Permanent link">&para;</a></h2>
@@ -2658,13 +2656,13 @@
 <p>Level 1 or 2, data or instruction cache.</p>
 <h3 id="legacy-events">Legacy Events<a class="headerlink" href="#legacy-events" title="Permanent link">&para;</a></h3>
 <p>Perf events are identified by a type and a config value. The type identifies
- the <a href="#PMU">PMU</a>. To determine the config value, data is read from
+ the <a href="#pmu">PMU</a>. To determine the config value, data is read from
  <a href="#sysfs">sysfs</a> or embedded in the perf tool via json files - the appropriate
- <a href="#JSON">json</a> file data is identified via a <a href="#CPUID">cpuid</a>. Initially all
+ <a href="#json">json</a> file data is identified via a <a href="#cpuid">cpuid</a>. Initially all
  hardware events had a single type and the mapping of the event to the config
  value was hard coded. To allow extension, sysfs and json encodings were
  added. Legacy events fail in heterogeneous systems as typically a different
- core/CPU <a href="#PMU">PMU</a> is needed for each type of event. As users expect event
+ core/CPU <a href="#pmu">PMU</a> is needed for each type of event. As users expect event
  event names/encodings to behave in certain ways, the removal of legacy events
  has proven contentious.</p>
 <h3 id="lfb">LFB<a class="headerlink" href="#lfb" title="Permanent link">&para;</a></h3>
@@ -2673,7 +2671,7 @@
 <p>The Loop Stream Detector is a frontend component within Intel CPUs designed to boost performance for tight loops. It detects loops in code, pre-decodes their instructions, and stores these decoded micro-ops (uops) in a dedicated buffer.  By feeding these uops directly to the execution engine, the LSD bypasses the slower instruction fetch and decode stages for loops, resulting in speedups.</p>
 <h3 id="llc">LLC<a class="headerlink" href="#llc" title="Permanent link">&para;</a></h3>
 <p>The Last Level Cache (LLC) before accessing memory, generally level 3. Will
- generally have its own <a href="#PMU">PMU</a></p>
+ generally have its own <a href="#pmu">PMU</a></p>
 <h3 id="ltg">LTG<a class="headerlink" href="#ltg" title="Permanent link">&para;</a></h3>
 <p>Termed used with Marvell CN10K chips, Lookaside Translation Group used for
  special virtual to physical memory management.</p>
@@ -2686,7 +2684,7 @@
 <p>Principally an ARM term for <a href="https://developer.arm.com/documentation/107768/0100/Overview">Memory System Resource Partitioning and
  Monitoring</a>.</p>
 <h3 id="mpki">MPKI<a class="headerlink" href="#mpki" title="Permanent link">&para;</a></h3>
-<p>Cache, <a href="#TLB">TLB</a> or branch Misses Per Kilo (1,000) Instructions.</p>
+<p>Cache, <a href="#tlb">TLB</a> or branch Misses Per Kilo (1,000) Instructions.</p>
 <h3 id="ms">MS<a class="headerlink" href="#ms" title="Permanent link">&para;</a></h3>
 <p>The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.</p>
 <h3 id="multiplexing">Multiplexing<a class="headerlink" href="#multiplexing" title="Permanent link">&para;</a></h3>
@@ -2723,15 +2721,15 @@
 <h3 id="precise-event">Precise Event<a class="headerlink" href="#precise-event" title="Permanent link">&para;</a></h3>
 <p>When sampling an interrupt is triggered and the sample gathered in the
  kernel. There is typically a delay between the interrupt and the sample,
- leading the accuracy of the sample to be limited and <a href="#Skid">skid</a>. CPU
- extensions like <a href="#PEBS">PEBS</a>, <a href="#IBS">IBS</a> and <a href="#SPE">SPE</a> can be used to
+ leading the accuracy of the sample to be limited and <a href="#skid">skid</a>. CPU
+ extensions like <a href="#pebs">PEBS</a>, <a href="#ibs">IBS</a> and <a href="#spe">SPE</a> can be used to
  reduce this. Placing the modifier 'p' after an event modifies its
- precision/<a href="#Skid">skid</a>:</p>
+ precision/<a href="#skid">skid</a>:</p>
 <ol>
-<li>SAMPLE_IP can have arbitrary <a href="#Skid">skid</a></li>
-<li>'p' -SAMPLE_IP must have constant <a href="#Skid">skid</a></li>
-<li>'pp' - SAMPLE_IP requested to have 0 <a href="#Skid">skid</a></li>
-<li>'ppp' -SAMPLE_IP must have 0 <a href="#Skid">skid</a>, or uses randomization to avoid sample shadowing effects.</li>
+<li>SAMPLE_IP can have arbitrary <a href="#skid">skid</a></li>
+<li>'p' -SAMPLE_IP must have constant <a href="#skid">skid</a></li>
+<li>'pp' - SAMPLE_IP requested to have 0 <a href="#skid">skid</a></li>
+<li>'ppp' -SAMPLE_IP must have 0 <a href="#skid">skid</a>, or uses randomization to avoid sample shadowing effects.</li>
 </ol>
 <h2 id="q">Q<a class="headerlink" href="#q" title="Permanent link">&para;</a></h2>
 <h3 id="qpi">QPI<a class="headerlink" href="#qpi" title="Permanent link">&para;</a></h3>
@@ -2751,15 +2749,15 @@
 <p>The distance between where a sample is, an instruction, and where the sampling
 event was actually triggered. Ideally there would be no skid on samples.</p>
 <h3 id="slc">SLC<a class="headerlink" href="#slc" title="Permanent link">&para;</a></h3>
-<p>System Level Cache generally used interchangeably with <a href="#LLC">Last Level Cache</a>
+<p>System Level Cache generally used interchangeably with <a href="#llc">Last Level Cache</a>
  but may incorporate caches outside of the processor.</p>
 <h3 id="smi">SMI<a class="headerlink" href="#smi" title="Permanent link">&para;</a></h3>
-<p>System Management Interrupts trasition the CPU into <a href="#SMM">System Management
+<p>System Management Interrupts trasition the CPU into <a href="#smm">System Management
   Mode</a> to hanle high privilege events.</p>
 <h3 id="smm">SMM<a class="headerlink" href="#smm" title="Permanent link">&para;</a></h3>
 <p>On x86 generally <a href="https://en.wikipedia.org/wiki/System_Management_Mode">System Management
  Mode</a>, on ARM Secure
- Monitor Mode, is a highly privileged firmware/<a href="#BIOS">BIOS</a> code.</p>
+ Monitor Mode, is a highly privileged firmware/<a href="#bios">BIOS</a> code.</p>
 <h3 id="smt">SMT<a class="headerlink" href="#smt" title="Permanent link">&para;</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Simultaneous_multithreading">Simultaneous multithreading</a>.</p>
 <h3 id="software-event">Software Event<a class="headerlink" href="#software-event" title="Permanent link">&para;</a></h3>
@@ -2774,7 +2772,7 @@ event was actually triggered. Ideally there would be no skid on samples.</p>
  objects</a>.</p>
 <h2 id="t">T<a class="headerlink" href="#t" title="Permanent link">&para;</a></h2>
 <h3 id="tad">TAD<a class="headerlink" href="#tad" title="Permanent link">&para;</a></h3>
-<p><a href="#LLC">Last-Level cache</a> Tag-and-data Units on Marvell CN10K family silicon.</p>
+<p><a href="#llc">Last-Level cache</a> Tag-and-data Units on Marvell CN10K family silicon.</p>
 <h3 id="tlb">TLB<a class="headerlink" href="#tlb" title="Permanent link">&para;</a></h3>
 <p>TLB stands for Translation Lookaside Buffer. It is a specialized cache that
  stores the recent translations, via the page table, of virtual memory addresses
@@ -2805,7 +2803,7 @@ event was actually triggered. Ideally there would be no skid on samples.</p>
 <p>Virtual Memory Area used by the kernel to manage process memory.</p>
 <h2 id="x">X<a class="headerlink" href="#x" title="Permanent link">&para;</a></h2>
 <h3 id="xgmi">xGMI<a class="headerlink" href="#xgmi" title="Permanent link">&para;</a></h3>
-<p>eXternal <a href="#GMI">GMI</a> link is a socket-to-socket interconnect that is part of AMD's
+<p>eXternal <a href="#gmi">GMI</a> link is a socket-to-socket interconnect that is part of AMD's
  Infinity Fabric.</p>
 
 
@@ -2829,7 +2827,7 @@ event was actually triggered. Ideally there would be no skid on samples.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-11-05 23:02:49</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-12-01 05:11:48</span>
   </span>
 
     
