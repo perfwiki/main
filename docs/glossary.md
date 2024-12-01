@@ -17,7 +17,7 @@
 ## B
 
 ### Beat
- A beat is the smallest single unit of data transfer within an [AXI](#AXI)
+ A beat is the smallest single unit of data transfer within an [AXI](#axi)
  transaction. Its size is determined by the bus width. A Burst can be comprised
  of multiple beats. See the [Arm
  Glossary](https://developer.arm.com/documentation/105565/0200/B)
@@ -45,7 +45,7 @@
 
 ### CCD
 
- Principally an AMD term, Core Complex Dies are usually part of a [CCX](#CCX).
+ Principally an AMD term, Core Complex Dies are usually part of a [CCX](#ccx).
 
 ## CCX
 
@@ -59,7 +59,7 @@
 
 ### CHI
 
- Principally an ARM term for the [AMBA](#AMBA) bus [Coherent Hub
+ Principally an ARM term for the [AMBA](#amba) bus [Coherent Hub
  Interface](https://developer.arm.com/documentation/102407/0100/Introducing-the-AMBA-Coherent-Hub-Interface)
 
 ### CMN
@@ -98,7 +98,7 @@ See [evsel](#evsel).
 
 ### evlist
 
- 1. A [perf command](latest-manual-pages.md) to list the events within a [perf.data](#perfdata) file.
+ 1. A [perf command](man-pages.md#latest-man-pages) to list the events within a [perf.data](#perfdata) file.
  2. A list of [event selectors](#evsel). The [evlist API is part of libperf](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/lib/perf/include/perf/evlist.h).
 
 ### evsel
@@ -140,8 +140,8 @@ See [evsel](#evsel).
 ### IBS
 
  AMD Instruction-Based Sampling (IBS) allows precise a hardware performance
- monitoring similar to Intel [PEBS](#PEBS). Unlike Intel PEBS, IBS provides
- separate [PMUs](#PMU) to gather relevant data.
+ monitoring similar to Intel [PEBS](#pebs). Unlike Intel PEBS, IBS provides
+ separate [PMUs](#pmu) to gather relevant data.
 
 ### IDQ
  The IDQ (Instruction Decode Queue) serves as a buffer between the instruction fetch/decode stages and the rest of the out-of-order execution engine in modern CPUs. It stores decoded instructions often in the form of micro-ops.
@@ -169,13 +169,13 @@ See [evsel](#evsel).
 ### Legacy Events
 
  Perf events are identified by a type and a config value. The type identifies
- the [PMU](#PMU). To determine the config value, data is read from
+ the [PMU](#pmu). To determine the config value, data is read from
  [sysfs](#sysfs) or embedded in the perf tool via json files - the appropriate
- [json](#JSON) file data is identified via a [cpuid](#CPUID). Initially all
+ [json](#json) file data is identified via a [cpuid](#cpuid). Initially all
  hardware events had a single type and the mapping of the event to the config
  value was hard coded. To allow extension, sysfs and json encodings were
  added. Legacy events fail in heterogeneous systems as typically a different
- core/CPU [PMU](#PMU) is needed for each type of event. As users expect event
+ core/CPU [PMU](#pmu) is needed for each type of event. As users expect event
  event names/encodings to behave in certain ways, the removal of legacy events
  has proven contentious.
 
@@ -188,7 +188,7 @@ See [evsel](#evsel).
 ### LLC
 
  The Last Level Cache (LLC) before accessing memory, generally level 3. Will
- generally have its own [PMU](#PMU)
+ generally have its own [PMU](#pmu)
 
 ### LTG
 
@@ -210,7 +210,7 @@ See [evsel](#evsel).
 
 ### MPKI
 
- Cache, [TLB](#TLB) or branch Misses Per Kilo (1,000) Instructions.
+ Cache, [TLB](#tlb) or branch Misses Per Kilo (1,000) Instructions.
 
 ### MS
  The microcode sequencer is a specialized unit that handles the execution of complex instructions not directly supported as a single hardware operation. It breaks down these instructions into sequences of simpler micro-operations (microcode) that the CPU's execution units can directly understand.
@@ -262,15 +262,15 @@ See [evsel](#evsel).
 
  When sampling an interrupt is triggered and the sample gathered in the
  kernel. There is typically a delay between the interrupt and the sample,
- leading the accuracy of the sample to be limited and [skid](#Skid). CPU
- extensions like [PEBS](#PEBS), [IBS](#IBS) and [SPE](#SPE) can be used to
+ leading the accuracy of the sample to be limited and [skid](#skid). CPU
+ extensions like [PEBS](#pebs), [IBS](#ibs) and [SPE](#spe) can be used to
  reduce this. Placing the modifier 'p' after an event modifies its
- precision/[skid](#Skid):
+ precision/[skid](#skid):
 
- 0. SAMPLE_IP can have arbitrary [skid](#Skid)
- 1. 'p' -SAMPLE_IP must have constant [skid](#Skid)
- 2. 'pp' - SAMPLE_IP requested to have 0 [skid](#Skid)
- 3. 'ppp' -SAMPLE_IP must have 0 [skid](#Skid), or uses randomization to avoid sample shadowing effects.
+ 0. SAMPLE_IP can have arbitrary [skid](#skid)
+ 1. 'p' -SAMPLE_IP must have constant [skid](#skid)
+ 2. 'pp' - SAMPLE_IP requested to have 0 [skid](#skid)
+ 3. 'ppp' -SAMPLE_IP must have 0 [skid](#skid), or uses randomization to avoid sample shadowing effects.
 
 ## Q
 
@@ -303,19 +303,19 @@ event was actually triggered. Ideally there would be no skid on samples.
 
 ### SLC
 
- System Level Cache generally used interchangeably with [Last Level Cache](#LLC)
+ System Level Cache generally used interchangeably with [Last Level Cache](#llc)
  but may incorporate caches outside of the processor.
 
 ### SMI
 
   System Management Interrupts trasition the CPU into [System Management
-  Mode](#SMM) to hanle high privilege events.
+  Mode](#smm) to hanle high privilege events.
 
 ### SMM
 
  On x86 generally [System Management
  Mode](https://en.wikipedia.org/wiki/System_Management_Mode), on ARM Secure
- Monitor Mode, is a highly privileged firmware/[BIOS](#BIOS) code.
+ Monitor Mode, is a highly privileged firmware/[BIOS](#bios) code.
 
 ### SMT
  [Simultaneous multithreading](https://en.wikipedia.org/wiki/Simultaneous_multithreading).
@@ -341,7 +341,7 @@ event was actually triggered. Ideally there would be no skid on samples.
 
 ### TAD
 
- [Last-Level cache](#LLC) Tag-and-data Units on Marvell CN10K family silicon.
+ [Last-Level cache](#llc) Tag-and-data Units on Marvell CN10K family silicon.
 
 ### TLB
 
@@ -392,5 +392,5 @@ event was actually triggered. Ideally there would be no skid on samples.
 
 ### xGMI
 
- eXternal [GMI](#GMI) link is a socket-to-socket interconnect that is part of AMD's
+ eXternal [GMI](#gmi) link is a socket-to-socket interconnect that is part of AMD's
  Infinity Fabric.

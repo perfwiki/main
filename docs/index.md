@@ -15,14 +15,14 @@ Tracepoints are instrumentation points placed at logical locations in code, such
 
 The userspace `perf` command present a simple to use interface with commands like:
 
-- [`perf stat`](tutorial/#counting-with-perf-stat): obtain event counts
-- [`perf record`](tutorial/#sampling-with-perf-record): record events for later reporting
-- [`perf report`](tutorial/#sample-analysis-with-perf-report): break down events by process, function, etc.
-- [`perf annotate`](tutorial/#source-level-analysis-with-perf-annotate): annotate assembly or source code with event counts
-- [`perf top`](tutorial/#live-analysis-with-perf-top): see live event count 
-- [`perf bench`](tutorial/#benchmarking-with-perf-bench): run different kernel microbenchmarks
+- [`perf stat`](tutorial.md#counting-with-perf-stat): obtain event counts
+- [`perf record`](tutorial.md#sampling-with-perf-record): record events for later reporting
+- [`perf report`](tutorial.md#sample-analysis-with-perf-report): break down events by process, function, etc.
+- [`perf annotate`](tutorial.md#source-level-analysis-with-perf-annotate): annotate assembly or source code with event counts
+- [`perf top`](tutorial.md#live-analysis-with-perf-top): see live event count 
+- [`perf bench`](tutorial.md#benchmarking-with-perf-bench): run different kernel microbenchmarks
 
-To learn more, see the examples in the [Tutorial](tutorial) or how to do a [Top-Down Analysis](top-down-analysis).
+To learn more, see the examples in the [Tutorial](tutorial.md) or how to do a [Top-Down Analysis](top-down-analysis.md).
 
 To ask questions, report bugs/issues mail the [mailing list📨](https://lore.kernel.org/linux-perf-users/) or use [bugzilla🐞](https://bugzilla.kernel.org/buglist.cgi?bug_status=__open__&order=changeddate%20DESC%2Cpriority%2Cbug_severity&product=Tracing%2FProfiling&query_format=advanced).
 
@@ -38,17 +38,17 @@ In order to subscribe to receive perf mailing lists messages via email you will 
 
 ### Wiki Contents
 
-- [Tutorial](tutorial)
-- [Top-Down Analysis](top-down-analysis)
-- [Kernel lock contention](lock-contention)
-- [Todo](todo)
-- [Hardware Reference](hardware-reference)
-- [perf_events kernel ABI](perf_events-kernel-abi)
-- [perf tools support for Intel® Processor Trace](perf-tools-support-for-intel-processor-trace)
-- [Useful Links](useful-links): How perf tools work, examples of usage to solve real problems, observability articles, hardware manuals
-- [Glossary](glossary)
-- [Latest Manual Pages](latest-manual-pages)
-- [Development](development)
+- [Tutorial](tutorial.md)
+- [Top-Down Analysis](top-down-analysis.md)
+- [Kernel lock contention](lock-contention.md)
+- [Todo](todo.md)
+- [Hardware Reference](hardware-reference.md)
+- [perf_events kernel ABI](perf_events-kernel-abi.md)
+- [perf tools support for Intel® Processor Trace](perf-tools-support-for-intel-processor-trace.md)
+- [Useful Links](useful-links.md): How perf tools work, examples of usage to solve real problems, observability articles, hardware manuals
+- [Glossary](glossary.md)
+- [Latest Manual Pages](man-pages.md#latest-man-pages)
+- [Development](development.md)
 
 ### Google Summer of Code
 
