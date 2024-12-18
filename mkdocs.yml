@@ -6,8 +6,8 @@ nav:
   - Main Page: index.md
   - Tutorial:
     - Introduction: tutorial.md
-    - perf stat: tutorial.md#counting-with-perf-stat
-    - perf record: tutorial.md#sampling-with-perf-record
+    - perf stat: tutorial/#counting-with-perf-stat
+    - perf record: tutorial/#sampling-with-perf-record
   - Useful Links : useful-links.md
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
