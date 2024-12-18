@@ -316,11 +316,19 @@ a tool are stored sequentially in the list.
 To avoid scaling (in the presence of only one active perf_event user), one can try and reduce the number of
 events. The following table provides the number of counters for a few common processors:
 
-|   Processor   | Generic counters | Fixed counters |
-|:-------------:|:----------------:|:--------------:|
-| Intel Core    | 2                | 3              |
-| Intel Nehalem | 4                | 3              |
-
+| Processor                                                                        | Generic counters | Fixed counters |
+|:--------------------------------------------------------------------------------:|:----------------:|:--------------:|
+| [AMD Zen](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures)      | 6                | 0              |
+| [ARM Cortex](https://en.wikipedia.org/wiki/List_of_ARM_processors)               | 6                | 0              |
+| [Intel Core](https://en.wikipedia.org/wiki/Intel_Core_(microarchitecture))       | 2                | 3              |
+| [Intel Nehalem](https://en.wikipedia.org/wiki/Nehalem_(microarchitecture))       | 4                | 3              |
+| [Intel SandyBridge](https://en.wikipedia.org/wiki/Sandy_Bridge)                  | 4                | 3              |
+| [Intel Haswell](https://en.wikipedia.org/wiki/Haswell_(microarchitecture))       | 4                | 3              |
+| [Intel Skylake](https://en.wikipedia.org/wiki/Skylake_(microarchitecture))       | 4                | 3              |
+| [Intel Sunny Cove](https://en.wikipedia.org/wiki/Sunny_Cove_(microarchitecture)) | 8                | 5              |
+| [Intel Willow Cove](https://en.wikipedia.org/wiki/Willow_Cove)                   | 8                | 5              |
+| [Intel Golden Cove](https://en.wikipedia.org/wiki/Golden_Cove)                   | 8                | 5              |
+| [Intel Raptor Cove](https://en.wikipedia.org/wiki/Raptor_Cove)                   | 8                | 5              |
 Generic counters can measure any events. Fixed counters can only measure one event. Some counters
 may be reserved for special purposes, such as a watchdog timer.
 
