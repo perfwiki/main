@@ -8,6 +8,11 @@ nav:
     - Introduction: tutorial.md
     - perf stat: tutorial/#counting-with-perf-stat
     - perf record: tutorial/#sampling-with-perf-record
+    - Flame Graph: tutorial/#flame-graph
+    - Firefox Profiler: tutorial/#firefox-profiler
+    - perf report: tutorial/#sample-analysis-with-perf-report
+    - perf annotate: tutorial/#source-level-analysis-with-perf-annotate
+    - perf top: tutorial/#live-analysis-with-perf-top
   - Useful Links : useful-links.md
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
