@@ -4,7 +4,10 @@ repo_url: https://github.com/perfwiki/main
 edit_uri: ../main/edit/main/docs
 nav:
   - Main Page: index.md
-  - Tutorial : tutorial.md
+  - Tutorial:
+    - Introduction: tutorial.md
+    - perf stat: tutorial.md#counting-with-perf-stat
+    - perf record: tutorial.md#sampling-with-perf-record
   - Useful Links : useful-links.md
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
