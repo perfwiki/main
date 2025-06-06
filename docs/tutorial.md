@@ -436,7 +436,7 @@ perf stat -B -ecycles:u,instructions:u -a dd if=/dev/zero of=/dev/null count=200
 This measurement collects events `cycles` and `instructions` across all CPUs.
 The duration of the measurement is determined by the execution of `dd`.
 In other words, this measurement captures execution of the `dd` process **and** anything else
-than runs at the user level on all CPUs.
+that runs at the user level on all CPUs.
 
 To time the duration of the measurement without actively consuming cycles, it is possible to  use the
 =/usr/bin/sleep= command:
