@@ -17,6 +17,9 @@
 - [Leo Yan Debugging perf with perf](print/how_to_use_perf_to_debug_perf.pdf)
 - [Paul Clarke helps transitioning from OProfile to perf](https://developer.ibm.com/tutorials/migrate-from-oprofile-to-perf/)
 - [Timed Process Event Based Sampling](https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html)
+- Explains measuring performance counters directly with perf_event_open, without perf tool:
+	- [Use perf_event_open for counting](https://github.com/ArmDeveloperEcosystem/arm-learning-paths/blob/main/content/learning-paths/servers-and-cloud-computing/arm_pmu/perf_event_open.md)
+	- [self-perf](https://github.com/ThinkOpenly/self-profiling)
 
 # Useful web sites about profilers
 
