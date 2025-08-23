@@ -1,4 +1,4 @@
-# [perfwiki.github.io](https://perfwiki.github.io/)
+# [perf.wiki.kernel.org](https://perf.wiki.kernel.org)
 
 This repository contains the markdown migration of the perf.wiki.kernel.org pages.
 
@@ -6,7 +6,7 @@ We can browse perf wiki on terminal environment with [glow](https://github.com/c
 
 ![glow-with-perfwiki](docs/img/readme/glow-with-perfwiki.gif)
 
-# Check the [perfwiki.github.io](https://perfwiki.github.io/) in the localhost
+# Check the [perf.wiki.kernel.org](https://perf.wiki.kernel.org) in the localhost
 
 If you want to check the MkDocs UI as a webpage in this workspace,
 You only need to do it once at the beginning: `pip install mkdocs-material mkdocs-git-revision-date-localized-plugin`.
@@ -28,7 +28,7 @@ $ mkdocs serve
 # Automated deployment from markdown
 
 If the markdown results are pushed to `origin/main`, [Github CI](.github/workflow/ci.yml) will automatically run and deploy to the `gh-deploy` branch.
-If manual updates to the [perfwiki.github.io](https://perfwiki.github.io/) are needed, you can run `mkdocs gh-deploy` directly to deploy it.
+If manual updates to the [perf.wiki.kernel.org](https://perf.wiki.kernel.org) are needed, you can run `mkdocs gh-deploy` directly to deploy it.
 If anyone would like to contribute content, feel free to submit a Pull Request on the [github.com/perfwiki/main](https://github.com/perfwiki/main) repo, or you can email me by including me in the mailing list.
 ```sh
 $ git add .
