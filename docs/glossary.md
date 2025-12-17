@@ -37,7 +37,7 @@
 ## C
 
 ### C2C
- Cache-to-cache. `perf c2c` is a builtin perf tool for analyzing shared data accesses and problems like (false sharing)[#false-sharing].
+ Cache-to-cache. `perf c2c` is a builtin perf tool for analyzing shared data accesses and problems like [false sharing](#false-sharing).
 
 ### CAKE
 
