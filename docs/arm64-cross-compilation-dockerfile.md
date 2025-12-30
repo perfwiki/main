@@ -46,10 +46,10 @@ Save this as "Dockerfile" and follow the readme.
 # isn't really used by Perf anwyay so can be ignored for now.
 #
 FROM ubuntu:20.04
- 
+
 # Stop some packages prompting for user configuration
 ENV DEBIAN_FRONTEND=noninteractive
- 
+
 # Completely replace sources.list
 #
 # Make sure regular sources are prefixed with amd64 so it doesn't try to
@@ -61,10 +61,10 @@ RUN echo "deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main restricte
     echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-security main restricted universe multiverse" >> /etc/apt/sources.list
- 
+
 RUN dpkg --add-architecture arm64
 RUN apt-get update && apt-get upgrade -y
- 
+
 # Native build stuff
 RUN apt-get install -y \
     gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
@@ -73,7 +73,7 @@ RUN apt-get install -y \
     pkg-config-aarch64-linux-gnu python3 \
     python3-dev python3-setuptools \
     git dpkg-dev
- 
+
 # Arm64 Perf dependencies
 RUN apt-get install -y \
     libelf-dev:arm64 libdwarf-dev:arm64 \
@@ -84,20 +84,37 @@ RUN apt-get install -y \
     libpython3-dev:arm64 libslang2-dev:arm64 \
     libnuma-dev:arm64 libssl-dev:arm64 \
     libbz2-dev:arm64
- 
+
 # Build and install libtraceevent since there is no package on Ubuntu 20.04
 WORKDIR /
-RUN git clone --depth=1 https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
+RUN git clone --depth=1 --branch=libtraceevent-1.8.4 https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
 WORKDIR /libtraceevent
 RUN make CROSS_COMPILE=aarch64-linux-gnu- prefix=/usr/aarch64-linux-gnu \
     libdir_relative=lib pkgconfig_dir=/usr/lib/aarch64-linux-gnu/pkgconfig install
 RUN ldconfig
- 
-# Install libtraceevent to the /build dir so it can be copied to the
-# target system, then build both static and dynamic versions of Perf.
-CMD make CROSS_COMPILE=aarch64-linux-gnu- prefix=/build \
+
+CMD echo "=================================" && \
+    echo "Cleaning /build and /build-static" && \
+    echo "=================================\n" && \
+    set -x && \
+    rm -rf /build/* /build-static/* && \
+    set +x && \
+    #
+    echo "===============================" && \
+    echo "Install libtraceevent to /build" && \
+    echo "(ignore 'error while loading shared libraries: libtraceevent.so.1: cannot open shared object file: No such file or directory)'" && \
+    echo "===============================\n" && \
+    set -x && \
+    make CROSS_COMPILE=aarch64-linux-gnu- prefix=/build \
     libdir_relative= pkgconfig_dir=/usr/lib/aarch64-linux-gnu/pkgconfig install && \
+    set +x && \
+    #
+    echo "===============================" && \
+    echo "Build static dynamic arm64 Perf" && \
+    echo "===============================\n" && \
+    set -x && \
     cd /linux && \
     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=/build -C tools/perf && \
     make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=/build-static LDFLAGS="-static" EXTRA_PERFLIBS="-lexpat" -C tools/perf
+
 ```
