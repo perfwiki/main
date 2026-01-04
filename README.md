@@ -39,8 +39,8 @@ $ git push
 or You can also send me a patch file if you prefer. If you want to assign
 other people to the email, you can add them.
 ```
-# Don’t forget to change the address below to my "@gmail.com" :)
-$ git send-email --to='Yunseong Kim <yskelg at gmail dot com>; ' \
+# Don’t forget to change the address below to my "@kzalloc.com" :)
+$ git send-email --to='Yunseong Kim <ysk at kzalloc dot com>; ' \
     --cc='linux-perf-users@vger.kernel.org; ' \
     --confirm=always your/path/0001-your-patch
 ```
