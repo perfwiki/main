@@ -2,194 +2,194 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://perfwiki.github.io/main/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/arm64-cross-compilation-dockerfile/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/development/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/download-and-build/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/file_format_description/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/glossary/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/hardware-reference/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/itanium-manuals-iiasdmanual/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_annotations/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_counting/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_developing/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_event/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_perf_stat/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_docs_sampling/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_cpu_hotplug/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_data_file_merge/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_groupsampling/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_kbuild/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_mmap/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_multidiff/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_multiple_file_storage/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_nonarchitectural_events/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_post_dwarf_unwind/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_precise/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_record_top_data_file/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_stat_formulas/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_features_togle_event/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_howto_install/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_howto_install_sources/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_howto_measure_child_functions_cycles/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_tests_auto/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/jolsa_tests_explained/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/lock-contention/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/man-pages/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/montecito/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/nehalem/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/pcl-internals/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/pcl-struct/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/perf-tool-internals/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/perf-tools-support-for-intel-processor-trace/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/perf_events-kernel-abi/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/reference-count-checking/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/todo/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/top-down-analysis/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/tutorial/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/useful-links/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
     <url>
          <loc>https://perfwiki.github.io/main/white-paper/</loc>
-         <lastmod>2025-08-23</lastmod>
+         <lastmod>2026-01-04</lastmod>
     </url>
 </urlset>
