@@ -79,7 +79,7 @@ perf stat -h
 
 The `perf` tool supports a list of measurable events.  The tool
 and underlying kernel interface can measure events coming from different
-sources. For instance, some event are pure kernel counters, in this case they are
+sources. For instance, some events are pure kernel counters, in this case they are
 called **software events**. Examples include: context-switches, minor-faults.
 
 Another source of events is the processor itself and its Performance Monitoring
