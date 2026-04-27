@@ -6,13 +6,13 @@ nav:
   - Main Page: index.md
   - Tutorial:
     - Introduction: tutorial.md
-    - perf stat: tutorial.md#counting-with-perf-stat
-    - perf record: tutorial.md#sampling-with-perf-record
-    - Flame Graph: tutorial.md#flame-graph
-    - Firefox Profiler: tutorial.md#firefox-profiler
-    - perf report: tutorial.md#sample-analysis-with-perf-report
-    - perf annotate: tutorial.md#source-level-analysis-with-perf-annotate
-    - perf top: tutorial.md#live-analysis-with-perf-top
+    - perf stat: https://perfwiki.github.io/main/tutorial/#counting-with-perf-stat
+    - perf record: https://perfwiki.github.io/main/tutorial/#sampling-with-perf-record
+    - Flame Graph: https://perfwiki.github.io/main/tutorial/#flame-graph
+    - Firefox Profiler: https://perfwiki.github.io/main/tutorial/#firefox-profiler
+    - perf report: https://perfwiki.github.io/main/tutorial/#sample-analysis-with-perf-report
+    - perf annotate: https://perfwiki.github.io/main/tutorial/#source-level-analysis-with-perf-annotate
+    - perf top: https://perfwiki.github.io/main/tutorial/#live-analysis-with-perf-top
   - Useful Links : useful-links.md
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
