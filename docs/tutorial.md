@@ -101,72 +101,346 @@ To obtain a list of supported events:
 ```sh
 perf list
 
-List of pre-defined events (to be used in -e):
+List of pre-defined events (to be used in -e or -M):
 
- cpu-cycles OR cycles                       [Hardware event]
- instructions                               [Hardware event]
- cache-references                           [Hardware event]
- cache-misses                               [Hardware event]
- branch-instructions OR branches            [Hardware event]
- branch-misses                              [Hardware event]
- bus-cycles                                 [Hardware event]
- ref-cycles                                 [Hardware event]
+  mem-loads OR cpu_atom/mem-loads/                   [Kernel PMU event]
+  mem-stores OR cpu_atom/mem-stores/                 [Kernel PMU event]
+  topdown-bad-spec OR cpu_atom/topdown-bad-spec/     [Kernel PMU event]
+  topdown-be-bound OR cpu_atom/topdown-be-bound/     [Kernel PMU event]
+  topdown-fe-bound OR cpu_atom/topdown-fe-bound/     [Kernel PMU event]
+  topdown-retiring OR cpu_atom/topdown-retiring/     [Kernel PMU event]
+  mem-loads OR cpu_core/mem-loads/                   [Kernel PMU event]
+  mem-loads-aux OR cpu_core/mem-loads-aux/           [Kernel PMU event]
+  mem-stores OR cpu_core/mem-stores/                 [Kernel PMU event]
+  slots OR cpu_core/slots/                           [Kernel PMU event]
+  topdown-bad-spec OR cpu_core/topdown-bad-spec/     [Kernel PMU event]
+  topdown-be-bound OR cpu_core/topdown-be-bound/     [Kernel PMU event]
+  topdown-br-mispredict OR cpu_core/topdown-br-mispredict/[Kernel PMU event]
+  topdown-fe-bound OR cpu_core/topdown-fe-bound/     [Kernel PMU event]
+  topdown-fetch-lat OR cpu_core/topdown-fetch-lat/   [Kernel PMU event]
+  topdown-heavy-ops OR cpu_core/topdown-heavy-ops/   [Kernel PMU event]
+  topdown-mem-bound OR cpu_core/topdown-mem-bound/   [Kernel PMU event]
+  topdown-retiring OR cpu_core/topdown-retiring/     [Kernel PMU event]
+  cstate_core/c1-residency/                          [Kernel PMU event]
+  [...]
+  cstate_pkg/c10-residency/                          [Kernel PMU event]
+  [...]
+  i915/actual-frequency/                             [Kernel PMU event]
+  [...]
+  intel_bts//                                        [Kernel PMU event]
+  intel_pt//                                         [Kernel PMU event]
+  msr/aperf/                                         [Kernel PMU event]
+  msr/cpu_thermal_margin/                            [Kernel PMU event]
+  msr/mperf/                                         [Kernel PMU event]
+  msr/pperf/                                         [Kernel PMU event]
+  msr/smi/                                           [Kernel PMU event]
+  msr/tsc/                                           [Kernel PMU event]
+  power/energy-cores/                                [Kernel PMU event]
+  power/energy-gpu/                                  [Kernel PMU event]
+  power/energy-pkg/                                  [Kernel PMU event]
+  power/energy-psys/                                 [Kernel PMU event]
+  alarmtimer:alarmtimer_cancel                       [Tracepoint event]
+  [...]
+  raw_syscalls:sys_enter                             [Tracepoint event]
+  raw_syscalls:sys_exit                              [Tracepoint event]
+  rcu:rcu_stall_warning                              [Tracepoint event]
+  rcu:rcu_utilization                                [Tracepoint event]
+  [...]
+  sched:sched_kthread_stop                           [Tracepoint event]
+  sched:sched_kthread_stop_ret                       [Tracepoint event]
+  sched:sched_kthread_work_execute_end               [Tracepoint event]
+  sched:sched_kthread_work_execute_start             [Tracepoint event]
+  sched:sched_kthread_work_queue_work                [Tracepoint event]
+  sched:sched_migrate_task                           [Tracepoint event]
+  sched:sched_move_numa                              [Tracepoint event]
+  sched:sched_pi_setprio                             [Tracepoint event]
+  sched:sched_prepare_exec                           [Tracepoint event]
+  sched:sched_process_exec                           [Tracepoint event]
+  sched:sched_process_exit                           [Tracepoint event]
+  sched:sched_process_fork                           [Tracepoint event]
+  sched:sched_process_free                           [Tracepoint event]
+  sched:sched_process_hang                           [Tracepoint event]
+  sched:sched_process_wait                           [Tracepoint event]
+  sched:sched_skip_cpuset_numa                       [Tracepoint event]
+  sched:sched_skip_vma_numa                          [Tracepoint event]
+  sched:sched_stat_blocked                           [Tracepoint event]
+  sched:sched_stat_iowait                            [Tracepoint event]
+  sched:sched_stat_runtime                           [Tracepoint event]
+  sched:sched_stat_sleep                             [Tracepoint event]
+  sched:sched_stat_wait                              [Tracepoint event]
+  sched:sched_stick_numa                             [Tracepoint event]
+  sched:sched_swap_numa                              [Tracepoint event]
+  sched:sched_switch                                 [Tracepoint event]
+  sched:sched_wait_task                              [Tracepoint event]
+  sched:sched_wake_idle_without_ipi                  [Tracepoint event]
+  sched:sched_wakeup                                 [Tracepoint event]
+  sched:sched_wakeup_new                             [Tracepoint event]
+  sched:sched_waking                                 [Tracepoint event]
+  [...]
+  syscalls:sys_enter_accept                          [Tracepoint event]
+  [...]
+  uncore_clock/clockticks/                           [Kernel PMU event]
+  uncore_imc_free_running/data_read/                 [Kernel PMU event]
+  uncore_imc_free_running/data_total/                [Kernel PMU event]
+  uncore_imc_free_running/data_write/                [Kernel PMU event]
+[...]
+drm:
+  drm-active-stolen-system0
+       [Total memory active in one or more engines. Unit: drm_i915]
+  drm-active-system0
+       [Total memory active in one or more engines. Unit: drm_i915]
+  drm-engine-capacity-video
+       [Engine capacity. Unit: drm_i915]
+  drm-engine-copy
+       [Utilization in ns. Unit: drm_i915]
+[...]
+hwmon:
+  temp1
+       [Temperature in unit acpitz named temp1. Unit: hwmon_acpitz]
+  temp_core_0 OR temp2
+       [Temperature in unit coretemp named Core 0. crit=100'C,max=80'C
+        crit_alarm=0'C. Unit: hwmon_coretemp]
+[...]
+legacy hardware:
+  branch-instructions
+       [Retired branch instructions [This event is an alias of branches].
+        Unit: cpu_atom]
+  branch-misses
+       [Mispredicted branch instructions. Unit: cpu_atom]
+  branches
+       [Retired branch instructions [This event is an alias of
+        branch-instructions]. Unit: cpu_atom]
+  bus-cycles
+       [Bus cycles,which can be different from total cycles. Unit: cpu_atom]
+  cache-misses
+       [Cache misses. Usually this indicates Last Level Cache misses; this is
+        intended to be used in conjunction with the
+        PERF_COUNT_HW_CACHE_REFERENCES event to calculate cache miss rates.
+        Unit: cpu_atom]
+  cache-references
+       [Cache accesses. Usually this indicates Last Level Cache accesses but
+        this may vary depending on your CPU. This may include prefetches and
+        coherency messages; again this depends on the design of your CPU.
+        Unit: cpu_atom]
+  cpu-cycles
+       [Total cycles. Be wary of what happens during CPU frequency scaling
+        [This event is an alias of cycles]. Unit: cpu_atom]
+  cycles
+       [Total cycles. Be wary of what happens during CPU frequency scaling
+        [This event is an alias of cpu-cycles]. Unit: cpu_atom]
+  instructions
+       [Retired instructions. Be careful,these can be affected by various
+        issues,most notably hardware interrupt counts. Unit: cpu_atom]
+  ref-cycles
+       [Total cycles; not affected by CPU frequency scaling. Unit: cpu_atom]
+  branch-instructions
+       [Retired branch instructions [This event is an alias of branches].
+        Unit: cpu_core]
+  branch-misses
+       [Mispredicted branch instructions. Unit: cpu_core]
+  branches
+       [Retired branch instructions [This event is an alias of
+        branch-instructions]. Unit: cpu_core]
+  bus-cycles
+       [Bus cycles,which can be different from total cycles. Unit: cpu_core]
+  cache-misses
+       [Cache misses. Usually this indicates Last Level Cache misses; this is
+        intended to be used in conjunction with the
+        PERF_COUNT_HW_CACHE_REFERENCES event to calculate cache miss rates.
+        Unit: cpu_core]
+  cache-references
+       [Cache accesses. Usually this indicates Last Level Cache accesses but
+        this may vary depending on your CPU. This may include prefetches and
+        coherency messages; again this depends on the design of your CPU.
+        Unit: cpu_core]
+  cpu-cycles
+       [Total cycles. Be wary of what happens during CPU frequency scaling
+        [This event is an alias of cycles]. Unit: cpu_core]
+  cycles
+       [Total cycles. Be wary of what happens during CPU frequency scaling
+        [This event is an alias of cpu-cycles]. Unit: cpu_core]
+  instructions
+       [Retired instructions. Be careful,these can be affected by various
+        issues,most notably hardware interrupt counts. Unit: cpu_core]
+  ref-cycles
+       [Total cycles; not affected by CPU frequency scaling. Unit: cpu_core]
+[...]
+software:
+  alignment-faults
+       [Number of kernel handled memory alignment faults. Unit: software]
+  bpf-output
+       [An event used by BPF programs to write to the perf ring buffer. Unit:
+        software]
+  cgroup-switches
+       [Number of context switches to a task in a different cgroup. Unit:
+        software]
+  context-switches
+       [Number of context switches [This event is an alias of cs]. Unit:
+        software]
+  cpu-clock
+       [Per-CPU high-resolution timer based event. Unit: software]
+  cpu-migrations
+       [Number of times a process has migrated to a new CPU [This event is an
+        alias of migrations]. Unit: software]
+  cs
+       [Number of context switches [This event is an alias of
+        context-switches]. Unit: software]
+  dummy
+       [A placeholder event that doesn't count anything. Unit: software]
+  emulation-faults
+       [Number of kernel handled unimplemented instruction faults handled
+        through emulation. Unit: software]
+  faults
+       [Number of page faults [This event is an alias of page-faults]. Unit:
+        software]
+  major-faults
+       [Number of major page faults. Major faults require I/O to handle. Unit:
+        software]
+  migrations
+       [Number of times a process has migrated to a new CPU [This event is an
+        alias of cpu-migrations]. Unit: software]
+  minor-faults
+       [Number of minor page faults. Minor faults don't require I/O to handle.
+        Unit: software]
+  page-faults
+       [Number of page faults [This event is an alias of faults]. Unit:
+        software]
+  task-clock
+       [Per-task high-resolution timer based event. Unit: software]
+[...]
+  rNNN                                               [Raw event descriptor]
+  cpu_atom/event=0..255,pc,edge,.../modifier         [Raw event descriptor]
+       [(see 'man perf-list' or 'man perf-record' on how to encode it)]
+  cpu_core/event=0..255,pc,edge,.../modifier         [Raw event descriptor]
+       [(see 'man perf-list' or 'man perf-record' on how to encode it)]
+  breakpoint//modifier                               [Raw event descriptor]
+  cstate_core/event=0..0xffffffffffffffff/modifier   [Raw event descriptor]
+  cstate_pkg/event=0..0xffffffffffffffff/modifier    [Raw event descriptor]
+  drm_i915//modifier                                 [Raw event descriptor]
+  hwmon_acpitz//modifier                             [Raw event descriptor]
+  hwmon_coretemp//modifier                           [Raw event descriptor]
+  hwmon_hp//modifier                                 [Raw event descriptor]
+  hwmon_iwlwifi//modifier                            [Raw event descriptor]
+  hwmon_nvme//modifier                               [Raw event descriptor]
+  hwmon_spd5118//modifier                            [Raw event descriptor]
+  hwmon_ucsi_source_psy_usbc000//modifier            [Raw event descriptor]
+  i915/i915_eventid=0..0x1fffff/modifier             [Raw event descriptor]
+  intel_bts//modifier                                [Raw event descriptor]
+  intel_pt/ptw,event,cyc_thresh=0..15,.../modifier   [Raw event descriptor]
+  kprobe/retprobe/modifier                           [Raw event descriptor]
+  msr/event=0..0xffffffffffffffff/modifier           [Raw event descriptor]
+  power/event=0..255/modifier                        [Raw event descriptor]
+  software//modifier                                 [Raw event descriptor]
+  tool//modifier                                     [Raw event descriptor]
+  tracepoint//modifier                               [Raw event descriptor]
+  uncore_arb/event=0..255,edge,inv,.../modifier      [Raw event descriptor]
+  uncore_cbox/event=0..255,edge,threshold=0..63,.../modifier[Raw event descriptor]
+  uncore_clock/event=0..255/modifier                 [Raw event descriptor]
+  uncore_imc_free_running/event=0..255,umask=0..255/modifier[Raw event descriptor]
+  uncore_imc/event=0..255,edge,chmask=0..15/modifier [Raw event descriptor]
+  uprobe/ref_ctr_offset=0..0xffffffff,retprobe/modifier[Raw event descriptor]
+  mem:<addr>[/len][:access]                          [Hardware breakpoint]
+  sdt_libc:cond_broadcast                            [SDT event]
+  sdt_libc:cond_destroy                              [SDT event]
+  sdt_libc:cond_init                                 [SDT event]
+  sdt_libc:cond_signal                               [SDT event]
+  sdt_libc:cond_wait                                 [SDT event]
+  sdt_libc:lll_lock_wait                             [SDT event]
+  sdt_libc:lll_lock_wait_private                     [SDT event]
+  sdt_libc:longjmp                                   [SDT event]
+  sdt_libc:longjmp_target                            [SDT event]
+  sdt_libc:memory_arena_new                          [SDT event]
+  sdt_libc:memory_arena_retry                        [SDT event]
+  sdt_libc:memory_arena_reuse                        [SDT event]
+  sdt_libc:memory_arena_reuse_free_list              [SDT event]
+  sdt_libc:memory_arena_reuse_wait                   [SDT event]
+  sdt_libc:memory_calloc_retry                       [SDT event]
+  sdt_libc:memory_heap_free                          [SDT event]
+  sdt_libc:memory_heap_less                          [SDT event]
+  sdt_libc:memory_heap_more                          [SDT event]
+  sdt_libc:memory_heap_new                           [SDT event]
+  sdt_libc:memory_malloc_retry                       [SDT event]
+  sdt_libc:memory_mallopt                            [SDT event]
+  sdt_libc:memory_mallopt_arena_max                  [SDT event]
+  sdt_libc:memory_mallopt_arena_test                 [SDT event]
+  sdt_libc:memory_mallopt_free_dyn_thresholds        [SDT event]
+  sdt_libc:memory_mallopt_mmap_max                   [SDT event]
+  sdt_libc:memory_mallopt_mmap_threshold             [SDT event]
+  sdt_libc:memory_mallopt_mxfast                     [SDT event]
+  sdt_libc:memory_mallopt_perturb                    [SDT event]
+  sdt_libc:memory_mallopt_top_pad                    [SDT event]
+  sdt_libc:memory_mallopt_trim_threshold             [SDT event]
+  sdt_libc:memory_memalign_retry                     [SDT event]
+  sdt_libc:memory_realloc_retry                      [SDT event]
+  sdt_libc:memory_sbrk_less                          [SDT event]
+  sdt_libc:memory_sbrk_more                          [SDT event]
+  sdt_libc:memory_tcache_double_free                 [SDT event]
+  sdt_libc:memory_tunable_tcache_count               [SDT event]
+  sdt_libc:memory_tunable_tcache_max_bytes           [SDT event]
+  sdt_libc:memory_tunable_tcache_unsorted_limit      [SDT event]
+  sdt_libc:mutex_acquired                            [SDT event]
+  sdt_libc:mutex_clocklock_entry                     [SDT event]
+  sdt_libc:mutex_destroy                             [SDT event]
+  sdt_libc:mutex_entry                               [SDT event]
+  sdt_libc:mutex_init                                [SDT event]
+  sdt_libc:mutex_release                             [SDT event]
+  sdt_libc:mutex_timedlock_acquired                  [SDT event]
+  sdt_libc:mutex_timedlock_entry                     [SDT event]
+  sdt_libc:pthread_create                            [SDT event]
+  sdt_libc:pthread_join                              [SDT event]
+  sdt_libc:pthread_join_ret                          [SDT event]
+  sdt_libc:pthread_start                             [SDT event]
+  sdt_libc:rdlock_acquire_read                       [SDT event]
+  sdt_libc:rdlock_entry                              [SDT event]
+  sdt_libc:rwlock_destroy                            [SDT event]
+  sdt_libc:rwlock_unlock                             [SDT event]
+  sdt_libc:setjmp                                    [SDT event]
+  sdt_libc:wrlock_acquire_write                      [SDT event]
+  sdt_libc:wrlock_entry                              [SDT event]
+  sdt_libstdcxx:catch                                [SDT event]
+  sdt_libstdcxx:rethrow                              [SDT event]
+  sdt_libstdcxx:throw                                [SDT event]
+  sdt_python:audit@/usr/bin/python3.13               [SDT event]
+  sdt_python:audit@/usr/lib/x86_64-linux-gnu/libpython3.13.so.1.0[SDT event]
+  sdt_python:gc__done@/usr/bin/python3.13[SDT event]
+  sdt_python:gc__done@/usr/lib/x86_64-linux-gnu/libpython3.13.so.1.0[SDT event]
+  sdt_python:gc__start@/usr/bin/python3.13[SDT event]
+  sdt_python:gc__start@/usr/lib/x86_64-linux-gnu/libpython3.13.so.1.0[SDT event]
+  sdt_python:import__find__load__done@/usr/bin/python3.13[SDT event]
+  sdt_python:import__find__load__done@/usr/lib/x86_64-linux-gnu/libpython3.13.so.1.0[SDT event]
+  sdt_python:import__find__load__start@/usr/bin/python3.13[SDT event]
+  sdt_python:import__find__load__start@/usr/lib/x86_64-linux-gnu/libpython3.13.so.1.0[SDT event]
+  sdt_rtld:init_complete                             [SDT event]
+  sdt_rtld:init_start                                [SDT event]
+  sdt_rtld:lll_lock_wait                             [SDT event]
+  sdt_rtld:lll_lock_wait_private                     [SDT event]
+  sdt_rtld:longjmp                                   [SDT event]
+  sdt_rtld:longjmp_target                            [SDT event]
+  sdt_rtld:map_complete                              [SDT event]
+  sdt_rtld:map_start                                 [SDT event]
+  sdt_rtld:reloc_complete                            [SDT event]
+  sdt_rtld:reloc_start                               [SDT event]
+  sdt_rtld:setjmp                                    [SDT event]
+  sdt_rtld:unmap_complete                            [SDT event]
+  sdt_rtld:unmap_start                               [SDT event]
 
- cpu-clock                                  [Software event]
- task-clock                                 [Software event]
- page-faults OR faults                      [Software event]
- minor-faults                               [Software event]
- major-faults                               [Software event]
- context-switches OR cs                     [Software event]
- cpu-migrations OR migrations               [Software event]
- alignment-faults                           [Software event]
- emulation-faults                           [Software event]
- bpf-output                                 [Software event]
- cgroup-switches                            [Software event]
- dummy                                      [Software event]
-
- L1-dcache-loads                            [Hardware cache event]
- L1-dcache-load-misses                      [Hardware cache event]
- L1-dcache-stores                           [Hardware cache event]
- L1-dcache-store-misses                     [Hardware cache event]
- L1-dcache-prefetches                       [Hardware cache event]
- L1-dcache-prefetch-misses                  [Hardware cache event]
- L1-icache-loads                            [Hardware cache event]
- L1-icache-load-misses                      [Hardware cache event]
- L1-icache-prefetches                       [Hardware cache event]
- L1-icache-prefetch-misses                  [Hardware cache event]
- LLC-loads                                  [Hardware cache event]
- LLC-load-misses                            [Hardware cache event]
- LLC-stores                                 [Hardware cache event]
- LLC-store-misses                           [Hardware cache event]
-
- LLC-prefetch-misses                        [Hardware cache event]
- dTLB-loads                                 [Hardware cache event]
- dTLB-load-misses                           [Hardware cache event]
- dTLB-stores                                [Hardware cache event]
- dTLB-store-misses                          [Hardware cache event]
- dTLB-prefetches                            [Hardware cache event]
- dTLB-prefetch-misses                       [Hardware cache event]
- iTLB-loads                                 [Hardware cache event]
- iTLB-load-misses                           [Hardware cache event]
- branch-loads                               [Hardware cache event]
- branch-load-misses                         [Hardware cache event]
-
- rNNN (see 'perf list --help' on how to encode it) [Raw hardware event descriptor]
-
- mem:<addr>[:access]                        [Hardware breakpoint]
-
- kvmmmu:kvm_mmu_pagetable_walk              [Tracepoint event]
-
- [...]
-
- sched:sched_stat_runtime                   [Tracepoint event]
- sched:sched_pi_setprio                     [Tracepoint event]
- syscalls:sys_enter_socket                  [Tracepoint event]
- syscalls:sys_exit_socket                   [Tracepoint event]
-
- [...]
-
+Metric Groups:
+[...]
+TopdownL1: [Metrics for top-down breakdown at level 1]
+  tma_backend_bound
+       [This category represents fraction of slots where no uops are being
+        delivered due to a lack of required resources for accepting new uops
+        in the Backend]
+  tma_bad_speculation
+       [This category represents fraction of slots wasted due to incorrect
+        speculations]
+  tma_frontend_bound
+       [This category represents fraction of slots where the processor's
+        Frontend undersupplies its Backend]
+  tma_retiring
+       [This category represents fraction of slots utilized by useful work
+        i.e. issued uops that eventually get retired]
+[...]
 ```
 
 An event can have sub-events (or unit masks). On some processors and for some events,
@@ -194,22 +468,32 @@ perf stat -B dd if=/dev/zero of=/dev/null count=1000000
 
 1000000+0 records in
 1000000+0 records out
-512000000 bytes (512 MB) copied, 0.956217 s, 535 MB/s
+512000000 bytes (512 MB, 488 MiB) copied, 2.14421 s, 239 MB/s
 
  Performance counter stats for 'dd if=/dev/zero of=/dev/null count=1000000':
 
-            5,099 cache-misses             #      0.005 M/sec (scaled from 66.58%)
-          235,384 cache-references         #      0.246 M/sec (scaled from 66.56%)
-        9,281,660 branch-misses            #      3.858 %     (scaled from 33.50%)
-      240,609,766 branches                 #    251.559 M/sec (scaled from 33.66%)
-    1,403,561,257 instructions             #      0.679 IPC   (scaled from 50.23%)
-    2,066,201,729 cycles                   #   2160.227 M/sec (scaled from 66.67%)
-              217 page-faults              #      0.000 M/sec
-                3 CPU-migrations           #      0.000 M/sec
-               83 context-switches         #      0.000 M/sec
-       956.474238 task-clock-msecs         #      0.999 CPUs
+               621      context-switches                 #    304.3 cs/sec  
+                 7      cpu-migrations                   #      3.4 migrations/sec
+                72      page-faults                      #     35.3 faults/sec
+          2,040.80 msec task-clock                       #      0.9 CPUs utilized
+         6,169,665      cpu_core/branch-misses/          #      0.3 %  branch_miss_rate         (86.46%)
+     2,045,176,946      cpu_core/branches/               #   1002.1 M/sec                       (86.46%)
+     8,057,111,968      cpu_core/cpu-cycles/             #      3.9 GHz                         (86.46%)
+     9,568,892,085      cpu_core/instructions/           #      1.2 instructions  insn_per_cycle  (86.46%)
+        12,425,379      cpu_atom/branch-misses/          #      0.3 %  branch_miss_rate         (6.67%)
+     3,705,918,977      cpu_atom/branches/               #   1815.9 M/sec                       (6.90%)
+     8,044,118,738      cpu_atom/cpu-cycles/             #      3.9 GHz                         (7.10%)
+    17,365,600,611      cpu_atom/instructions/           #      2.2 instructions  insn_per_cycle  (6.97%)
+             TopdownL1 (cpu_core)                        #      2.8 %  tma_bad_speculation
+                                                         #     36.9 %  tma_frontend_bound       (86.46%)
+                                                         #     31.1 %  tma_backend_bound
+                                                         #     29.1 %  tma_retiring             (86.46%)
+             TopdownL1 (cpu_atom)                        #     23.6 %  tma_backend_bound        (7.93%)
+                                                         #     21.0 %  tma_frontend_bound       (7.86%)
+                                                         #      3.2 %  tma_bad_speculation
+                                                         #     52.3 %  tma_retiring             (7.86%)
 
-       0.957617512  seconds time elapsed
+       2.169885369 seconds time elapsed
 
 ```
 With no events specified, `perf stat` collects the common events listed above. Some are software
@@ -1145,7 +1429,41 @@ $perf bench sched messaging -g 64
 
 ### mem: Memory access benchmarks
 
+This benchmark measures the performance of memory access functions like `memcpy`.
+
+```sh
+$ perf bench mem memcpy
+# Running 'mem/memcpy' benchmark:
+# function 'default' (Default memcpy() provided by glibc)
+# Copying 1MB bytes ...
+      30.517578 GB/sec
+# function 'x86-64-unrolled' (unrolled memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+      28.722426 GB/sec
+# function 'x86-64-movsq' (movsq-based memcpy() in arch/x86/lib/memcpy_64.S)
+# Copying 1MB bytes ...
+      30.517578 GB/sec
+```
+
 ### numa: NUMA scheduling and MM benchmarks
+
+This benchmark measures performance of NUMA workloads.
+
+```sh
+$ perf bench numa mem
+# Running 'numa/mem' benchmark:
+# Running main, "perf bench numa numa-mem"
+...
+         20.020 secs slowest (max) thread-runtime
+         20.000 secs fastest (min) thread-runtime
+         20.017 secs average thread-runtime
+          0.049 % difference between max/avg runtime
+        760.952 GB data processed, per thread
+        760.952 GB data processed, total
+          0.026 nsecs/byte/thread runtime
+         38.010 GB/sec/thread speed
+         38.010 GB/sec total speed
+```
 
 ### futex: Futex stressing benchmarks
 
@@ -1260,11 +1578,28 @@ In certain situations it may be beneficial to turn off the `build-id` cache upda
 perf record -N dd if=/dev/zero of=/dev/null count=100000
 ```
 
-###  Access Control
+### Access Control and `perf_event_paranoid`
 
-For some events, it is necessary to be `root` to invoke the `perf` tool. This document assumes
-that the user has root privileges. If you try to run perf with insufficient privileges, it will
-report
+For some events, it is necessary to be `root` or have specific capabilities to invoke the `perf` tool. However, modern Linux systems allow configuring access for non-root users via the `/proc/sys/kernel/perf_event_paranoid` file.
+
+The value in this file determines the level of access allowed for unprivileged users:
+
+- **-1**: Allow use of all events by all users (even raw tracepoints). This is highly insecure.
+- **0**: Allow use of raw tracepoints (e.g., `perf trace`) by users without `CAP_SYS_ADMIN` or `CAP_PERFMON`.
+- **1**: Allow use of CPU events (e.g., `perf stat`, `perf record` for hardware counters) by users without `CAP_SYS_ADMIN` or `CAP_PERFMON`. This is often the default or recommended setting for development.
+- **2**: Allow only user-space profiling (no kernel events).
+- **3**: Disallow all unprivileged profiling.
+
+To set the value (requires root):
+```sh
+sudo sysctl -w kernel.perf_event_paranoid=1
+```
+Or persistently in `/etc/sysctl.conf`:
+```text
+kernel.perf_event_paranoid = 1
+```
+
+If you try to run `perf` with insufficient privileges, it will report:
 ```sh
 No permission to collect system-wide stats.
 ```
@@ -1324,7 +1659,7 @@ The second step is merging sched_start and sched_switch events. It can be done w
 ## Other Resources
 
 ### Linux sourcecode
-The perf tools sourcecode lives in the Linux kernel tree under [`/tools/perf`](https://elixir.bootlin.com/linux/latest/source/tools/perf/). You will find much more documentation in [`/tools/perf/Documentation`](https://elixir.bootlin.com/linux/latest/source/tools/perf/Documentation). To build manpages, info pages and more, install these tools:
+The perf tools sourcecode lives in the Linux kernel tree under [`/tools/perf`](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/). You will find much more documentation in [`/tools/perf/Documentation`](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/tools/perf/Documentation). To build manpages, info pages and more, install these tools:
 
 - asciidoc
 - tetex-fonts
