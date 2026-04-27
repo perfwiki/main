@@ -6,17 +6,18 @@ nav:
   - Main Page: index.md
   - Tutorial:
     - Introduction: tutorial.md
-    - perf stat: tutorial/#counting-with-perf-stat
-    - perf record: tutorial/#sampling-with-perf-record
-    - Flame Graph: tutorial/#flame-graph
-    - Firefox Profiler: tutorial/#firefox-profiler
-    - perf report: tutorial/#sample-analysis-with-perf-report
-    - perf annotate: tutorial/#source-level-analysis-with-perf-annotate
-    - perf top: tutorial/#live-analysis-with-perf-top
+    - perf stat: tutorial.md#counting-with-perf-stat
+    - perf record: tutorial.md#sampling-with-perf-record
+    - Flame Graph: tutorial.md#flame-graph
+    - Firefox Profiler: tutorial.md#firefox-profiler
+    - perf report: tutorial.md#sample-analysis-with-perf-report
+    - perf annotate: tutorial.md#source-level-analysis-with-perf-annotate
+    - perf top: tutorial.md#live-analysis-with-perf-top
   - Useful Links : useful-links.md
   - Top-Down Analysis: top-down-analysis.md
   - Kernel lock contention : lock-contention.md
   - perf tools support for Intel® Processor Trace : perf-tools-support-for-intel-processor-trace.md
+  - Hardware Reference: hardware-reference.md
   - Glossary : glossary.md
   - Man pages: man-pages.md
 
