@@ -20,6 +20,7 @@
 - Explains measuring performance counters directly with perf_event_open, without perf tool:
 	- [Use perf_event_open for counting](https://github.com/ArmDeveloperEcosystem/arm-learning-paths/blob/main/content/learning-paths/servers-and-cloud-computing/arm_pmu/perf_event_open.md)
 	- [self-perf](https://github.com/ThinkOpenly/self-profiling)
+- [Arnaldo Carvalho de Melo's original paper: The New Linux ’perf’ Tools](https://fedorapeople.org/~acme/perf/lk2010-perf-paper.pdf)
 
 # Useful web sites about profilers
 
