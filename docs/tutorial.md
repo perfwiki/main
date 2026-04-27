@@ -602,19 +602,28 @@ events. The following table provides the number of counters for a few common pro
 
 | Processor                                                                        | Generic counters | Fixed counters |
 |:--------------------------------------------------------------------------------:|:----------------:|:--------------:|
-| [AMD Zen](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures)      | 6                | 0              |
-| [ARM Cortex](https://en.wikipedia.org/wiki/List_of_ARM_processors)               | 6                | 0              |
-| [Intel Core](https://en.wikipedia.org/wiki/Intel_Core_(microarchitecture))       | 2                | 3              |
+| [AMD Athlon / Phenom](https://en.wikipedia.org/wiki/Athlon)                       | 4                | 0              |
+| [AMD Family 15h (Bulldozer)](https://en.wikipedia.org/wiki/Bulldozer_(microarchitecture)) | 6 | 0              |
+| [AMD Zen 1-5](https://en.wikipedia.org/wiki/List_of_AMD_CPU_microarchitectures)  | 6                | 0              |
+| [ARM Cortex-A / X series](https://en.wikipedia.org/wiki/List_of_ARM_processors)  | 6                | 0              |
+| [ARM Neoverse N1 / N2](https://developer.arm.com/)                               | 6                | 0              |
+| [Qualcomm Kryo / Oryon](https://en.wikipedia.org/wiki/Qualcomm_Kryo)              | 6                | 0              |
+| [Alpha 21264](https://en.wikipedia.org/wiki/Alpha_21264)                         | 2                | 0              |
+| [IBM POWER (Modern)](https://en.wikipedia.org/wiki/IBM_POWER_microprocessors)    | 6                | 0              |
+| [Intel Pentium / Pentium MMX](https://en.wikipedia.org/wiki/Pentium)            | 2                | 0              |
+| [Intel Pentium Pro / II / III](https://en.wikipedia.org/wiki/Pentium_Pro)        | 2                | 0              |
+| [Intel Pentium 4](https://en.wikipedia.org/wiki/Pentium_4)                      | 18               | 0              |
+| [Intel Pentium M](https://en.wikipedia.org/wiki/Pentium_M)                      | 2                | 0              |
+| [Intel Core (Legacy)](https://en.wikipedia.org/wiki/Intel_Core_(microarchitecture)) | 2                | 3              |
 | [Intel Nehalem](https://en.wikipedia.org/wiki/Nehalem_(microarchitecture))       | 4                | 3              |
-| [Intel SandyBridge](https://en.wikipedia.org/wiki/Sandy_Bridge)                  | 4                | 3              |
-| [Intel Haswell](https://en.wikipedia.org/wiki/Haswell_(microarchitecture))       | 4                | 3              |
 | [Intel Skylake](https://en.wikipedia.org/wiki/Skylake_(microarchitecture))       | 4                | 3              |
-| [Intel Sunny Cove](https://en.wikipedia.org/wiki/Sunny_Cove_(microarchitecture)) | 8                | 5              |
-| [Intel Willow Cove](https://en.wikipedia.org/wiki/Willow_Cove)                   | 8                | 5              |
-| [Intel Golden Cove](https://en.wikipedia.org/wiki/Golden_Cove)                   | 8                | 5              |
-| [Intel Raptor Cove](https://en.wikipedia.org/wiki/Raptor_Cove)                   | 8                | 5              |
+| [Intel Sunny Cove to Lion Cove (P-Cores)](https://en.wikipedia.org/wiki/Golden_Cove) | 8                | 5              |
+| [Intel Gracemont to Skymont (E-Cores)](https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures) | 6                | 3              |
 Generic counters can measure any events. Fixed counters can only measure one event. Some counters
 may be reserved for special purposes, such as a watchdog timer.
+
+> [!NOTE]
+> Advanced sampling features like **Intel PT**, **AMD IBS**, and **ARM SPE** operate independently of the general-purpose performance counters and do not consume them. These features provide precise sampling or instruction tracing capabilities without competing for the standard counters, helping to avoid multiplexing.
 
 The following examples show the effect of scaling:
 ```sh
