@@ -623,7 +623,8 @@ events. The following table provides the number of counters for a few common pro
 Generic counters can measure any events. Fixed counters can only measure one event. Some counters
 may be reserved for special purposes, such as a watchdog timer.
 
-> [!NOTE] Advanced sampling features like **Intel PT**, **AMD IBS**, and **ARM SPE** operate independently of the general-purpose performance counters and do not consume them. These features provide precise sampling or instruction tracing capabilities without competing for the standard counters, helping to avoid multiplexing.
+!!! note
+    Advanced sampling features like **Intel PT**, **AMD IBS**, and **ARM SPE** operate independently of the general-purpose performance counters and do not consume them. These features provide precise sampling or instruction tracing capabilities without competing for the standard counters, helping to avoid multiplexing.
 
 The following examples show the effect of scaling:
 ```sh
