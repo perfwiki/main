@@ -868,39 +868,55 @@
 <h1 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h1>
 <h2 id="development_1">Development<a class="headerlink" href="#development_1" title="Permanent link">&para;</a></h2>
 <h2 id="installation-guide">Installation Guide<a class="headerlink" href="#installation-guide" title="Permanent link">&para;</a></h2>
-<p>You'll need to install <code>perf</code> in your system. <code>perf</code> uses CPU performance counters( Performance Monitoring Counters or PMCs). </p>
-<p>1) Install Required Packages like <em>libelf-dev</em> <em>libdw-dev</em> <em>binutils-dev</em><br />
-<em>libaudit-dev</em> by using the following command </p>
-<pre><code class="language-sh"> sudo apt-get install build-essential libelf-dev libdw-dev binutils-dev 
- libaudit-dev libtraceevent-dev systemtap-sdt-dev libunwind-dev libslang2-dev libperl-dev libzstd-dev libbabeltrace-ctf-dev flex bison 
-</code></pre>
-<p>2) Download the Source code for perf-tools v6.3 using the following command</p>
-<pre><code class="language-sh"> git clone https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/
-</code></pre>
-<p>3) Install <code>perf</code>. <code>perf</code> command is available in packages <em>linux-tools-common</em>, <em>linux-intel-iotg-tools-common</em>, etc. Hence, install any of these. </p>
-<p>4) Run <code>make</code> command to build the project</p>
-<pre><code>- 4.1) It may show an error since the config file is not set and has to be changed. Run the following command.
-</code></pre>
-<p><code>make xconfig</code> </p>
-<pre><code>- 4.2) We will also need to install qt5 for this. 
-Install it using `sudo apt-get install qtbase5-dev` OR `sudo apt install qt5*` and set the path using 
-```sh
-export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
-```
-
-- 4.3) Check if qt5 has been installed properly using *qmake --version*
-
-- 4.4) You might need to set `kernel.perf_event_paranoid = -1` because the `perf record` command may fail due to restricted access to performance monitoring features on your system.
-```sh
-sudo sysctl -w kernel.perf_event_paranoid=-1
-```
-
-Note: this should not be done in production environment
-
-- 4.4) Now, Finally run *make xconfig* and it will work properly.
-</code></pre>
-<p>5) Go to the root directory of the kernel and run <code>perf test</code>. You will see tests 
-passing, skipping, or failing.</p>
+<p>You'll need to install <code>perf</code> in your system. <code>perf</code> uses CPU performance counters (Performance Monitoring Counters or PMCs).</p>
+<ol>
+<li>
+<p>Install Required Packages like <em>libelf-dev</em> <em>libdw-dev</em> <em>binutils-dev</em>
+   <em>libaudit-dev</em> by using the following command</p>
+<p><code>sh
+sudo apt-get install build-essential libelf-dev libdw-dev binutils-dev \
+libaudit-dev libtraceevent-dev systemtap-sdt-dev libunwind-dev libslang2-dev libperl-dev libzstd-dev libbabeltrace-ctf-dev flex bison</code></p>
+</li>
+<li>
+<p>Download the latest perf-tools Source code using the following command</p>
+<p><code>sh
+git clone https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/</code></p>
+</li>
+<li>
+<p>Install <code>perf</code>. <code>perf</code> command is available in packages <em>linux-tools-common</em>, <em>linux-intel-iotg-tools-common</em>, etc. Hence, install any of these.</p>
+</li>
+<li>
+<p>Run <code>make</code> command to build the project</p>
+<ol>
+<li>
+<p>It may show an error since the config file is not set and has to be changed. Run the following command.</p>
+<p><code>sh
+make xconfig</code></p>
+</li>
+<li>
+<p>We will also need to install qt5 for this. Install it using <code>sudo apt-get install qtbase5-dev</code> OR <code>sudo apt install qt5*</code> and set the path using</p>
+<p><code>sh
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig</code></p>
+</li>
+<li>
+<p>Check if qt5 has been installed properly using <em>qmake --version</em></p>
+</li>
+<li>
+<p>You might need to set <code>kernel.perf_event_paranoid = -1</code> because the <code>perf record</code> command may fail due to restricted access to performance monitoring features on your system.</p>
+<p><code>sh
+sudo sysctl -w kernel.perf_event_paranoid=-1</code></p>
+<p>Note: this should not be done in production environment</p>
+</li>
+<li>
+<p>Now, Finally run <em>make xconfig</em> and it will work properly.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Go to the root directory of the kernel and run <code>perf test</code>. You will see tests
+   passing, skipping, or failing.</p>
+</li>
+</ol>
 <h2 id="maintainer-trees">Maintainer Trees<a class="headerlink" href="#maintainer-trees" title="Permanent link">&para;</a></h2>
 <h3 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h3>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git/log/?h=perf/core">tip.git perf/core</a></p>
@@ -935,7 +951,7 @@ passing, skipping, or failing.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="October 14, 2024 13:58:11 UTC">2024-10-14 13:58:11</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime" title="June 3, 2026 01:40:36 UTC">2026-06-03 01:40:36</span>
   </span>
 
     
