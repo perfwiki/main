@@ -1,12 +1,16 @@
+image: python:3.14
+stages:
+  - deploy
 pages:
   stage: deploy
-  image: python:latest
+  variables:
+    # https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/#:~:text=Gitlab%20Runners
+    GIT_DEPTH: "0"
   script:
-    - pip install mkdocs-material
+    - python -m pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
     - mkdocs build --site-dir public
   artifacts:
     paths:
       - public
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-
