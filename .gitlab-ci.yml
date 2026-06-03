@@ -4,7 +4,7 @@ stages:
 pages:
   stage: deploy
   variables:
-    # https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/#:~:text=(docs)-,Gitlab%20Runners,-%3A%20set%
+    # https://timvink.github.io/mkdocs-git-revision-date-localized-plugin/#:~:text=Gitlab%20Runners
     GIT_DEPTH: "0"
   script:
     - python -m pip install mkdocs-material mkdocs-git-revision-date-localized-plugin
