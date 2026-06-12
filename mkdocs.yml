@@ -52,6 +52,7 @@ markdown_extensions:
   - admonition
   - footnotes
   - meta
+  - pymdownx.superfences
   - toc:
       permalink: true
 
