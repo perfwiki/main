@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -1047,7 +1047,7 @@ features.  This document will use BPF and tool version 6.2.</p>
 <h3 id="by-stack-trace">By stack trace<a class="headerlink" href="#by-stack-trace" title="Permanent link">&para;</a></h3>
 <p>The default behavior of the tool collects the contention stat by stack
 trace (in kernel only) and shows the key function for each entry.</p>
-<pre><code># perf lock con -ab sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -ab sleep 1
  contended   total wait     max wait     avg wait         type   caller
 
          2     27.49 us     15.86 us     13.74 us     spinlock   raw_spin_rq_lock_nested+0x1b
@@ -1057,7 +1057,7 @@ trace (in kernel only) and shows the key function for each entry.</p>
          1     13.82 us     13.82 us     13.82 us     spinlock   __queue_work+0x174
          2     12.80 us      9.55 us      6.40 us     spinlock   process_one_work+0x1f0
          1     10.31 us     10.31 us     10.31 us     rwlock:R   ep_poll_callback+0x2d
-</code></pre>
+</code></pre></div>
 <p>It uses system wide mode (<code>-a</code>) with BPF (<code>-b</code>).  I think these are
 options you want to use mostly.  The ‘sleep 1’ part is just to run
 the tool for 1 second.  It’s a common pattern for the perf tools.</p>
@@ -1067,7 +1067,7 @@ collecting the stack trace.  It skips internal lock functions and
 picks whatever follows them immediately.</p>
 <p>The following command shows the whole stack traces (<code>-v</code>) for top 3
 lock contentions (<code>-E 3</code>).</p>
-<pre><code># perf lock con -abv -E3 sleep 1
+<p><div class="highlight"><pre><span></span><code># perf lock con -abv -E3 sleep 1
 Looking at the vmlinux_path (8 entries long)
 symsrc__init: cannot get elf header.
 Using /proc/kcore for kernel data
@@ -1111,8 +1111,8 @@ histogram of failure reasons
       stack: 0
        time: 0
        data: 0
-</code></pre>
-<p>The debug output at the end might look different as it’s changed recently.</p>
+</code></pre></div>
+The debug output at the end might look different as it’s changed recently.</p>
 <p>Here is the list of relevant options:</p>
 <ul>
 <li><code>--max-stack</code> NUM : maximum depth of stack trace to collect.  The default value is 8.</li>
@@ -1122,23 +1122,23 @@ histogram of failure reasons
 filter (<code>-L ffff9f88c0248000</code>) to see the contention for the lock only.
 To get the address or symbol name (if available), run the tool with <code>-l</code>
 option to output them first.  See below (“By lock” section).</p>
-<pre><code># perf lock con -ab -L ffff9f88c0248000 sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -ab -L ffff9f88c0248000 sleep 1
  contended   total wait     max wait     avg wait         type   caller
 
      39412      1.58 s     123.50 us     40.15 us     spinlock   __cache_free_alien+0x6c
-</code></pre>
+</code></pre></div>
 <p>In this example, all the contention came from the same stack trace and
 that’s why it showed a single entry.  But it could have multiple
 entries if the contention has diverse paths.</p>
 <p>Or you can pass a lock name (<code>-L jiffies_lock</code>).</p>
-<pre><code># perf lock con -ab -L jiffies_lock sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -ab -L jiffies_lock sleep 1
  contended   total wait     max wait     avg wait         type   caller
 
          3     24.47 us     12.09 us      8.16 us     spinlock   tick_irq_enter+0xf0
-</code></pre>
+</code></pre></div>
 <h3 id="by-task">By task<a class="headerlink" href="#by-task" title="Permanent link">&para;</a></h3>
 <p>It’s possible to collect lock stats by task using the <code>-t</code> (<code>--threads</code>) option.</p>
-<pre><code># perf lock con -abt sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -abt sleep 1
  contended   total wait     max wait     avg wait          pid   comm
 
          6    173.91 us    114.87 us     28.99 us         7738   chrome
@@ -1149,31 +1149,31 @@ entries if the contention has diverse paths.</p>
          1      2.25 us      2.25 us      2.25 us         7733   Chrome_ChildIOT
          1      2.24 us      2.24 us      2.24 us         5516   pipewire-pulse
          1       900 ns       900 ns       900 ns        56628   kworker/4:1
-</code></pre>
+</code></pre></div>
 <p>You can only see contentions for mutex using the <code>-Y mutex</code> option.</p>
-<pre><code># perf lock con -abt -Y mutex sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -abt -Y mutex sleep 1
  contended   total wait     max wait     avg wait          pid   comm
 
          2    346.15 us    203.47 us    173.08 us        60409   kworker/7:0
          2    294.77 us    164.66 us    147.38 us        55417   kworker/7:2
-</code></pre>
+</code></pre></div>
 <p>The perf tool v6.3 added the <code>-o</code> option to track lock owners instead
 of waiters.  This is only available with BPF.</p>
-<pre><code># perf lock con -abto -Y mutex sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -abto -Y mutex sleep 1
  contended   total wait     max wait     avg wait          pid   comm
 
          1    199.45 us    199.45 us    199.45 us      1091507   kworker/2:0
          1    149.16 us    149.16 us    149.16 us         3583   NetworkManager
        146     63.42 us     12.50 us       434 ns           -1   Unknown
-</code></pre>
+</code></pre></div>
 <p>You can get the stack trace of the owner using PID like with this script.</p>
-<pre><code># perf lock con -abtoq -Y mutex -x, sleep 1 2&gt;&amp;1 | cut -d, -f5 | tr -d ' ' | \
+<div class="highlight"><pre><span></span><code># perf lock con -abtoq -Y mutex -x, sleep 1 2&gt;&amp;1 | cut -d, -f5 | tr -d ' ' | \
   awk '{ system(“cat /proc/$$1/stack”); }'
-</code></pre>
+</code></pre></div>
 <h3 id="by-lock">By lock<a class="headerlink" href="#by-lock" title="Permanent link">&para;</a></h3>
 <p>Also you can get per-lock contention stats using the <code>-l</code> (lower L, also
 with <code>--lock-addr</code>) option.</p>
-<pre><code># perf lock con -abl sleep 1
+<div class="highlight"><pre><span></span><code># perf lock con -abl sleep 1
  contended   total wait     max wait     avg wait            address   symbol
 
         15      2.57 ms    187.89 us    171.09 us   ffffa64fdb3f11b8    (mutex)
@@ -1188,7 +1188,7 @@ with <code>--lock-addr</code>) option.</p>
          1      1.16 us      1.16 us      1.16 us   ffffa0060e7345c0    (spinlock)
          1       240 ns       240 ns       240 ns   ffffffff92e99800   kernfs_open_file_mutex (mutex)
          1       220 ns       220 ns       220 ns   ffff9f88cf9c53e0    (spinlock)
-</code></pre>
+</code></pre></div>
 <p>The symbols are displayed when found in the kallsysms and followed by
 lock type name.  This output can be useful to apply filters for other
 modes.</p>
@@ -1197,12 +1197,12 @@ and "siglock" as well as some global locks which lack symbols like
 "rq_lock".  This is done by BPF so you need the <code>-b</code> option.</p>
 <h3 id="by-cgroup">By cgroup<a class="headerlink" href="#by-cgroup" title="Permanent link">&para;</a></h3>
 <p>You can also get per-cgroup lock contention stats using <code>--lock-cgroup</code> option.</p>
-<pre><code># perf lock con -ab --lock-cgroup -E 2 sleep 3
+<div class="highlight"><pre><span></span><code># perf lock con -ab --lock-cgroup -E 2 sleep 3
    contended   total wait     max wait     avg wait   cgroup
 
          214      9.24 ms    338.39 us     43.18 us   /
          782      1.56 ms     23.21 us      2.00 us   /sys
-</code></pre>
+</code></pre></div>
 <p>You can also use other filter options (like <code>-L</code> or <code>-Y</code>) together to
 limit the target lock if needed.</p>
 <p>The perf tool v6.7 added this option.  Please check if you are using
@@ -1325,7 +1325,7 @@ used during the record.  Then the rest will work just like the BPF case.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

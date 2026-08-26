@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -873,14 +873,14 @@
 <li>
 <p>Install Required Packages like <em>libelf-dev</em> <em>libdw-dev</em> <em>binutils-dev</em>
    <em>libaudit-dev</em> by using the following command</p>
-<p><code>sh
-sudo apt-get install build-essential libelf-dev libdw-dev binutils-dev \
-libaudit-dev libtraceevent-dev systemtap-sdt-dev libunwind-dev libslang2-dev libperl-dev libzstd-dev libbabeltrace-ctf-dev flex bison</code></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>libelf-dev<span class="w"> </span>libdw-dev<span class="w"> </span>binutils-dev<span class="w"> </span><span class="se">\</span>
+libaudit-dev<span class="w"> </span>libtraceevent-dev<span class="w"> </span>systemtap-sdt-dev<span class="w"> </span>libunwind-dev<span class="w"> </span>libslang2-dev<span class="w"> </span>libperl-dev<span class="w"> </span>libzstd-dev<span class="w"> </span>libbabeltrace-ctf-dev<span class="w"> </span>flex<span class="w"> </span>bison
+</code></pre></div>
 </li>
 <li>
 <p>Download the latest perf-tools Source code using the following command</p>
-<p><code>sh
-git clone https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/</code></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/
+</code></pre></div>
 </li>
 <li>
 <p>Install <code>perf</code>. <code>perf</code> command is available in packages <em>linux-tools-common</em>, <em>linux-intel-iotg-tools-common</em>, etc. Hence, install any of these.</p>
@@ -890,21 +890,21 @@ git clone https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.g
 <ol>
 <li>
 <p>It may show an error since the config file is not set and has to be changed. Run the following command.</p>
-<p><code>sh
-make xconfig</code></p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>xconfig
+</code></pre></div>
 </li>
 <li>
 <p>We will also need to install qt5 for this. Install it using <code>sudo apt-get install qtbase5-dev</code> OR <code>sudo apt install qt5*</code> and set the path using</p>
-<p><code>sh
-export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig</code></p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span>/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig
+</code></pre></div>
 </li>
 <li>
 <p>Check if qt5 has been installed properly using <em>qmake --version</em></p>
 </li>
 <li>
 <p>You might need to set <code>kernel.perf_event_paranoid = -1</code> because the <code>perf record</code> command may fail due to restricted access to performance monitoring features on your system.</p>
-<p><code>sh
-sudo sysctl -w kernel.perf_event_paranoid=-1</code></p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>kernel.perf_event_paranoid<span class="o">=</span>-1
+</code></pre></div>
 <p>Note: this should not be done in production environment</p>
 </li>
 <li>
@@ -1019,7 +1019,7 @@ sudo sysctl -w kernel.perf_event_paranoid=-1</code></p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

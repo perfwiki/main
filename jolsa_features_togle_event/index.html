@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -899,13 +899,13 @@ enough to be used for any kind of event.</p>
 <h3 id="kernel">Kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h3>
 <p>The interface to create a toggle event is similar as the one
 for defining event group. Use perf syscall with:</p>
-<pre><code class="language-sh">int sys_perf_event_open(struct perf_event_attr *attr,
-                        pid_t pid, int cpu, int group_fd,
-                        unsigned long flags)
+<div class="highlight"><pre><span></span><code>int<span class="w"> </span>sys_perf_event_open<span class="o">(</span>struct<span class="w"> </span>perf_event_attr<span class="w"> </span>*attr,
+<span class="w">                        </span>pid_t<span class="w"> </span>pid,<span class="w"> </span>int<span class="w"> </span>cpu,<span class="w"> </span>int<span class="w"> </span>group_fd,
+<span class="w">                        </span>unsigned<span class="w"> </span>long<span class="w"> </span>flags<span class="o">)</span>
 
-flags    - PERF_FLAG_TOGGLE_ON or PERF_FLAG_TOGGLE_OFF
-group_fd - event (or group) fd to be toggled
-</code></pre>
+flags<span class="w">    </span>-<span class="w"> </span>PERF_FLAG_TOGGLE_ON<span class="w"> </span>or<span class="w"> </span>PERF_FLAG_TOGGLE_OFF
+group_fd<span class="w"> </span>-<span class="w"> </span>event<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>group<span class="o">)</span><span class="w"> </span>fd<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>toggled
+</code></pre></div>
 <p>Created event will toggle <strong>ON(start)</strong> or <strong>OFF(stop)</strong> the event
 specified via group_fd.</p>
 <p>Obviously this way it's not possible for toggle event to
@@ -916,25 +916,25 @@ you need to use <strong>PERF_EVENT_IOC_SET_TOGGLE ioctl</strong>.</p>
 <li>allowing the toggle event being part of the group</li>
 <li>allowing to define toggle setting after event is created</li>
 </ul>
-<pre><code class="language-sh">u64 args[2] = { toggled_fd, flag };
-err = ioctl(fd, PERF_EVENT_IOC_SET_TOGGLE, args);
-</code></pre>
-<p>Where:</p>
-<pre><code class="language-sh">toggled_fd - is file description of the event we want to toggle
-flag       - is one of PERF_FLAG_TOGGLE_ON|PERF_FLAG_TOGGLE_OFF
-err        -  0 when successful
-             -1 otherwise with errno:
-                EBUSY  - event has already toggled event defined
-                EFAULT - could not copy user data
-                EINVAL - wrong data
-</code></pre>
+<div class="highlight"><pre><span></span><code>u64<span class="w"> </span>args<span class="o">[</span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>toggled_fd,<span class="w"> </span>flag<span class="w"> </span><span class="o">}</span><span class="p">;</span>
+<span class="nv">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ioctl<span class="o">(</span>fd,<span class="w"> </span>PERF_EVENT_IOC_SET_TOGGLE,<span class="w"> </span>args<span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<p>Where:
+<div class="highlight"><pre><span></span><code>toggled_fd<span class="w"> </span>-<span class="w"> </span>is<span class="w"> </span>file<span class="w"> </span>description<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>event<span class="w"> </span>we<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>toggle
+flag<span class="w">       </span>-<span class="w"> </span>is<span class="w"> </span>one<span class="w"> </span>of<span class="w"> </span>PERF_FLAG_TOGGLE_ON<span class="p">|</span>PERF_FLAG_TOGGLE_OFF
+err<span class="w">        </span>-<span class="w">  </span><span class="m">0</span><span class="w"> </span>when<span class="w"> </span>successful
+<span class="w">             </span>-1<span class="w"> </span>otherwise<span class="w"> </span>with<span class="w"> </span>errno:
+<span class="w">                </span>EBUSY<span class="w">  </span>-<span class="w"> </span>event<span class="w"> </span>has<span class="w"> </span>already<span class="w"> </span>toggled<span class="w"> </span>event<span class="w"> </span>defined
+<span class="w">                </span>EFAULT<span class="w"> </span>-<span class="w"> </span>could<span class="w"> </span>not<span class="w"> </span>copy<span class="w"> </span>user<span class="w"> </span>data
+<span class="w">                </span>EINVAL<span class="w"> </span>-<span class="w"> </span>wrong<span class="w"> </span>data
+</code></pre></div></p>
 <h3 id="perf-tool">Perf Tool<a class="headerlink" href="#perf-tool" title="Permanent link">&para;</a></h3>
 <p>The support for toggling events is added into record and stat commands.</p>
 <p>The toggling events are defined via <strong>on/off terms</strong>, assigned with the name
 of the event they should toggle.</p>
-<p>Toggling events are define within -e option using on/off terms, like</p>
-<pre><code class="language-sh">-e 'cycles,irq_entry/on=cycles/,irq_exit/off=cycles/'
-</code></pre>
+<p>Toggling events are define within -e option using on/off terms, like
+<div class="highlight"><pre><span></span><code>-e<span class="w"> </span><span class="s1">'cycles,irq_entry/on=cycles/,irq_exit/off=cycles/'</span>
+</code></pre></div></p>
 <p>Meaning:</p>
 <ul>
 <li>irq_entry <strong>toggles on</strong> (starts) cycles, and irq_exit <strong>toggled off</strong> (stops) cycles.</li>
@@ -943,100 +943,103 @@ of the event they should toggle.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h4 id="example-using-kretprobes">Example - using k(ret)probes<a class="headerlink" href="#example-using-kretprobes" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Define toggle(on/off) events:</li>
+<li>
+<p>Define toggle(on/off) events:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf probe -a fork_entry=do_fork</span>
+<span class="c1"># perf probe -a fork_exit=do_fork%return</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Following record session samples only within do_fork function:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf record -g -e '{cycles,cache-misses}:k,probe:fork_entry/on=cycles/,probe:fork_exit/off=cycles/' \ </span>
+<span class="w">  </span>perf<span class="w"> </span>bench<span class="w"> </span>sched<span class="w"> </span>messaging
+</code></pre></div></p>
+</li>
+<li>
+<p>Following stat session measure cycles within do_fork function:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf stat -e '{cycles,cache-misses}:k,probe:fork_entry/on=cycles/,probe:fork_exit/off=cycles/' \ </span>
+<span class="w">  </span>perf<span class="w"> </span>bench<span class="w"> </span>sched<span class="w"> </span>messaging
+
+<span class="c1"># Running sched/messaging benchmark...</span>
+<span class="c1"># 20 sender and receiver processes per group</span>
+<span class="c1"># 1 groups == 40 processes run</span>
+
+<span class="w">     </span>Total<span class="w"> </span>time:<span class="w"> </span><span class="m">0</span>.073<span class="w"> </span><span class="o">[</span>sec<span class="o">]</span>
+
+<span class="w"> </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'./perf bench sched messaging -g 1'</span>:
+
+<span class="w">        </span><span class="m">20</span>,935,464<span class="w"> </span>cycles<span class="w">                    </span><span class="c1">#    0.000 GHz</span>
+<span class="w">            </span><span class="m">18</span>,897<span class="w"> </span>cache-misses
+<span class="w">                </span><span class="m">40</span><span class="w"> </span>probe:fork_entry
+<span class="w">                </span><span class="m">40</span><span class="w"> </span>probe:fork_exit
+
+<span class="w">       </span><span class="m">0</span>.086319682<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+</code></pre></div></p>
+</li>
 </ul>
-<pre><code class="language-sh"># perf probe -a fork_entry=do_fork
-# perf probe -a fork_exit=do_fork%return
-</code></pre>
-<ul>
-<li>Following record session samples only within do_fork function:</li>
-</ul>
-<pre><code class="language-sh"># perf record -g -e '{cycles,cache-misses}:k,probe:fork_entry/on=cycles/,probe:fork_exit/off=cycles/' \ 
-  perf bench sched messaging
-</code></pre>
-<ul>
-<li>Following stat session measure cycles within do_fork function:</li>
-</ul>
-<pre><code class="language-sh"># perf stat -e '{cycles,cache-misses}:k,probe:fork_entry/on=cycles/,probe:fork_exit/off=cycles/' \ 
-  perf bench sched messaging
-
-# Running sched/messaging benchmark...
-# 20 sender and receiver processes per group
-# 1 groups == 40 processes run
-
-     Total time: 0.073 [sec]
-
- Performance counter stats for './perf bench sched messaging -g 1':
-
-        20,935,464 cycles                    #    0.000 GHz
-            18,897 cache-misses
-                40 probe:fork_entry
-                40 probe:fork_exit
-
-       0.086319682 seconds time elapsed
-
-</code></pre>
 <h4 id="example-using-uretprobes">Example - using u(ret)probes<a class="headerlink" href="#example-using-uretprobes" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Sample program:</li>
+<li>
+<p>Sample program:
+<div class="highlight"><pre><span></span><code>void<span class="w"> </span>krava<span class="o">(</span>void<span class="o">)</span>
+<span class="o">{</span>
+<span class="w">        </span>asm<span class="w"> </span>volatile<span class="w"> </span><span class="o">(</span><span class="s2">"nop; nop"</span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>void<span class="o">)</span>
+<span class="o">{</span>
+<span class="w">        </span>krava<span class="o">()</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Define toggle(on/off) events:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf probe -x ./ex entry=krava</span>
+<span class="c1"># perf probe -x ./ex exit=krava%return</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Following stat session measure instructions within krava function:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf stat -e instructions:u,probe_ex:entry/on=instructions/,probe_ex:exit/off=instructions/ ./ex</span>
+
+<span class="w">    </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'./ex'</span>:
+
+<span class="w">                 </span><span class="m">9</span><span class="w"> </span>instructions:u<span class="w">            </span><span class="c1">#    0.00  insns per cycle </span>
+<span class="w">                 </span><span class="m">1</span><span class="w"> </span>probe_ex:entry
+<span class="w">                 </span><span class="m">1</span><span class="w"> </span>probe_ex:exit
+
+<span class="w">       </span><span class="m">0</span>.000556743<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+</code></pre></div></p>
+</li>
+<li>
+<p>Following stat session measure cycles, instructions and cache-misses within krava function:
+<div class="highlight"><pre><span></span><code><span class="c1"># perf stat -e '{cycles,instructions,cache-misses}:u,probe_ex:entry/on=cycles/,probe_ex:exit/off=cycles/' ./ex</span>
+
+<span class="w">     </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'./ex'</span>:
+
+<span class="w">           </span><span class="m">2</span>,068<span class="w"> </span>cycles<span class="w">                    </span><span class="c1">#    0.000 GHz</span>
+<span class="w">               </span><span class="m">9</span><span class="w"> </span>instructions<span class="w">              </span><span class="c1">#    0.00  insns per cycle </span>
+<span class="w">               </span><span class="m">0</span><span class="w"> </span>cache-misses
+<span class="w">               </span><span class="m">1</span><span class="w"> </span>probe_ex:entry
+<span class="w">               </span><span class="m">1</span><span class="w"> </span>probe_ex:exit
+
+<span class="w">     </span><span class="m">0</span>.000557504<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+</code></pre></div></p>
+</li>
 </ul>
-<pre><code class="language-sh">void krava(void)
-{
-        asm volatile (&quot;nop; nop&quot;);
-}
-
-int main(void)
-{
-        krava();
-        return 0;
-}
-</code></pre>
-<ul>
-<li>Define toggle(on/off) events:</li>
-</ul>
-<pre><code class="language-sh"># perf probe -x ./ex entry=krava
-# perf probe -x ./ex exit=krava%return
-</code></pre>
-<ul>
-<li>Following stat session measure instructions within krava function:</li>
-</ul>
-<pre><code class="language-sh"># perf stat -e instructions:u,probe_ex:entry/on=instructions/,probe_ex:exit/off=instructions/ ./ex
-
-    Performance counter stats for './ex':
-
-                 9 instructions:u            #    0.00  insns per cycle 
-                 1 probe_ex:entry
-                 1 probe_ex:exit
-
-       0.000556743 seconds time elapsed
-</code></pre>
-<ul>
-<li>Following stat session measure cycles, instructions and cache-misses within krava function:</li>
-</ul>
-<pre><code class="language-sh"># perf stat -e '{cycles,instructions,cache-misses}:u,probe_ex:entry/on=cycles/,probe_ex:exit/off=cycles/' ./ex
-
-     Performance counter stats for './ex':
-
-           2,068 cycles                    #    0.000 GHz
-               9 instructions              #    0.00  insns per cycle 
-               0 cache-misses
-               1 probe_ex:entry
-               1 probe_ex:exit
-
-     0.000557504 seconds time elapsed
-</code></pre>
 <h4 id="example-measure-interrupts-cycles">Example - Measure interrupts cycles<a class="headerlink" href="#example-measure-interrupts-cycles" title="Permanent link">&para;</a></h4>
-<pre><code class="language-sh"># ./perf stat -e 'cycles,cycles/name=cycles_irq/,irq:irq_handler_entry/on=cycles_irq/,irq:irq_handler_exit/off=cycles_irq/' -a sleep 10
+<div class="highlight"><pre><span></span><code><span class="c1"># ./perf stat -e 'cycles,cycles/name=cycles_irq/,irq:irq_handler_entry/on=cycles_irq/,irq:irq_handler_exit/off=cycles_irq/' -a sleep 10</span>
 
-   Performance counter stats for 'sleep 10':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'sleep 10'</span>:
 
-      50,680,084,994 cycles                    #    0.000 GHz                     [100.00%]
-             652,690 cycles_irq                #    0.000 GHz
-                  33 irq:irq_handler_entry                                        [100.00%]
-                  33 irq:irq_handler_exit
+<span class="w">      </span><span class="m">50</span>,680,084,994<span class="w"> </span>cycles<span class="w">                    </span><span class="c1">#    0.000 GHz                     [100.00%]</span>
+<span class="w">             </span><span class="m">652</span>,690<span class="w"> </span>cycles_irq<span class="w">                </span><span class="c1">#    0.000 GHz</span>
+<span class="w">                  </span><span class="m">33</span><span class="w"> </span>irq:irq_handler_entry<span class="w">                                        </span><span class="o">[</span><span class="m">100</span>.00%<span class="o">]</span>
+<span class="w">                  </span><span class="m">33</span><span class="w"> </span>irq:irq_handler_exit
 
-        10.002084400 seconds time elapsed
-</code></pre>
+<span class="w">        </span><span class="m">10</span>.002084400<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+</code></pre></div>
 
 
 
@@ -1127,7 +1130,7 @@ int main(void)
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

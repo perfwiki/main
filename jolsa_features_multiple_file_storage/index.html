@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -828,41 +828,40 @@ into multiple files.</p>
 <li>new version of perf.data file was added (v3)</li>
 <li><code>-M/--multi</code> option was added into perf record</li>
 </ul>
-<p>example:</p>
-<pre><code class="language-sh">  $ perf record -M 5M yes &gt; /dev/null
-  ^C[ perf record: Woken up 228 times to write data ]
-  [ perf record: Captured and wrote 20.246 MB perf.data-[0-4](~884542 samples) ]
-  yes: Interrupt
-  $ ls -l perf.data-0*
-  -rw------- 1 jolsa jolsa 5289856 Aug 16 16:07 perf.data-00000
-  -rw------- 1 jolsa jolsa 5296008 Aug 16 16:08 perf.data-00001
-  -rw------- 1 jolsa jolsa 5344968 Aug 16 16:09 perf.data-00002
-  -rw------- 1 jolsa jolsa 5309144 Aug 16 16:09 perf.data-00003
-  -rw------- 1 jolsa jolsa 2358268 Aug 16 16:09 perf.data-00004
-  $ ./perf diff perf.data-0000*
-  # Event 'cycles'
-  #
-  # Data files:
-  #  [0] perf.data-00000 (Baseline)
-  #  [1] perf.data-00001
-  #  [2] perf.data-00002
-  #  [3] perf.data-00003
-  #  [4] perf.data-00004
-  #
-  # Baseline/0  Delta/1  Delta/2  Delta/3  Delta/4      Shared Object                                      Symbol
-  # ..........  .......  .......  .......  .......  .................  ..........................................
-  #
-        37.70%   -0.17%   -0.42%   -0.24%   -0.31%  libc-2.15.so       [.] _IO_file_xsputn@@GLIBC_2.2.5        
-        30.31%   +0.28%   +0.22%   +0.07%   +0.06%  yes                [.] main                                
-        16.73%   +0.02%   +0.10%   -0.03%   +0.11%  libc-2.15.so       [.] __strlen_sse2                       
-        14.22%   -0.30%   -0.10%   -0.31%   -0.14%  libc-2.15.so       [.] fputs_unlocked                      
-         0.39%                              -0.01%  yes                [.] fputs_unlocked@plt                  
-         0.06%                                      [kernel.kallsyms]  [k] system_call                         
-         0.06%                     +0.01%           [kernel.kallsyms]  [k] __srcu_read_lock                    
-         0.05%                     +0.01%           [kernel.kallsyms]  [k] __srcu_read_unlock                  
-  ...
-
-</code></pre>
+<p>example:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>-M<span class="w"> </span>5M<span class="w"> </span>yes<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<span class="w">  </span>^C<span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Woken<span class="w"> </span>up<span class="w"> </span><span class="m">228</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span>data<span class="w"> </span><span class="o">]</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Captured<span class="w"> </span>and<span class="w"> </span>wrote<span class="w"> </span><span class="m">20</span>.246<span class="w"> </span>MB<span class="w"> </span>perf.data-<span class="o">[</span><span class="m">0</span>-4<span class="o">](</span>~884542<span class="w"> </span>samples<span class="o">)</span><span class="w"> </span><span class="o">]</span>
+<span class="w">  </span>yes:<span class="w"> </span>Interrupt
+<span class="w">  </span>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>perf.data-0*
+<span class="w">  </span>-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">5289856</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">16</span>:07<span class="w"> </span>perf.data-00000
+<span class="w">  </span>-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">5296008</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">16</span>:08<span class="w"> </span>perf.data-00001
+<span class="w">  </span>-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">5344968</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">16</span>:09<span class="w"> </span>perf.data-00002
+<span class="w">  </span>-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">5309144</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">16</span>:09<span class="w"> </span>perf.data-00003
+<span class="w">  </span>-rw-------<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">2358268</span><span class="w"> </span>Aug<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">16</span>:09<span class="w"> </span>perf.data-00004
+<span class="w">  </span>$<span class="w"> </span>./perf<span class="w"> </span>diff<span class="w"> </span>perf.data-0000*
+<span class="w">  </span><span class="c1"># Event 'cycles'</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1"># Data files:</span>
+<span class="w">  </span><span class="c1">#  [0] perf.data-00000 (Baseline)</span>
+<span class="w">  </span><span class="c1">#  [1] perf.data-00001</span>
+<span class="w">  </span><span class="c1">#  [2] perf.data-00002</span>
+<span class="w">  </span><span class="c1">#  [3] perf.data-00003</span>
+<span class="w">  </span><span class="c1">#  [4] perf.data-00004</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1"># Baseline/0  Delta/1  Delta/2  Delta/3  Delta/4      Shared Object                                      Symbol</span>
+<span class="w">  </span><span class="c1"># ..........  .......  .......  .......  .......  .................  ..........................................</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">        </span><span class="m">37</span>.70%<span class="w">   </span>-0.17%<span class="w">   </span>-0.42%<span class="w">   </span>-0.24%<span class="w">   </span>-0.31%<span class="w">  </span>libc-2.15.so<span class="w">       </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>_IO_file_xsputn@@GLIBC_2.2.5<span class="w">        </span>
+<span class="w">        </span><span class="m">30</span>.31%<span class="w">   </span>+0.28%<span class="w">   </span>+0.22%<span class="w">   </span>+0.07%<span class="w">   </span>+0.06%<span class="w">  </span>yes<span class="w">                </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>main<span class="w">                                </span>
+<span class="w">        </span><span class="m">16</span>.73%<span class="w">   </span>+0.02%<span class="w">   </span>+0.10%<span class="w">   </span>-0.03%<span class="w">   </span>+0.11%<span class="w">  </span>libc-2.15.so<span class="w">       </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>__strlen_sse2<span class="w">                       </span>
+<span class="w">        </span><span class="m">14</span>.22%<span class="w">   </span>-0.30%<span class="w">   </span>-0.10%<span class="w">   </span>-0.31%<span class="w">   </span>-0.14%<span class="w">  </span>libc-2.15.so<span class="w">       </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>fputs_unlocked<span class="w">                      </span>
+<span class="w">         </span><span class="m">0</span>.39%<span class="w">                              </span>-0.01%<span class="w">  </span>yes<span class="w">                </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>fputs_unlocked@plt<span class="w">                  </span>
+<span class="w">         </span><span class="m">0</span>.06%<span class="w">                                      </span><span class="o">[</span>kernel.kallsyms<span class="o">]</span><span class="w">  </span><span class="o">[</span>k<span class="o">]</span><span class="w"> </span>system_call<span class="w">                         </span>
+<span class="w">         </span><span class="m">0</span>.06%<span class="w">                     </span>+0.01%<span class="w">           </span><span class="o">[</span>kernel.kallsyms<span class="o">]</span><span class="w">  </span><span class="o">[</span>k<span class="o">]</span><span class="w"> </span>__srcu_read_lock<span class="w">                    </span>
+<span class="w">         </span><span class="m">0</span>.05%<span class="w">                     </span>+0.01%<span class="w">           </span><span class="o">[</span>kernel.kallsyms<span class="o">]</span><span class="w">  </span><span class="o">[</span>k<span class="o">]</span><span class="w"> </span>__srcu_read_unlock<span class="w">                  </span>
+<span class="w">  </span>...
+</code></pre></div></p>
 <ul>
 <li><code>-M/--multi</code> option accepts size and time parameters, distinguished by following terminal character:<ul>
 <li><strong>s</strong> - seconds   (-M 10s)</li>
@@ -978,7 +977,7 @@ into multiple files.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

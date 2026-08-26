@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -816,14 +816,14 @@
   <h1>Jolsa howto install sources</h1>
 
 <h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
-<p>Clone any kernel source git tree:</p>
-<pre><code class="language-sh"># linus git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-# tip   git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
-# acme  git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux
-# jolsa git://git.kernel.org/pub/scm/linux/kernel/git/jolsa/perf.git
+<p>Clone any kernel source git tree:
+<div class="highlight"><pre><span></span><code><span class="c1"># linus git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git</span>
+<span class="c1"># tip   git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git</span>
+<span class="c1"># acme  git://git.kernel.org/pub/scm/linux/kernel/git/acme/linux</span>
+<span class="c1"># jolsa git://git.kernel.org/pub/scm/linux/kernel/git/jolsa/perf.git</span>
 
-$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-</code></pre>
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
+</code></pre></div></p>
 <h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
 <p>Packages you need to compile perf with all features (Fedora based):</p>
 <ul>
@@ -847,25 +847,25 @@ $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
 <li><code>flex</code></li>
 <li><code>bison</code></li>
 </ul>
-<pre><code class="language-sh">$ sudo yum install gcc binutils-devel elfutils-libelf-devel \
-  elfutils-devel libunwind-devel audit-libs-devel slang-devel \
-  gtk2-devel python-devel perl-devel perl-ExtUtils-Embed numactl-devel \
-  asciidoc xmlto flex bison glibc-devel
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>gcc<span class="w"> </span>binutils-devel<span class="w"> </span>elfutils-libelf-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>elfutils-devel<span class="w"> </span>libunwind-devel<span class="w"> </span>audit-libs-devel<span class="w"> </span>slang-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gtk2-devel<span class="w"> </span>python-devel<span class="w"> </span>perl-devel<span class="w"> </span>perl-ExtUtils-Embed<span class="w"> </span>numactl-devel<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>asciidoc<span class="w"> </span>xmlto<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>glibc-devel
 
 ...
-</code></pre>
+</code></pre></div>
 <h2 id="build-install">Build &amp; Install<a class="headerlink" href="#build-install" title="Permanent link">&para;</a></h2>
-<pre><code class="language-sh">$ cd linux-2.6.git/tools/perf
-$ make &amp;&amp; make install
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>linux-2.6.git/tools/perf
+$<span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</code></pre></div>
 <h2 id="binaries">Binaries<a class="headerlink" href="#binaries" title="Permanent link">&para;</a></h2>
 <p>The perf is by default installed under user's $(HOME)</p>
-<pre><code class="language-sh">[jolsa@krava perf]$ ls -l ~/bin/perf 
--rwxr-xr-x 1 jolsa jolsa 8383047 Jun 20 15:43 /home/jolsa/bin/perf
-[jolsa@krava perf]$ ls -l ~/libexec/perf-core/ ~/share/man/man1/
+<div class="highlight"><pre><span></span><code><span class="o">[</span>jolsa@krava<span class="w"> </span>perf<span class="o">]</span>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>~/bin/perf<span class="w"> </span>
+-rwxr-xr-x<span class="w"> </span><span class="m">1</span><span class="w"> </span>jolsa<span class="w"> </span>jolsa<span class="w"> </span><span class="m">8383047</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">15</span>:43<span class="w"> </span>/home/jolsa/bin/perf
+<span class="o">[</span>jolsa@krava<span class="w"> </span>perf<span class="o">]</span>$<span class="w"> </span>ls<span class="w"> </span>-l<span class="w"> </span>~/libexec/perf-core/<span class="w"> </span>~/share/man/man1/
 
 ...
-</code></pre>
+</code></pre></div>
 
 
 
@@ -956,7 +956,7 @@ $ make &amp;&amp; make install
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

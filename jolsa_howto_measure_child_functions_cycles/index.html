@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -795,88 +795,89 @@
 
 <h2 id="example-program">Example program<a class="headerlink" href="#example-program" title="Permanent link">&para;</a></h2>
 <ul>
-<li>ex.c</li>
+<li>
+<p>ex.c
+<div class="highlight"><pre><span></span><code><span class="c1">#define FOO(__f)        \</span>
+static<span class="w"> </span>int<span class="w"> </span>__f<span class="o">(</span>int<span class="w"> </span>i<span class="o">)</span><span class="w">   </span><span class="se">\</span>
+<span class="o">{</span><span class="w">                       </span><span class="se">\</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="o">(</span>i--<span class="o">)</span><span class="p">;</span><span class="w">    </span><span class="se">\</span>
+<span class="o">}</span>
+
+FOO<span class="o">(</span>krava_a<span class="o">)</span><span class="p">;</span>
+FOO<span class="o">(</span>krava_b<span class="o">)</span><span class="p">;</span>
+FOO<span class="o">(</span>krava_c<span class="o">)</span><span class="p">;</span>
+FOO<span class="o">(</span>krava_d<span class="o">)</span><span class="p">;</span>
+
+static<span class="w"> </span>void<span class="w"> </span>krava_g<span class="o">(</span>void<span class="o">)</span>
+<span class="o">{</span>
+<span class="w">        </span>krava_a<span class="o">(</span><span class="m">50</span><span class="o">)</span><span class="p">;</span>
+<span class="w">        </span>krava_b<span class="o">(</span><span class="m">50</span><span class="o">)</span><span class="p">;</span>
+<span class="w">        </span>krava_c<span class="o">(</span><span class="m">50</span><span class="o">)</span><span class="p">;</span>
+<span class="w">        </span>krava_d<span class="o">(</span><span class="m">50</span><span class="o">)</span><span class="p">;</span>
+<span class="o">}</span>
+
+int<span class="w"> </span>main<span class="o">(</span>int<span class="w"> </span>argc,<span class="w"> </span>char<span class="w"> </span>**argv<span class="o">)</span>
+<span class="o">{</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span><span class="o">{</span>
+<span class="w">                </span>krava_a<span class="o">(</span><span class="m">200</span><span class="o">)</span><span class="p">;</span>
+<span class="w">                </span>krava_b<span class="o">(</span><span class="m">200</span><span class="o">)</span><span class="p">;</span>
+<span class="w">                </span>krava_c<span class="o">(</span><span class="m">200</span><span class="o">)</span><span class="p">;</span>
+<span class="w">                </span>krava_d<span class="o">(</span><span class="m">200</span><span class="o">)</span><span class="p">;</span>
+<span class="w">                </span>krava_g<span class="o">()</span><span class="p">;</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>Makefile
+<div class="highlight"><pre><span></span><code>ex:<span class="w"> </span>ex.o
+</code></pre></div></p>
+</li>
 </ul>
-<pre><code class="language-sh">#define FOO(__f)        \
-static int __f(int i)   \
-{                       \
-        while (i--);    \
-}
-
-FOO(krava_a);
-FOO(krava_b);
-FOO(krava_c);
-FOO(krava_d);
-
-static void krava_g(void)
-{
-        krava_a(50);
-        krava_b(50);
-        krava_c(50);
-        krava_d(50);
-}
-
-int main(int argc, char **argv)
-{
-        while (1) {
-                krava_a(200);
-                krava_b(200);
-                krava_c(200);
-                krava_d(200);
-                krava_g();
-        }
-}
-</code></pre>
-<ul>
-<li>Makefile</li>
-</ul>
-<pre><code class="language-sh">ex: ex.o
-</code></pre>
 <h2 id="measurements">Measurements<a class="headerlink" href="#measurements" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>krava_[abcd]</strong> functions are taking 25% of the load</li>
 </ul>
-<pre><code class="language-sh">$ perf record  ./ex
-^C[ perf record: Woken up 5 times to write data ]
-[ perf record: Captured and wrote 1.200 MB perf.data (~52446 samples) ]
-./ex: Interrupt
-$ perf report --stdio
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>record<span class="w">  </span>./ex
+^C<span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Woken<span class="w"> </span>up<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span>data<span class="w"> </span><span class="o">]</span>
+<span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Captured<span class="w"> </span>and<span class="w"> </span>wrote<span class="w"> </span><span class="m">1</span>.200<span class="w"> </span>MB<span class="w"> </span>perf.data<span class="w"> </span><span class="o">(</span>~52446<span class="w"> </span>samples<span class="o">)</span><span class="w"> </span><span class="o">]</span>
+./ex:<span class="w"> </span>Interrupt
+$<span class="w"> </span>perf<span class="w"> </span>report<span class="w"> </span>--stdio
 ...
-# Overhead  Command      Shared Object                                Symbol
-# ........  .......  .................  ....................................
-#
-    26.41%       ex  ex                 [.] krava_d                         
-    25.16%       ex  ex                 [.] krava_b                         
-    24.03%       ex  ex                 [.] krava_a                         
-    23.95%       ex  ex                 [.] krava_c                         
-     0.18%       ex  ex                 [.] krava_g                         
-
-</code></pre>
+<span class="c1"># Overhead  Command      Shared Object                                Symbol</span>
+<span class="c1"># ........  .......  .................  ....................................</span>
+<span class="c1">#</span>
+<span class="w">    </span><span class="m">26</span>.41%<span class="w">       </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_d<span class="w">                         </span>
+<span class="w">    </span><span class="m">25</span>.16%<span class="w">       </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_b<span class="w">                         </span>
+<span class="w">    </span><span class="m">24</span>.03%<span class="w">       </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_a<span class="w">                         </span>
+<span class="w">    </span><span class="m">23</span>.95%<span class="w">       </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_c<span class="w">                         </span>
+<span class="w">     </span><span class="m">0</span>.18%<span class="w">       </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_g<span class="w">                         </span>
+</code></pre></div>
 <ul>
 <li>but how much <strong>krava_g</strong> function takes?</li>
 <li>we need parent info - <strong>callchains</strong>, so let's record them with <strong>-g</strong></li>
 </ul>
-<pre><code class="language-sh">$ perf record -g -- ./ex
-^C[ perf record: Woken up 7 times to write data ]
-[ perf record: Captured and wrote 1.554 MB perf.data (~67889 samples) ]
-./ex: Interrupt
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>-g<span class="w"> </span>--<span class="w"> </span>./ex
+^C<span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Woken<span class="w"> </span>up<span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span>data<span class="w"> </span><span class="o">]</span>
+<span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Captured<span class="w"> </span>and<span class="w"> </span>wrote<span class="w"> </span><span class="m">1</span>.554<span class="w"> </span>MB<span class="w"> </span>perf.data<span class="w"> </span><span class="o">(</span>~67889<span class="w"> </span>samples<span class="o">)</span><span class="w"> </span><span class="o">]</span>
+./ex:<span class="w"> </span>Interrupt
+</code></pre></div>
 <ul>
-<li>and say we want to report parent symbol with <strong>-p krava_g</strong></li>
+<li>and say we want to report parent symbol with <strong>-p krava_g</strong>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>report<span class="w"> </span>-p<span class="w"> </span>krava_g
+Samples:<span class="w"> </span>19K<span class="w"> </span>of<span class="w"> </span>event<span class="w"> </span><span class="s1">'cycles'</span>,<span class="w"> </span>Event<span class="w"> </span>count<span class="w"> </span><span class="o">(</span>approx.<span class="o">)</span>:<span class="w"> </span><span class="m">17010569690</span>
++<span class="w">  </span><span class="m">22</span>.39%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_d<span class="w">                              </span><span class="o">[</span>other<span class="o">]</span>
++<span class="w">  </span><span class="m">20</span>.11%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_c<span class="w">                              </span><span class="o">[</span>other<span class="o">]</span>
++<span class="w">  </span><span class="m">20</span>.00%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_b<span class="w">                              </span><span class="o">[</span>other<span class="o">]</span>
++<span class="w">  </span><span class="m">18</span>.80%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_a<span class="w">                              </span><span class="o">[</span>other<span class="o">]</span>
++<span class="w">   </span><span class="m">4</span>.90%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_a<span class="w">                              </span>krava_g
++<span class="w">   </span><span class="m">4</span>.71%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_b<span class="w">                              </span>krava_g
++<span class="w">   </span><span class="m">4</span>.39%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_c<span class="w">                              </span>krava_g
++<span class="w">   </span><span class="m">4</span>.28%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_d<span class="w">                              </span>krava_g
++<span class="w">   </span><span class="m">0</span>.14%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>krava_g<span class="w">                              </span>krava_g
++<span class="w">   </span><span class="m">0</span>.08%<span class="w">  </span>ex<span class="w">  </span>ex<span class="w">                 </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>main<span class="w">                                 </span><span class="o">[</span>other<span class="o">]</span>
+</code></pre></div></li>
 </ul>
-<pre><code class="language-sh">$ perf report -p krava_g
-Samples: 19K of event 'cycles', Event count (approx.): 17010569690
-+  22.39%  ex  ex                 [.] krava_d                              [other]
-+  20.11%  ex  ex                 [.] krava_c                              [other]
-+  20.00%  ex  ex                 [.] krava_b                              [other]
-+  18.80%  ex  ex                 [.] krava_a                              [other]
-+   4.90%  ex  ex                 [.] krava_a                              krava_g
-+   4.71%  ex  ex                 [.] krava_b                              krava_g
-+   4.39%  ex  ex                 [.] krava_c                              krava_g
-+   4.28%  ex  ex                 [.] krava_d                              krava_g
-+   0.14%  ex  ex                 [.] krava_g                              krava_g
-+   0.08%  ex  ex                 [.] main                                 [other]
-</code></pre>
 <p>Previous:</p>
 <ul>
 <li>parent symbol is displayed in the last column in above listing</li>
@@ -888,70 +889,68 @@ Samples: 19K of event 'cycles', Event count (approx.): 17010569690
 <ul>
 <li>we can make the numbers more obvious and sort it by parent with <strong>-s parent</strong></li>
 </ul>
-<pre><code class="language-sh">$ perf report -p krava_g -s parent --stdio
-# Overhead  Parent symbol
-# ........  .............
-#
-    81.54%  [other]      
-            |          
-            |--27.46%-- krava_d
-            |          |          
-            |          |--98.60%-- main
-            |          |          __libc_start_main
-            |          |          
-            |           --1.40%-- __libc_start_main
-            |          
-            |--24.66%-- krava_c
-            |          |          
-            |          |--98.77%-- main
-            |          |          __libc_start_main
-            |          |          
-            |           --1.23%-- __libc_start_main
-            |          
-            |--24.52%-- krava_b
-            |          |          
-            |          |--98.61%-- main
-            |          |          __libc_start_main
-            |          |          
-            |           --1.39%-- __libc_start_main
-            |          
-            |--23.06%-- krava_a
-            |          |          
-            |          |--99.22%-- main
-            |          |          __libc_start_main
-            |          |          
-            |           --0.78%-- __libc_start_main
-             --0.30%-- [...]
+<p><div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>report<span class="w"> </span>-p<span class="w"> </span>krava_g<span class="w"> </span>-s<span class="w"> </span>parent<span class="w"> </span>--stdio
+<span class="c1"># Overhead  Parent symbol</span>
+<span class="c1"># ........  .............</span>
+<span class="c1">#</span>
+<span class="w">    </span><span class="m">81</span>.54%<span class="w">  </span><span class="o">[</span>other<span class="o">]</span><span class="w">      </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--27.46%--<span class="w"> </span>krava_d
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span>--98.60%--<span class="w"> </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">           </span>--1.40%--<span class="w"> </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--24.66%--<span class="w"> </span>krava_c
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span>--98.77%--<span class="w"> </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">           </span>--1.23%--<span class="w"> </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--24.52%--<span class="w"> </span>krava_b
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span>--98.61%--<span class="w"> </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">           </span>--1.39%--<span class="w"> </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--23.06%--<span class="w"> </span>krava_a
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span>--99.22%--<span class="w"> </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span><span class="w">           </span>--0.78%--<span class="w"> </span>__libc_start_main
+<span class="w">             </span>--0.30%--<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
 
-    18.46%  krava_g      
-            |          
-            |--26.57%-- krava_a
-            |          krava_g
-            |          main
-            |          __libc_start_main
-            |          
-            |--25.54%-- krava_b
-            |          krava_g
-            |          main
-            |          __libc_start_main
-            |          
-            |--23.80%-- krava_c
-            |          krava_g
-            |          main
-            |          __libc_start_main
-            |          
-            |--23.20%-- krava_d
-            |          krava_g
-            |          main
-            |          __libc_start_main
-            |          
-            |--0.74%-- krava_g
-            |          __libc_start_main
-             --0.16%-- [...]
-</code></pre>
-<ul>
-<li><strong>krava_g</strong> takes ~20% plus we can see the load distribution for its child functions</li>
-</ul>
+<span class="w">    </span><span class="m">18</span>.46%<span class="w">  </span>krava_g<span class="w">      </span>
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--26.57%--<span class="w"> </span>krava_a
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>krava_g
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--25.54%--<span class="w"> </span>krava_b
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>krava_g
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--23.80%--<span class="w"> </span>krava_c
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>krava_g
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--23.20%--<span class="w"> </span>krava_d
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>krava_g
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>
+<span class="w">            </span><span class="p">|</span>--0.74%--<span class="w"> </span>krava_g
+<span class="w">            </span><span class="p">|</span><span class="w">          </span>__libc_start_main
+<span class="w">             </span>--0.16%--<span class="w"> </span><span class="o">[</span>...<span class="o">]</span>
+</code></pre></div>
+- <strong>krava_g</strong> takes ~20% plus we can see the load distribution for its child functions</p>
 
 
 
@@ -1042,7 +1041,7 @@ Samples: 19K of event 'cycles', Event count (approx.): 17010569690
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -799,19 +799,19 @@ by using arithmetic formulas and use them via <strong>stat</strong> command.</p>
 <ul>
 <li>Formula config file looks like:</li>
 </ul>
-<pre><code class="language-sh">set {
-     events {
-             CY = cycles
-             IN = instructions
-             BR = branches
-     }   
-     cpi      = CY / IN
-     bdensity = IN / BR
+<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span><span class="o">{</span>
+<span class="w">     </span>events<span class="w"> </span><span class="o">{</span>
+<span class="w">             </span><span class="nv">CY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cycles
+<span class="w">             </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions
+<span class="w">             </span><span class="nv">BR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>branches
+<span class="w">     </span><span class="o">}</span><span class="w">   </span>
+<span class="w">     </span><span class="nv">cpi</span><span class="w">      </span><span class="o">=</span><span class="w"> </span>CY<span class="w"> </span>/<span class="w"> </span>IN
+<span class="w">     </span><span class="nv">bdensity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>IN<span class="w"> </span>/<span class="w"> </span>BR
 
-     print cpi 
-     print bdensity
-}
-</code></pre>
+<span class="w">     </span>print<span class="w"> </span>cpi<span class="w"> </span>
+<span class="w">     </span>print<span class="w"> </span>bdensity
+<span class="o">}</span>
+</code></pre></div>
 <p>The <strong>set</strong> defines set of counter that share same events.
 Each <strong>set</strong> defines:</p>
 <ul>
@@ -825,131 +825,135 @@ formulas.</p>
 <ul>
 <li>Formula grammar:</li>
 </ul>
-<pre><code class="language-sh">expr: '-' expr       | 
-      expr '+' expr  | 
-      expr '-' expr  | 
-      expr '*' expr  | 
-      expr '/' expr  | 
-      value          | 
-      name
-</code></pre>
+<div class="highlight"><pre><span></span><code>expr:<span class="w"> </span><span class="s1">'-'</span><span class="w"> </span>expr<span class="w">       </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>expr<span class="w"> </span><span class="s1">'+'</span><span class="w"> </span>expr<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>expr<span class="w"> </span><span class="s1">'-'</span><span class="w"> </span>expr<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>expr<span class="w"> </span><span class="s1">'*'</span><span class="w"> </span>expr<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>expr<span class="w"> </span><span class="s1">'/'</span><span class="w"> </span>expr<span class="w">  </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>value<span class="w">          </span><span class="p">|</span><span class="w"> </span>
+<span class="w">      </span>name
+</code></pre></div>
 <p>where <strong>name</strong> could be any event or counter name(tag), like:
 (considering the architectural events name patchset is included)</p>
-<pre><code class="language-sh">set { 
-      events { 
-              IN = instructions
-              R0 = cpu/OFFCORE_RESPONSE_0,offcore_rsp=OFFCORE_RESPONSE.(DMND_IFETCH|LLC_MISS_LOCAL)/
-      } 
+<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">      </span>events<span class="w"> </span><span class="o">{</span><span class="w"> </span>
+<span class="w">              </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions
+<span class="w">              </span><span class="nv">R0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cpu/OFFCORE_RESPONSE_0,offcore_rsp<span class="o">=</span>OFFCORE_RESPONSE.<span class="o">(</span>DMND_IFETCH<span class="p">|</span>LLC_MISS_LOCAL<span class="o">)</span>/
+<span class="w">      </span><span class="o">}</span><span class="w"> </span>
 
-      kinst     = IN / 1000
-      llc_imiss = R0 / kinst
+<span class="w">      </span><span class="nv">kinst</span><span class="w">     </span><span class="o">=</span><span class="w"> </span>IN<span class="w"> </span>/<span class="w"> </span><span class="m">1000</span>
+<span class="w">      </span><span class="nv">llc_imiss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>R0<span class="w"> </span>/<span class="w"> </span>kinst
 
-      print llc_imiss
-} 
-</code></pre>
+<span class="w">      </span>print<span class="w"> </span>llc_imiss
+<span class="o">}</span><span class="w"> </span>
+</code></pre></div>
 <p>It's possible to enable counter to be displayed via <strong>print</strong>
 label on separate line. Only counters marked like that
 will be displayed to the user.</p>
 <ul>
-<li>Default configuration file is provided within perf installation:</li>
-</ul>
-<pre><code class="language-sh">cpi {
-        events {
-                CY = cycles:u
-                IN = instructions:u
-        }
+<li>
+<p>Default configuration file is provided within perf installation:
+<div class="highlight"><pre><span></span><code>cpi<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>events<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="nv">CY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cycles:u
+<span class="w">                </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions:u
+<span class="w">        </span><span class="o">}</span>
 
-        cpi = CY / IN
+<span class="w">        </span><span class="nv">cpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>CY<span class="w"> </span>/<span class="w"> </span>IN
 
-        print cpi
-}
+<span class="w">        </span>print<span class="w"> </span>cpi
+<span class="o">}</span>
 
-branch {
-        events {
-                IN = instructions:u
-                BI = branch-instructions:u
-                BM = branch-misses:u
-        }
+branch<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>events<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions:u
+<span class="w">                </span><span class="nv">BI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>branch-instructions:u
+<span class="w">                </span><span class="nv">BM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>branch-misses:u
+<span class="w">        </span><span class="o">}</span>
 
-        branch-rate       = BI / IN
-        branch-miss-rate  = BM / IN
-        branch-miss-ratio = BM / BI
+<span class="w">        </span>branch-rate<span class="w">       </span><span class="o">=</span><span class="w"> </span>BI<span class="w"> </span>/<span class="w"> </span>IN
+<span class="w">        </span>branch-miss-rate<span class="w">  </span><span class="o">=</span><span class="w"> </span>BM<span class="w"> </span>/<span class="w"> </span>IN
+<span class="w">        </span>branch-miss-ratio<span class="w"> </span><span class="o">=</span><span class="w"> </span>BM<span class="w"> </span>/<span class="w"> </span>BI
 
-        print branch-rate
-        print branch-miss-rate
-        print branch-miss-ratio
-}
-</code></pre>
-<ul>
-<li><strong>perf stat</strong> allows to specify formula configuration file via <strong>-f</strong> option</li>
+<span class="w">        </span>print<span class="w"> </span>branch-rate
+<span class="w">        </span>print<span class="w"> </span>branch-miss-rate
+<span class="w">        </span>print<span class="w"> </span>branch-miss-ratio
+<span class="o">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>perf stat</strong> allows to specify formula configuration file via <strong>-f</strong> option</p>
+</li>
 <li>user needs to specify set via <strong>-e</strong> option via <strong>formula</strong> keyword like formula-<strong>set</strong></li>
 </ul>
-<pre><code class="language-sh">$ perf stat -e formula-cpi ls
-</code></pre>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-e<span class="w"> </span>formula-cpi<span class="w"> </span>ls
+</code></pre></div>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <ul>
-<li>krava.conf</li>
+<li>
+<p>krava.conf
+<div class="highlight"><pre><span></span><code>cpi<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>events<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="nv">CY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>cycles:u
+<span class="w">                </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions:u
+<span class="w">        </span><span class="o">}</span>
+
+<span class="w">        </span><span class="nv">cpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>CY<span class="w"> </span>/<span class="w"> </span>IN
+
+<span class="w">        </span>print<span class="w"> </span>cpi
+<span class="o">}</span>
+
+branch<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span>events<span class="w"> </span><span class="o">{</span>
+<span class="w">                </span><span class="nv">IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>instructions:u
+<span class="w">                </span><span class="nv">BI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>branch-instructions:u
+<span class="w">                </span><span class="nv">BM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>branch-misses:u
+<span class="w">        </span><span class="o">}</span>
+
+<span class="w">        </span>branch-rate<span class="w">       </span><span class="o">=</span><span class="w"> </span>BI<span class="w"> </span>/<span class="w"> </span>IN
+<span class="w">        </span>branch-miss-rate<span class="w">  </span><span class="o">=</span><span class="w"> </span>BM<span class="w"> </span>/<span class="w"> </span>IN
+<span class="w">        </span>branch-miss-ratio<span class="w"> </span><span class="o">=</span><span class="w"> </span>BM<span class="w"> </span>/<span class="w"> </span>BI
+
+<span class="w">        </span>print<span class="w"> </span>branch-rate
+<span class="w">        </span>print<span class="w"> </span>branch-miss-rate
+<span class="w">        </span>print<span class="w"> </span>branch-miss-ratio
+<span class="o">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>get cpi set formulas:</p>
+</li>
 </ul>
-<pre><code class="language-sh">cpi {
-        events {
-                CY = cycles:u
-                IN = instructions:u
-        }
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./perf<span class="w"> </span>stat<span class="w"> </span>-f<span class="w"> </span>./krava.conf<span class="w"> </span>-e<span class="w"> </span>formula-cpi<span class="w"> </span>yes<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+^Cyes:<span class="w"> </span>Interrupt
 
-        cpi = CY / IN
+<span class="w"> </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'yes'</span>:
 
-        print cpi
-}
+<span class="w">     </span><span class="m">5</span>,504,661,193<span class="w">  </span>cycles:u<span class="w">                 </span><span class="c1">#    0.000 GHz                    </span>
+<span class="w">    </span><span class="m">15</span>,795,271,321<span class="w">  </span>instructions:u<span class="w">           </span><span class="c1">#    2.87  insns per cycle        </span>
 
-branch {
-        events {
-                IN = instructions:u
-                BI = branch-instructions:u
-                BM = branch-misses:u
-        }
+<span class="w">       </span><span class="m">1</span>.656520050<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-        branch-rate       = BI / IN
-        branch-miss-rate  = BM / IN
-        branch-miss-ratio = BM / BI
-
-        print branch-rate
-        print branch-miss-rate
-        print branch-miss-ratio
-}
-</code></pre>
-<ul>
-<li>get cpi set formulas:</li>
-</ul>
-<pre><code class="language-sh">$ ./perf stat -f ./krava.conf -e formula-cpi yes &gt; /dev/null
-^Cyes: Interrupt
-
- Performance counter stats for 'yes':
-
-     5,504,661,193  cycles:u                 #    0.000 GHz                    
-    15,795,271,321  instructions:u           #    2.87  insns per cycle        
-
-       1.656520050 seconds time elapsed
-
-        0.34850058 cpi                      
-</code></pre>
+<span class="w">        </span><span class="m">0</span>.34850058<span class="w"> </span>cpi<span class="w">                      </span>
+</code></pre></div>
 <ul>
 <li>get branch set formulas:</li>
 </ul>
-<pre><code class="language-sh">[jolsa@krava perf]$ ./perf stat -f ./krava.conf -e formula-branch yes &gt; /dev/null
-^Cyes: Interrupt
+<div class="highlight"><pre><span></span><code><span class="o">[</span>jolsa@krava<span class="w"> </span>perf<span class="o">]</span>$<span class="w"> </span>./perf<span class="w"> </span>stat<span class="w"> </span>-f<span class="w"> </span>./krava.conf<span class="w"> </span>-e<span class="w"> </span>formula-branch<span class="w"> </span>yes<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+^Cyes:<span class="w"> </span>Interrupt
 
- Performance counter stats for 'yes':
+<span class="w"> </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'yes'</span>:
 
-    16,081,772,528  instructions:u           #    0.00  insns per cycle        
-     2,806,823,146  branch-instructions:u                                      
-            56,618  branch-misses:u          #    0.00% of all branches        
+<span class="w">    </span><span class="m">16</span>,081,772,528<span class="w">  </span>instructions:u<span class="w">           </span><span class="c1">#    0.00  insns per cycle        </span>
+<span class="w">     </span><span class="m">2</span>,806,823,146<span class="w">  </span>branch-instructions:u<span class="w">                                      </span>
+<span class="w">            </span><span class="m">56</span>,618<span class="w">  </span>branch-misses:u<span class="w">          </span><span class="c1">#    0.00% of all branches        </span>
 
-       1.688431091 seconds time elapsed
+<span class="w">       </span><span class="m">1</span>.688431091<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-        0.17453444 branch-rate              
-        0.00000352 branch-miss-rate         
-        0.00002017 branch-miss-ratio        
-</code></pre>
+<span class="w">        </span><span class="m">0</span>.17453444<span class="w"> </span>branch-rate<span class="w">              </span>
+<span class="w">        </span><span class="m">0</span>.00000352<span class="w"> </span>branch-miss-rate<span class="w">         </span>
+<span class="w">        </span><span class="m">0</span>.00002017<span class="w"> </span>branch-miss-ratio<span class="w">        </span>
+</code></pre></div>
 
 
 
@@ -1040,7 +1044,7 @@ branch {
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

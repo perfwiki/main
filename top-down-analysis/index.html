@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -913,141 +913,141 @@ automatically by the <code>perf</code> tool on compatible hardware. A descriptio
 using it is given
 <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/timed-process-event-based-sampling-tpebs.html">here</a>.</p>
 <h1 id="starting-at-the-top">Starting at the top<a class="headerlink" href="#starting-at-the-top" title="Permanent link">&para;</a></h1>
-<p>In this tutorial <strong>perf bench mem memcpy</strong> will be used for the <code>&lt;benchmark&gt;</code>. First of all gather the level 1 metrics:</p>
-<pre><code class="language-sh">  $ perf stat -M TopdownL1 &lt;benchmark&gt;
-</code></pre>
-<p>The output will be like:</p>
-<pre><code class="language-sh">  $ perf stat -M TopdownL1 perf bench mem memcpy
+<p>In this tutorial <strong>perf bench mem memcpy</strong> will be used for the <code>&lt;benchmark&gt;</code>. First of all gather the level 1 metrics:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>TopdownL1<span class="w"> </span>&lt;benchmark&gt;
+</code></pre></div>
+The output will be like:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>TopdownL1<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
 
-  [... benchmark output truncated ...]
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-   Performance counter stats for 'perf bench mem memcpy':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'perf bench mem memcpy'</span>:
 
-          72,813,380      TOPDOWN.SLOTS                    #     25.5 %  tma_retiring
-                                                    #     44.3 %  tma_backend_bound
-                                                    #     24.3 %  tma_frontend_bound
-                                                    #      6.0 %  tma_bad_speculation
-          18,560,273      topdown-retiring                 #     25.5% Retiring
-          17,703,645      topdown-fe-bound                 #     24.3% Frontend Bound
-              43,171      INT_MISC.UOP_DROPPING
-          31,980,778      topdown-be-bound                 #     43.9% Backend Bound
-              55,052      cpu/INT_MISC.RECOVERY_CYCLES,cmask=1,edge/
-           4,568,682      topdown-bad-spec                 #      6.3% Bad Speculation
+<span class="w">          </span><span class="m">72</span>,813,380<span class="w">      </span>TOPDOWN.SLOTS<span class="w">                    </span><span class="c1">#     25.5 %  tma_retiring</span>
+<span class="w">                                                    </span><span class="c1">#     44.3 %  tma_backend_bound</span>
+<span class="w">                                                    </span><span class="c1">#     24.3 %  tma_frontend_bound</span>
+<span class="w">                                                    </span><span class="c1">#      6.0 %  tma_bad_speculation</span>
+<span class="w">          </span><span class="m">18</span>,560,273<span class="w">      </span>topdown-retiring<span class="w">                 </span><span class="c1">#     25.5% Retiring</span>
+<span class="w">          </span><span class="m">17</span>,703,645<span class="w">      </span>topdown-fe-bound<span class="w">                 </span><span class="c1">#     24.3% Frontend Bound</span>
+<span class="w">              </span><span class="m">43</span>,171<span class="w">      </span>INT_MISC.UOP_DROPPING
+<span class="w">          </span><span class="m">31</span>,980,778<span class="w">      </span>topdown-be-bound<span class="w">                 </span><span class="c1">#     43.9% Backend Bound</span>
+<span class="w">              </span><span class="m">55</span>,052<span class="w">      </span>cpu/INT_MISC.RECOVERY_CYCLES,cmask<span class="o">=</span><span class="m">1</span>,edge/
+<span class="w">           </span><span class="m">4</span>,568,682<span class="w">      </span>topdown-bad-spec<span class="w">                 </span><span class="c1">#      6.3% Bad Speculation</span>
 
-         0.012820482 seconds time elapsed
+<span class="w">         </span><span class="m">0</span>.012820482<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-         0.004290000 seconds user
-         0.008581000 seconds sys
-</code></pre>
-<p>The TopdownL1 metrics may be computed by default if no metric is provided:</p>
-<pre><code class="language-sh">  $ perf stat perf bench mem memcpy
-  [... benchmark output truncated ...]
+<span class="w">         </span><span class="m">0</span>.004290000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">         </span><span class="m">0</span>.008581000<span class="w"> </span>seconds<span class="w"> </span>sys
+</code></pre></div></p>
+<p>The TopdownL1 metrics may be computed by default if no metric is provided:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-   Performance counter stats for 'perf bench mem memcpy':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'perf bench mem memcpy'</span>:
 
-               21.38 msec task-clock                       #    0.927 CPUs utilized
-                    7      context-switches                 #  327.406 /sec
-                    0      cpu-migrations                   #    0.000 /sec
-                6,247      page-faults                      #  292.187 K/sec
-           94,684,914      cycles                           #    4.429 GHz
-          117,788,965      instructions                     #    1.24  insn per cycle
-           25,949,650      branches                         #    1.214 G/sec
-              252,622      branch-misses                    #    0.97% of all branches
-                           TopdownL1                 #     45.8 %  tma_backend_bound
-                                                     #     11.2 %  tma_bad_speculation
-                                                     #     18.2 %  tma_frontend_bound
-                                                     #     24.8 %  tma_retiring
+<span class="w">               </span><span class="m">21</span>.38<span class="w"> </span>msec<span class="w"> </span>task-clock<span class="w">                       </span><span class="c1">#    0.927 CPUs utilized</span>
+<span class="w">                    </span><span class="m">7</span><span class="w">      </span>context-switches<span class="w">                 </span><span class="c1">#  327.406 /sec</span>
+<span class="w">                    </span><span class="m">0</span><span class="w">      </span>cpu-migrations<span class="w">                   </span><span class="c1">#    0.000 /sec</span>
+<span class="w">                </span><span class="m">6</span>,247<span class="w">      </span>page-faults<span class="w">                      </span><span class="c1">#  292.187 K/sec</span>
+<span class="w">           </span><span class="m">94</span>,684,914<span class="w">      </span>cycles<span class="w">                           </span><span class="c1">#    4.429 GHz</span>
+<span class="w">          </span><span class="m">117</span>,788,965<span class="w">      </span>instructions<span class="w">                     </span><span class="c1">#    1.24  insn per cycle</span>
+<span class="w">           </span><span class="m">25</span>,949,650<span class="w">      </span>branches<span class="w">                         </span><span class="c1">#    1.214 G/sec</span>
+<span class="w">              </span><span class="m">252</span>,622<span class="w">      </span>branch-misses<span class="w">                    </span><span class="c1">#    0.97% of all branches</span>
+<span class="w">                           </span>TopdownL1<span class="w">                 </span><span class="c1">#     45.8 %  tma_backend_bound</span>
+<span class="w">                                                     </span><span class="c1">#     11.2 %  tma_bad_speculation</span>
+<span class="w">                                                     </span><span class="c1">#     18.2 %  tma_frontend_bound</span>
+<span class="w">                                                     </span><span class="c1">#     24.8 %  tma_retiring</span>
 
-         0.023069998 seconds time elapsed
+<span class="w">         </span><span class="m">0</span>.023069998<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-         0.000000000 seconds user
-         0.023455000 seconds sys
-</code></pre>
+<span class="w">         </span><span class="m">0</span>.000000000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">         </span><span class="m">0</span>.023455000<span class="w"> </span>seconds<span class="w"> </span>sys
+</code></pre></div></p>
 <p>On the right of the counter values are the metrics. For TopdownL1 there are the
 metrics tma_retiring, tma_backend_bound, tma_frontend_bound and
 tma_bad_speculation. For the benchmark tma_backend_bound is the largest. We can
-drill down into this metric by adding the suffix <strong>_group</strong> to the metric name:</p>
-<pre><code class="language-sh">  $ perf stat -M tma_backend_bound_group perf bench mem memcpy
+drill down into this metric by adding the suffix <strong>_group</strong> to the metric name:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>tma_backend_bound_group<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
 
-  [... benchmark output truncated ...]
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-   Performance counter stats for 'perf bench mem memcpy':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'perf bench mem memcpy'</span>:
 
-          69,746,420      TOPDOWN.SLOTS                    #     24.9 %  tma_core_bound
-                                                    #     17.5 %  tma_memory_bound
-          18,599,045      topdown-retiring                 #     26.7% Retiring
-           1,253,770      EXE_ACTIVITY.BOUND_ON_STORES
-          17,504,983      topdown-fe-bound                 #     25.1% Frontend Bound
-           1,769,443      EXE_ACTIVITY.1_PORTS_UTIL
-          29,266,144      topdown-be-bound                 #     42.0% Backend Bound
-              55,050      cpu/INT_MISC.RECOVERY_CYCLES,cmask=1,edge/
-           2,934,845      CYCLE_ACTIVITY.STALLS_MEM_ANY
-           6,667,954      CYCLE_ACTIVITY.STALLS_TOTAL
-           1,775,168      EXE_ACTIVITY.2_PORTS_UTIL
-           4,376,245      topdown-bad-spec                 #      6.3% Bad Speculation
+<span class="w">          </span><span class="m">69</span>,746,420<span class="w">      </span>TOPDOWN.SLOTS<span class="w">                    </span><span class="c1">#     24.9 %  tma_core_bound</span>
+<span class="w">                                                    </span><span class="c1">#     17.5 %  tma_memory_bound</span>
+<span class="w">          </span><span class="m">18</span>,599,045<span class="w">      </span>topdown-retiring<span class="w">                 </span><span class="c1">#     26.7% Retiring</span>
+<span class="w">           </span><span class="m">1</span>,253,770<span class="w">      </span>EXE_ACTIVITY.BOUND_ON_STORES
+<span class="w">          </span><span class="m">17</span>,504,983<span class="w">      </span>topdown-fe-bound<span class="w">                 </span><span class="c1">#     25.1% Frontend Bound</span>
+<span class="w">           </span><span class="m">1</span>,769,443<span class="w">      </span>EXE_ACTIVITY.1_PORTS_UTIL
+<span class="w">          </span><span class="m">29</span>,266,144<span class="w">      </span>topdown-be-bound<span class="w">                 </span><span class="c1">#     42.0% Backend Bound</span>
+<span class="w">              </span><span class="m">55</span>,050<span class="w">      </span>cpu/INT_MISC.RECOVERY_CYCLES,cmask<span class="o">=</span><span class="m">1</span>,edge/
+<span class="w">           </span><span class="m">2</span>,934,845<span class="w">      </span>CYCLE_ACTIVITY.STALLS_MEM_ANY
+<span class="w">           </span><span class="m">6</span>,667,954<span class="w">      </span>CYCLE_ACTIVITY.STALLS_TOTAL
+<span class="w">           </span><span class="m">1</span>,775,168<span class="w">      </span>EXE_ACTIVITY.2_PORTS_UTIL
+<span class="w">           </span><span class="m">4</span>,376,245<span class="w">      </span>topdown-bad-spec<span class="w">                 </span><span class="c1">#      6.3% Bad Speculation</span>
 
-         0.012655913 seconds time elapsed
+<span class="w">         </span><span class="m">0</span>.012655913<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-         0.008451000 seconds user
-         0.004225000 seconds sys
-</code></pre>
-<p>This time tma_core_bound is the largest TMA metric and so we drill down in to it:</p>
-<pre><code class="language-sh">  $ perf stat -M tma_core_bound_group perf bench mem memcpy
-  [... benchmark output truncated ...]
+<span class="w">         </span><span class="m">0</span>.008451000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">         </span><span class="m">0</span>.004225000<span class="w"> </span>seconds<span class="w"> </span>sys
+</code></pre></div></p>
+<p>This time tma_core_bound is the largest TMA metric and so we drill down in to it:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>tma_core_bound_group<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-   Performance counter stats for 'perf bench mem memcpy':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'perf bench mem memcpy'</span>:
 
-        70,285,910      TOPDOWN.SLOTS                    #     31.2 %  tma_ports_utilization
-        18,467,278      topdown-retiring                 #     26.3% Retiring
-         2,165,618      cpu/EXE_ACTIVITY.3_PORTS_UTIL,umask=0x80/
-        17,364,754      topdown-fe-bound                 #     24.7% Frontend Bound
-         1,754,496      EXE_ACTIVITY.1_PORTS_UTIL
-        30,043,781      topdown-be-bound                 #     42.7% Backend Bound
-        14,057,182      CPU_CLK_UNHALTED.THREAD          #      0.1 %  tma_divider
-         3,054,356      CYCLE_ACTIVITY.STALLS_MEM_ANY
-         6,685,779      CYCLE_ACTIVITY.STALLS_TOTAL
-         1,767,046      EXE_ACTIVITY.2_PORTS_UTIL
-         4,410,096      topdown-bad-spec                 #      6.3% Bad Speculation
-             9,354      ARITH.DIVIDER_ACTIVE
+<span class="w">        </span><span class="m">70</span>,285,910<span class="w">      </span>TOPDOWN.SLOTS<span class="w">                    </span><span class="c1">#     31.2 %  tma_ports_utilization</span>
+<span class="w">        </span><span class="m">18</span>,467,278<span class="w">      </span>topdown-retiring<span class="w">                 </span><span class="c1">#     26.3% Retiring</span>
+<span class="w">         </span><span class="m">2</span>,165,618<span class="w">      </span>cpu/EXE_ACTIVITY.3_PORTS_UTIL,umask<span class="o">=</span>0x80/
+<span class="w">        </span><span class="m">17</span>,364,754<span class="w">      </span>topdown-fe-bound<span class="w">                 </span><span class="c1">#     24.7% Frontend Bound</span>
+<span class="w">         </span><span class="m">1</span>,754,496<span class="w">      </span>EXE_ACTIVITY.1_PORTS_UTIL
+<span class="w">        </span><span class="m">30</span>,043,781<span class="w">      </span>topdown-be-bound<span class="w">                 </span><span class="c1">#     42.7% Backend Bound</span>
+<span class="w">        </span><span class="m">14</span>,057,182<span class="w">      </span>CPU_CLK_UNHALTED.THREAD<span class="w">          </span><span class="c1">#      0.1 %  tma_divider</span>
+<span class="w">         </span><span class="m">3</span>,054,356<span class="w">      </span>CYCLE_ACTIVITY.STALLS_MEM_ANY
+<span class="w">         </span><span class="m">6</span>,685,779<span class="w">      </span>CYCLE_ACTIVITY.STALLS_TOTAL
+<span class="w">         </span><span class="m">1</span>,767,046<span class="w">      </span>EXE_ACTIVITY.2_PORTS_UTIL
+<span class="w">         </span><span class="m">4</span>,410,096<span class="w">      </span>topdown-bad-spec<span class="w">                 </span><span class="c1">#      6.3% Bad Speculation</span>
+<span class="w">             </span><span class="m">9</span>,354<span class="w">      </span>ARITH.DIVIDER_ACTIVE
 
-        0.011282941 seconds time elapsed
+<span class="w">        </span><span class="m">0</span>.011282941<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-        0.000000000 seconds user
-        0.011349000 seconds sys
-</code></pre>
-<p>And then tma_ports_utilization:</p>
-<pre><code class="language-sh">  $ perf stat -M tma_ports_utilization_group perf bench mem memcpy
+<span class="w">        </span><span class="m">0</span>.000000000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">        </span><span class="m">0</span>.011349000<span class="w"> </span>seconds<span class="w"> </span>sys
+</code></pre></div></p>
+<p>And then tma_ports_utilization:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>tma_ports_utilization_group<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
 
-  [... benchmark output truncated ...]
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-   Performance counter stats for 'perf bench mem memcpy':
+<span class="w">   </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">'perf bench mem memcpy'</span>:
 
-         1,812,959      RESOURCE_STALLS.SCOREBOARD       #     16.6 %  tma_ports_utilized_0  (34.73%)
-         1,991,726      cpu/EXE_ACTIVITY.3_PORTS_UTIL,umask=0x80/                                     (34.73%)
-        14,159,441      CPU_CLK_UNHALTED.THREAD                                              (34.73%)
-         6,689,757      CYCLE_ACTIVITY.STALLS_TOTAL                                          (34.73%)
-         3,838,402      CYCLE_ACTIVITY.STALLS_MEM_ANY                                        (34.73%)
-         3,282,823      UOPS_EXECUTED.CYCLES_GE_3        #     22.9 %  tma_ports_utilized_3m  (52.98%)
-        14,324,185      CPU_CLK_UNHALTED.THREAD                                              (52.98%)
-        14,599,955      CPU_CLK_UNHALTED.THREAD          #     12.5 %  tma_ports_utilized_2  (65.27%)
-         1,823,495      EXE_ACTIVITY.2_PORTS_UTIL                                            (65.27%)
-         1,819,926      EXE_ACTIVITY.1_PORTS_UTIL        #     12.5 %  tma_ports_utilized_1  (79.65%)
-        14,591,940      CPU_CLK_UNHALTED.THREAD                                              (79.65%)
+<span class="w">         </span><span class="m">1</span>,812,959<span class="w">      </span>RESOURCE_STALLS.SCOREBOARD<span class="w">       </span><span class="c1">#     16.6 %  tma_ports_utilized_0  (34.73%)</span>
+<span class="w">         </span><span class="m">1</span>,991,726<span class="w">      </span>cpu/EXE_ACTIVITY.3_PORTS_UTIL,umask<span class="o">=</span>0x80/<span class="w">                                     </span><span class="o">(</span><span class="m">34</span>.73%<span class="o">)</span>
+<span class="w">        </span><span class="m">14</span>,159,441<span class="w">      </span>CPU_CLK_UNHALTED.THREAD<span class="w">                                              </span><span class="o">(</span><span class="m">34</span>.73%<span class="o">)</span>
+<span class="w">         </span><span class="m">6</span>,689,757<span class="w">      </span>CYCLE_ACTIVITY.STALLS_TOTAL<span class="w">                                          </span><span class="o">(</span><span class="m">34</span>.73%<span class="o">)</span>
+<span class="w">         </span><span class="m">3</span>,838,402<span class="w">      </span>CYCLE_ACTIVITY.STALLS_MEM_ANY<span class="w">                                        </span><span class="o">(</span><span class="m">34</span>.73%<span class="o">)</span>
+<span class="w">         </span><span class="m">3</span>,282,823<span class="w">      </span>UOPS_EXECUTED.CYCLES_GE_3<span class="w">        </span><span class="c1">#     22.9 %  tma_ports_utilized_3m  (52.98%)</span>
+<span class="w">        </span><span class="m">14</span>,324,185<span class="w">      </span>CPU_CLK_UNHALTED.THREAD<span class="w">                                              </span><span class="o">(</span><span class="m">52</span>.98%<span class="o">)</span>
+<span class="w">        </span><span class="m">14</span>,599,955<span class="w">      </span>CPU_CLK_UNHALTED.THREAD<span class="w">          </span><span class="c1">#     12.5 %  tma_ports_utilized_2  (65.27%)</span>
+<span class="w">         </span><span class="m">1</span>,823,495<span class="w">      </span>EXE_ACTIVITY.2_PORTS_UTIL<span class="w">                                            </span><span class="o">(</span><span class="m">65</span>.27%<span class="o">)</span>
+<span class="w">         </span><span class="m">1</span>,819,926<span class="w">      </span>EXE_ACTIVITY.1_PORTS_UTIL<span class="w">        </span><span class="c1">#     12.5 %  tma_ports_utilized_1  (79.65%)</span>
+<span class="w">        </span><span class="m">14</span>,591,940<span class="w">      </span>CPU_CLK_UNHALTED.THREAD<span class="w">                                              </span><span class="o">(</span><span class="m">79</span>.65%<span class="o">)</span>
 
-        0.012931961 seconds time elapsed
+<span class="w">        </span><span class="m">0</span>.012931961<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
 
-        0.008647000 seconds user
-        0.004323000 seconds sys
-</code></pre>
+<span class="w">        </span><span class="m">0</span>.008647000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">        </span><span class="m">0</span>.004323000<span class="w"> </span>seconds<span class="w"> </span>sys
+</code></pre></div></p>
 <p>For tma_ports_utilization_group we can see numbers like <strong>(34.73%)</strong> that
 indicate there were insufficient performance counters to gather the metric and
 the performance counters had to be multiplexed during the benchmark
 run. Multiplexing lowers accuracy and can be worked around by just measuring the
-metric on its own:</p>
-<pre><code class="language-sh">  $ perf stat -M tma_ports_utilized_0 perf bench mem memcpy
-  ...
-         2,268,815      RESOURCE_STALLS.SCOREBOARD       #     19.8 %  tma_ports_utilized_0
-</code></pre>
+metric on its own:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-M<span class="w"> </span>tma_ports_utilized_0<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy
+<span class="w">  </span>...
+<span class="w">         </span><span class="m">2</span>,268,815<span class="w">      </span>RESOURCE_STALLS.SCOREBOARD<span class="w">       </span><span class="c1">#     19.8 %  tma_ports_utilized_0</span>
+</code></pre></div></p>
 <p>Finally we see tma_ports_utilized_3m as the largest metric. Looking at <code>perf
 list</code> (sometimes <code>perf list -v</code>), we can see the meaning of the metrics:</p>
 <ul>
@@ -1059,27 +1059,27 @@ Physical Core cycles otherwise). Sample with: UOPS_EXECUTED.CYCLES_GE_3</p>
 </li>
 </ul>
 <p>The 'Sample with' event can be used with <code>perf record</code> to identify where in the
-benchmark the performance bottleneck is:</p>
-<pre><code class="language-sh">  $ perf record -e UOPS_EXECUTED.CYCLES_GE_3 perf bench mem memcpy; perf report
+benchmark the performance bottleneck is:
+<div class="highlight"><pre><span></span><code><span class="w">  </span>$<span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>-e<span class="w"> </span>UOPS_EXECUTED.CYCLES_GE_3<span class="w"> </span>perf<span class="w"> </span>bench<span class="w"> </span>mem<span class="w"> </span>memcpy<span class="p">;</span><span class="w"> </span>perf<span class="w"> </span>report
 
-  [... benchmark output truncated ...]
+<span class="w">  </span><span class="o">[</span>...<span class="w"> </span>benchmark<span class="w"> </span>output<span class="w"> </span>truncated<span class="w"> </span>...<span class="o">]</span>
 
-  [ perf record: Woken up 1 times to write data ]
-  [ perf record: Captured and wrote 0.034 MB perf.data (1 samples) ]
+<span class="w">  </span><span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Woken<span class="w"> </span>up<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>to<span class="w"> </span>write<span class="w"> </span>data<span class="w"> </span><span class="o">]</span>
+<span class="w">  </span><span class="o">[</span><span class="w"> </span>perf<span class="w"> </span>record:<span class="w"> </span>Captured<span class="w"> </span>and<span class="w"> </span>wrote<span class="w"> </span><span class="m">0</span>.034<span class="w"> </span>MB<span class="w"> </span>perf.data<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>samples<span class="o">)</span><span class="w"> </span><span class="o">]</span>
 
-  # To display the perf.data header info, please use --header/--header-only options.
-  #
-  #
-  # Total Lost Samples: 0
-  #
-  # Samples: 1  of event 'UOPS_EXECUTED.CYCLES_GE_3/period=1000000/'
-  # Event count (approx.): 2000003
-  #
-  # Overhead  Command     Shared Object  Symbol
-  # ........  ..........  .............  ...............
-  #
-     100.00%  mem-memcpy  perf           [.] memcpy_orig
-</code></pre>
+<span class="w">  </span><span class="c1"># To display the perf.data header info, please use --header/--header-only options.</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1"># Total Lost Samples: 0</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1"># Samples: 1  of event 'UOPS_EXECUTED.CYCLES_GE_3/period=1000000/'</span>
+<span class="w">  </span><span class="c1"># Event count (approx.): 2000003</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">  </span><span class="c1"># Overhead  Command     Shared Object  Symbol</span>
+<span class="w">  </span><span class="c1"># ........  ..........  .............  ...............</span>
+<span class="w">  </span><span class="c1">#</span>
+<span class="w">     </span><span class="m">100</span>.00%<span class="w">  </span>mem-memcpy<span class="w">  </span>perf<span class="w">           </span><span class="o">[</span>.<span class="o">]</span><span class="w"> </span>memcpy_orig
+</code></pre></div></p>
 
 
 
@@ -1170,7 +1170,7 @@ benchmark the performance bottleneck is:</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

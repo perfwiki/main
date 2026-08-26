@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -824,38 +824,40 @@ see annotations in <strong>perf</strong>.</p>
 binary. Such binary will display proper annotations in perf.</p>
 <p>The binary we want to annotate properly is <strong>ls</strong>.</p>
 <ul>
-<li>find out the debuginfo holder:</li>
-</ul>
-<pre><code class="language-sh">$ rpm -ql coreutils-debuginfo | grep ls.debug
+<li>
+<p>find out the debuginfo holder:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>rpm<span class="w"> </span>-ql<span class="w"> </span>coreutils-debuginfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>ls.debug
 /usr/lib/debug/usr/bin/ls.debug
-</code></pre>
-<ul>
-<li><strong>OPTIONAL</strong> if your distribution uses prelink, you need to undo it:</li>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>OPTIONAL</strong> if your distribution uses prelink, you need to undo it:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>/bin/ls<span class="w"> </span>.
+$<span class="w"> </span>prelink<span class="w"> </span>-u<span class="w"> </span>ls
+</code></pre></div></p>
+</li>
+<li>
+<p>create the <strong>ls-di</strong> binary with debuginfo merged:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>eu-unstrip<span class="w"> </span>-o<span class="w"> </span>ls-di<span class="w"> </span>./ls<span class="w"> </span>/usr/lib/debug/usr/bin/ls.debug
+$<span class="w"> </span>file<span class="w"> </span>ls-di
+ls-di:<span class="w"> </span>ELF<span class="w"> </span><span class="m">64</span>-bit<span class="w"> </span>LSB<span class="w"> </span>executable,<span class="w"> </span>x86-64,<span class="w"> </span>version<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>SYSV<span class="o">)</span><span class="w"> </span><span class="o">[</span>SNIP<span class="o">]</span><span class="w"> </span>not<span class="w"> </span>stripped
+</code></pre></div></p>
+</li>
+<li>
+<p>clean the build-id cache, since the <strong>ls</strong> share same build-id with <strong>ls-di</strong>:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>buildid-cache<span class="w"> </span>-r<span class="w"> </span>ls
+<span class="c1"># or more efectively:</span>
+$<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.debug/
+</code></pre></div></p>
+</li>
+<li>
+<p>enjoy your annotations via:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>perf<span class="w"> </span>record<span class="w"> </span>./ls-di<span class="w"> </span><span class="o">[</span>SNIP<span class="o">]</span>
+$<span class="w"> </span>perf<span class="w"> </span>annotate<span class="w"> </span><span class="o">[</span>FUNC<span class="o">]</span>
+$<span class="w"> </span>perf<span class="w"> </span>report
+</code></pre></div></p>
+</li>
 </ul>
-<pre><code class="language-sh">$ cp /bin/ls .
-$ prelink -u ls
-</code></pre>
-<ul>
-<li>create the <strong>ls-di</strong> binary with debuginfo merged:</li>
-</ul>
-<pre><code class="language-sh">$ eu-unstrip -o ls-di ./ls /usr/lib/debug/usr/bin/ls.debug
-$ file ls-di
-ls-di: ELF 64-bit LSB executable, x86-64, version 1 (SYSV) [SNIP] not stripped
-</code></pre>
-<ul>
-<li>clean the build-id cache, since the <strong>ls</strong> share same build-id with <strong>ls-di</strong>:</li>
-</ul>
-<pre><code class="language-sh">$ perf buildid-cache -r ls
-# or more efectively:
-$ rm -rf ~/.debug/
-</code></pre>
-<ul>
-<li>enjoy your annotations via:</li>
-</ul>
-<pre><code class="language-sh">$ perf record ./ls-di [SNIP]
-$ perf annotate [FUNC]
-$ perf report
-</code></pre>
 
 
 
@@ -946,7 +948,7 @@ $ perf report
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

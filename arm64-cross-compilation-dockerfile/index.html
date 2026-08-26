@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -765,121 +765,120 @@
 
 <h1 id="arm64-cross-compilation-dockerfile">Arm64 cross-compilation Dockerfile<a class="headerlink" href="#arm64-cross-compilation-dockerfile" title="Permanent link">&para;</a></h1>
 <p>Save this as "Dockerfile" and follow the readme.</p>
-<pre><code class="language-Dockerfile"># Readme
-# ======
-#
-# This is a Dockerfile that cross compiles an arm64 Perf from an x64
-# host. It uses Ubuntu 20 as a base which has libc 2.31, which means
-# the binary will run on any system that has libc 2.31+ (Provided there
-# are no conflicting dependencies, but Ubuntu, Debian, Fedora etc are
-# all likely to work).
-#
-# To build
-# ========
-#
-# Replace &lt;your_linux_checkout&gt; and run the following commands. The Perf
-# build and libtraceevent will be placed in the ./build folder.
-#
-# $ cd &lt;this_folder&gt;
-# $ docker build -t perf-arm64 --network=host .
-# $ docker run -v &lt;your_linux_checkout&gt;:/linux -v ./build:/build -v ./build-static:/build-static perf-arm64
-#
-# To copy and run the dynamic build
-# =================================
-#
-# $ scp ./build/perf ./build/perf-iostat ./build/perf-archive &lt;target_system&gt;:~
-# $ scp ./build/libtraceevent* &lt;target_system&gt;:/usr/lib/aarch64-linux-gnu/ # See NOTE below
-# $ ssh &lt;target_system&gt;
-# $ apt install &lt;any missing library&gt;
-# $ ~/perf record ...
-#
-# To copy and run the static build
-# ================================
-# $ scp ./build-static/perf ./build-static/perf-iostat ./build-static/perf-archive &lt;target_system&gt;:~
-# $ ssh &lt;target_system&gt;
-# $ ~/perf record ...
-#
-# NOTE:
-# If the target is more recent (Ubuntu 22.04+ for example), you should
-# skip copying libtraceevent and apt install it instead.
-#
-# TODO:
-# The Perf python library ends up with x86 stuff in the name, but this
-# isn't really used by Perf anwyay so can be ignored for now.
-#
-FROM ubuntu:20.04
+<div class="highlight"><pre><span></span><code><span class="c"># Readme</span>
+<span class="c"># ======</span>
+<span class="c">#</span>
+<span class="c"># This is a Dockerfile that cross compiles an arm64 Perf from an x64</span>
+<span class="c"># host. It uses Ubuntu 20 as a base which has libc 2.31, which means</span>
+<span class="c"># the binary will run on any system that has libc 2.31+ (Provided there</span>
+<span class="c"># are no conflicting dependencies, but Ubuntu, Debian, Fedora etc are</span>
+<span class="c"># all likely to work).</span>
+<span class="c">#</span>
+<span class="c"># To build</span>
+<span class="c"># ========</span>
+<span class="c">#</span>
+<span class="c"># Replace &lt;your_linux_checkout&gt; and run the following commands. The Perf</span>
+<span class="c"># build and libtraceevent will be placed in the ./build folder.</span>
+<span class="c">#</span>
+<span class="c"># $ cd &lt;this_folder&gt;</span>
+<span class="c"># $ docker build -t perf-arm64 --network=host .</span>
+<span class="c"># $ docker run -v &lt;your_linux_checkout&gt;:/linux -v ./build:/build -v ./build-static:/build-static perf-arm64</span>
+<span class="c">#</span>
+<span class="c"># To copy and run the dynamic build</span>
+<span class="c"># =================================</span>
+<span class="c">#</span>
+<span class="c"># $ scp ./build/perf ./build/perf-iostat ./build/perf-archive &lt;target_system&gt;:~</span>
+<span class="c"># $ scp ./build/libtraceevent* &lt;target_system&gt;:/usr/lib/aarch64-linux-gnu/ # See NOTE below</span>
+<span class="c"># $ ssh &lt;target_system&gt;</span>
+<span class="c"># $ apt install &lt;any missing library&gt;</span>
+<span class="c"># $ ~/perf record ...</span>
+<span class="c">#</span>
+<span class="c"># To copy and run the static build</span>
+<span class="c"># ================================</span>
+<span class="c"># $ scp ./build-static/perf ./build-static/perf-iostat ./build-static/perf-archive &lt;target_system&gt;:~</span>
+<span class="c"># $ ssh &lt;target_system&gt;</span>
+<span class="c"># $ ~/perf record ...</span>
+<span class="c">#</span>
+<span class="c"># NOTE:</span>
+<span class="c"># If the target is more recent (Ubuntu 22.04+ for example), you should</span>
+<span class="c"># skip copying libtraceevent and apt install it instead.</span>
+<span class="c">#</span>
+<span class="c"># TODO:</span>
+<span class="c"># The Perf python library ends up with x86 stuff in the name, but this</span>
+<span class="c"># isn't really used by Perf anwyay so can be ignored for now.</span>
+<span class="c">#</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:20.04</span>
 
-# Stop some packages prompting for user configuration
-ENV DEBIAN_FRONTEND=noninteractive
+<span class="c"># Stop some packages prompting for user configuration</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
 
-# Completely replace sources.list
-#
-# Make sure regular sources are prefixed with amd64 so it doesn't try to
-# pull arm64 packages where they don't exist. And add the ports.ubuntu
-# sources for arm64.
-RUN echo &quot;deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main restricted universe multiverse&quot; &gt; /etc/apt/sources.list &amp;&amp; \
-    echo &quot;deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp; \
-    echo &quot;deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp; \
-    echo &quot;deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp; \
-    echo &quot;deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list &amp;&amp; \
-    echo &quot;deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-security main restricted universe multiverse&quot; &gt;&gt; /etc/apt/sources.list
+<span class="c"># Completely replace sources.list</span>
+<span class="c">#</span>
+<span class="c"># Make sure regular sources are prefixed with amd64 so it doesn't try to</span>
+<span class="c"># pull arm64 packages where they don't exist. And add the ports.ubuntu</span>
+<span class="c"># sources for arm64.</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal main restricted universe multiverse"</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal-updates main restricted universe multiverse"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=amd64] http://archive.ubuntu.com/ubuntu focal-security main restricted universe multiverse"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal main restricted universe multiverse"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted universe multiverse"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports focal-security main restricted universe multiverse"</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/apt/sources.list
 
-RUN dpkg --add-architecture arm64
-RUN apt-get update &amp;&amp; apt-get upgrade -y
+<span class="k">RUN</span><span class="w"> </span>dpkg<span class="w"> </span>--add-architecture<span class="w"> </span>arm64
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>upgrade<span class="w"> </span>-y
 
-# Native build stuff
-RUN apt-get install -y \
-    gcc-aarch64-linux-gnu g++-aarch64-linux-gnu \
-    binutils-aarch64-linux-gnu flex \
-    bison make \
-    pkg-config-aarch64-linux-gnu python3 \
-    python3-dev python3-setuptools \
-    git dpkg-dev
+<span class="c"># Native build stuff</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gcc-aarch64-linux-gnu<span class="w"> </span>g++-aarch64-linux-gnu<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>binutils-aarch64-linux-gnu<span class="w"> </span>flex<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bison<span class="w"> </span>make<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>pkg-config-aarch64-linux-gnu<span class="w"> </span>python3<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>git<span class="w"> </span>dpkg-dev
 
-# Arm64 Perf dependencies
-RUN apt-get install -y \
-    libelf-dev:arm64 libdwarf-dev:arm64 \
-    libdw-dev:arm64 libaudit-dev:arm64 \
-    libcap-dev:arm64 libelf-dev:arm64 \
-    libunwind-dev:arm64 libzstd-dev:arm64 \
-    libfl-dev:arm64 libbison-dev:arm64 \
-    libpython3-dev:arm64 libslang2-dev:arm64 \
-    libnuma-dev:arm64 libssl-dev:arm64 \
-    libbz2-dev:arm64
+<span class="c"># Arm64 Perf dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libelf-dev:arm64<span class="w"> </span>libdwarf-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libdw-dev:arm64<span class="w"> </span>libaudit-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libcap-dev:arm64<span class="w"> </span>libelf-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libunwind-dev:arm64<span class="w"> </span>libzstd-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libfl-dev:arm64<span class="w"> </span>libbison-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libpython3-dev:arm64<span class="w"> </span>libslang2-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libnuma-dev:arm64<span class="w"> </span>libssl-dev:arm64<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>libbz2-dev:arm64
 
-# Build and install libtraceevent since there is no package on Ubuntu 20.04
-WORKDIR /
-RUN git clone --depth=1 --branch=libtraceevent-1.8.4 https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
-WORKDIR /libtraceevent
-RUN make CROSS_COMPILE=aarch64-linux-gnu- prefix=/usr/aarch64-linux-gnu \
-    libdir_relative=lib pkgconfig_dir=/usr/lib/aarch64-linux-gnu/pkgconfig install
-RUN ldconfig
+<span class="c"># Build and install libtraceevent since there is no package on Ubuntu 20.04</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/</span>
+<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>--branch<span class="o">=</span>libtraceevent-1.8.4<span class="w"> </span>https://git.kernel.org/pub/scm/libs/libtrace/libtraceevent.git/
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/libtraceevent</span>
+<span class="k">RUN</span><span class="w"> </span>make<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-<span class="w"> </span><span class="nv">prefix</span><span class="o">=</span>/usr/aarch64-linux-gnu<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">libdir_relative</span><span class="o">=</span>lib<span class="w"> </span><span class="nv">pkgconfig_dir</span><span class="o">=</span>/usr/lib/aarch64-linux-gnu/pkgconfig<span class="w"> </span>install
+<span class="k">RUN</span><span class="w"> </span>ldconfig
 
-CMD echo &quot;=================================&quot; &amp;&amp; \
-    echo &quot;Cleaning /build and /build-static&quot; &amp;&amp; \
-    echo &quot;=================================\n&quot; &amp;&amp; \
-    set -x &amp;&amp; \
-    rm -rf /build/* /build-static/* &amp;&amp; \
-    set +x &amp;&amp; \
-    #
-    echo &quot;===============================&quot; &amp;&amp; \
-    echo &quot;Install libtraceevent to /build&quot; &amp;&amp; \
-    echo &quot;(ignore 'error while loading shared libraries: libtraceevent.so.1: cannot open shared object file: No such file or directory)'&quot; &amp;&amp; \
-    echo &quot;===============================\n&quot; &amp;&amp; \
-    set -x &amp;&amp; \
-    make CROSS_COMPILE=aarch64-linux-gnu- prefix=/build \
-    libdir_relative= pkgconfig_dir=/usr/lib/aarch64-linux-gnu/pkgconfig install &amp;&amp; \
-    set +x &amp;&amp; \
-    #
-    echo &quot;===============================&quot; &amp;&amp; \
-    echo &quot;Build static dynamic arm64 Perf&quot; &amp;&amp; \
-    echo &quot;===============================\n&quot; &amp;&amp; \
-    set -x &amp;&amp; \
-    cd /linux &amp;&amp; \
-    make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=/build -C tools/perf &amp;&amp; \
-    make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- O=/build-static LDFLAGS=&quot;-static&quot; EXTRA_PERFLIBS=&quot;-lexpat&quot; -C tools/perf
-
-</code></pre>
+<span class="k">CMD</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"================================="</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Cleaning /build and /build-static"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"=================================\n"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span>/build/*<span class="w"> </span>/build-static/*<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>+x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"==============================="</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Install libtraceevent to /build"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"(ignore 'error while loading shared libraries: libtraceevent.so.1: cannot open shared object file: No such file or directory)'"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"===============================\n"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>make<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-<span class="w"> </span><span class="nv">prefix</span><span class="o">=</span>/build<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">libdir_relative</span><span class="o">=</span><span class="w"> </span><span class="nv">pkgconfig_dir</span><span class="o">=</span>/usr/lib/aarch64-linux-gnu/pkgconfig<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>+x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>#
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"==============================="</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Build static dynamic arm64 Perf"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"===============================\n"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">set</span><span class="w"> </span>-x<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/linux<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-<span class="w"> </span><span class="nv">O</span><span class="o">=</span>/build<span class="w"> </span>-C<span class="w"> </span>tools/perf<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>make<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-<span class="w"> </span><span class="nv">O</span><span class="o">=</span>/build-static<span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-static"</span><span class="w"> </span><span class="nv">EXTRA_PERFLIBS</span><span class="o">=</span><span class="s2">"-lexpat"</span><span class="w"> </span>-C<span class="w"> </span>tools/perf
+</code></pre></div>
 
 
 
@@ -970,7 +969,7 @@ CMD echo &quot;=================================&quot; &amp;&amp; \
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

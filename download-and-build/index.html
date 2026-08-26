@@ -17,7 +17,7 @@
       
       
       <link rel="icon" href="../img/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
       
 
@@ -767,44 +767,44 @@
 <p>The example below is for a Debian-based system, specifically Ubuntu 20.04 in
 this case, although there is a package list also for Fedora.  We will need 4G of
 disk space.</p>
-<p><code>git</code> is needed:</p>
-<pre><code class="language-sh">$ sudo apt-get install git
-</code></pre>
-<p><code>perf</code> is in the Linux source tree so get that:</p>
-<pre><code class="language-sh">$ cd
-$ mkdir git
-$ cd git
-$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-</code></pre>
-<p>Alternatively the source code of just the perf tool, and not the whole kernel
+<p><code>git</code> is needed:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>git
+</code></pre></div></p>
+<p><code>perf</code> is in the Linux source tree so get that:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span>
+$<span class="w"> </span>mkdir<span class="w"> </span>git
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>git
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+</code></pre></div>
+Alternatively the source code of just the perf tool, and not the whole kernel
 tree, is <a href="https://www.kernel.org/pub/linux/kernel/tools/perf/">archived here</a>.</p>
-<p>Get the minimum tools to build it:</p>
-<pre><code class="language-sh">$ sudo apt-get install build-essential flex bison
-</code></pre>
+<p>Get the minimum tools to build it:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>flex<span class="w"> </span>bison
+</code></pre></div></p>
 <p>It should be possible to build <code>perf</code> at this stage but it will be missing
-essential features.  Add some more development libraries:</p>
-<pre><code class="language-sh">$ sudo apt-get install libelf-dev libnewt-dev libdw-dev libaudit-dev libiberty-dev libunwind-dev libcap-dev libzstd-dev libnuma-dev libssl-dev python3-dev python3-setuptools binutils-dev gcc-multilib liblzma-dev
-</code></pre>
+essential features.  Add some more development libraries:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libelf-dev<span class="w"> </span>libnewt-dev<span class="w"> </span>libdw-dev<span class="w"> </span>libaudit-dev<span class="w"> </span>libiberty-dev<span class="w"> </span>libunwind-dev<span class="w"> </span>libcap-dev<span class="w"> </span>libzstd-dev<span class="w"> </span>libnuma-dev<span class="w"> </span>libssl-dev<span class="w"> </span>python3-dev<span class="w"> </span>python3-setuptools<span class="w"> </span>binutils-dev<span class="w"> </span>gcc-multilib<span class="w"> </span>liblzma-dev
+</code></pre></div></p>
 <p>Note, with v5.19 and earlier, python3-distutils was used instead of
 python3-setuptools, but that was changed in <a href="http://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=ee87a0841aa538ab7ad49cf5679ac5ea2682c909">this
 commit</a>.</p>
-<p>Aside: example packages for Fedora instead of Ubuntu:</p>
-<pre><code class="language-sh">sudo yum install flex bison gcc make elfutils-libelf-devel elfutils-devel libunwind-devel python-devel libcap-devel slang-devel binutils-devel numactl-devel openssl-devel
-</code></pre>
+<p>Aside: example packages for Fedora instead of Ubuntu:
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>flex<span class="w"> </span>bison<span class="w"> </span>gcc<span class="w"> </span>make<span class="w"> </span>elfutils-libelf-devel<span class="w"> </span>elfutils-devel<span class="w"> </span>libunwind-devel<span class="w"> </span>python-devel<span class="w"> </span>libcap-devel<span class="w"> </span>slang-devel<span class="w"> </span>binutils-devel<span class="w"> </span>numactl-devel<span class="w"> </span>openssl-devel
+</code></pre></div></p>
 <p>To build <code>perf</code> (with script bindings for python3 instead of python2) and put it
-in <code>~/bin/perf</code> :</p>
-<pre><code class="language-sh">$ cd ~/git/linux
-$ PYTHON=python3 make -C tools/perf install
-</code></pre>
+in <code>~/bin/perf</code> :
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/git/linux
+$<span class="w"> </span><span class="nv">PYTHON</span><span class="o">=</span>python3<span class="w"> </span>make<span class="w"> </span>-C<span class="w"> </span>tools/perf<span class="w"> </span>install
+</code></pre></div></p>
 <p>To use <code>~/bin/perf</code>, ~/bin must be in $PATH.  In Ubuntu, that is added
 automatically when a user logs in if the ~/bin directory exists (refer
 ~/.bashrc). If it is not in $PATH, log out and in again.  We can echo $PATH to
-check:</p>
-<pre><code class="language-sh">$ echo $PATH
+check:
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
 /home/user/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-$ which perf
+$<span class="w"> </span>which<span class="w"> </span>perf
 /home/user/bin/perf
-</code></pre>
+</code></pre></div></p>
 
 
 
@@ -895,7 +895,7 @@ $ which perf
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.code.select", "content.footnote.tooltips", "content.tabs.link", "content.tooltips", "header.autohide", "navigation.expand", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
