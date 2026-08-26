@@ -49,7 +49,7 @@ These are the links to the `man-pages` for the `perf` tool:
 
 The latest source is available in the
 [perf-tools-next](https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tree/tools/perf/Documentation?h=perf-tools-next)
-tree under `tools/perf/Documents`.
+tree under `tools/perf/Documentation`.
 
 - [perf](https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tree/tools/perf/Documentation/perf.txt?h=perf-tools-next)
 - [perf annotate](https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git/tree/tools/perf/Documentation/perf-annotate.txt?h=perf-tools-next)
@@ -119,4 +119,4 @@ tree under `tools/perf/Documents`.
 
 ## Kernel Version
 
-This page links the each document to the [`linux-next` kernel branch](https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git).
+This page links the each document to the [`perf-tools-next`](https://git.kernel.org/pub/scm/linux/kernel/git/perf/perf-tools-next.git) branch of the perf tools tree.
